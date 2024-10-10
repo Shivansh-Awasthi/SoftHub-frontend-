@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import dotenv from "dotenv";
+import React, { useState } from 'react'
 import axios from 'axios';
 
 
@@ -7,15 +6,51 @@ import axios from 'axios';
 
 const Register = () => {
 
-    try {
-        const userRegister = async () => {
-            const response = await axios.post(`http://localhost:8080/api/user/signup`)
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+
+
+
+
+
+    const handleName = (e) => {
+        setName(e.target.value)
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value)
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value)
+    }
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setName('');
+        setEmail('')
+        setPassword('')
+
+        try {
+
+
+
+            const response = await axios.post(`${process.env.REACT_API}/user/signup`, {
+                username: name,
+                email,
+                password
+            })
             console.log(response);
+
+
+
+        } catch (error) {
+            console.log(error);
+
         }
-        useEffect(() => {
-            // userRegister();
-        }, [])
-    } catch (error) {
 
     }
 
@@ -24,23 +59,23 @@ const Register = () => {
         <div>
             <div className='container'>
                 <div className='cover'>
-                    <form action="">
+                    <form onSubmit={handleSubmit}>
 
                         <div className='user'>
                             <label className='form-label'>Username</label>
-                            <input type="text" placeholder='Enter your name' />
+                            <input type="text" placeholder='Enter your name' onChange={handleName} />
                         </div>
 
                         <div className='user'>
                             <label className='form-label'>Email</label>
-                            <input type="text" placeholder='Enter your name' />
+                            <input type="email" placeholder='Enter your email' onChange={handleEmail} />
                         </div>
 
                         <div className='user'>
                             <label className='form-label'>Password</label>
-                            <input type="text" placeholder='Enter your name' />
+                            <input type="password" placeholder='Enter your password' onChange={handlePassword} />
                         </div>
-
+                        <button type='submit'>Submit</button>
                     </form>
                 </div>
             </div>
