@@ -75,7 +75,7 @@ const Register = () => {
                             <label className='form-label'>Password</label>
                             <input type="password" placeholder='Enter your password' value={password} onChange={handlePassword} />
                         </div>
-                        <button type='submit'>Sign UP</button>
+                        <button type='submit'>Sign Up</button>
                     </form>
                 </div>
             </div>
