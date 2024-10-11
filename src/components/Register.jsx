@@ -13,8 +13,6 @@ const Register = () => {
 
 
 
-
-
     const handleName = (e) => {
         setName(e.target.value)
     }
