@@ -28,6 +28,9 @@ const CreateApps = () => {
 
 
 
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -45,10 +48,6 @@ const CreateApps = () => {
             formData.append('thumbnail', file);
         });
 
-        // Log FormData for debugging
-        for (let [key, value] of formData.entries()) {
-            console.log(key, value);
-        }
 
         try {
             const response = await axios.post(`${process.env.REACT_API}/apps/admin/create`, formData, {
@@ -63,7 +62,6 @@ const CreateApps = () => {
             // Handle error (e.g., show error message)
         }
     };
-
 
 
 
@@ -84,7 +82,7 @@ const CreateApps = () => {
                     </div>
                     <div className='user'>
                         <label className='form-label'>Platform </label>
-                        <input type="text" placeholder='platform' value={platform} onChange={(e) => setPlatform(e.target.value)} />
+                        <input type="text" placeholder='platform: PC, Mac, Android, PS4 currently' value={platform} onChange={(e) => setPlatform(e.target.value)} />
                     </div>
                     <div className='user'>
                         <label className='form-label'>paid..? </label>
