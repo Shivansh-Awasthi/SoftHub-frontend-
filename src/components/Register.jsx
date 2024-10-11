@@ -14,33 +14,35 @@ const Register = () => {
 
 
     const handleName = (e) => {
-        setName(e.target.value)
-    }
+        setName(e.target.value);
+    };
 
     const handleEmail = (e) => {
-        setEmail(e.target.value)
-    }
+        setEmail(e.target.value);
+    };
 
     const handlePassword = (e) => {
-        setPassword(e.target.value)
-    }
+        setPassword(e.target.value);
+    };
+
 
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
-        setName('');
-        setEmail('')
-        setPassword('')
+
 
         try {
-
-
 
             const response = await axios.post(`${process.env.REACT_API}/user/signup`, {
                 username: name,
                 email,
                 password
             })
+            setName('');
+            setEmail('');
+            setPassword('');
+
             console.log(response);
 
 
@@ -61,17 +63,17 @@ const Register = () => {
 
                         <div className='user'>
                             <label className='form-label'>Username</label>
-                            <input type="text" placeholder='Enter your name' onChange={handleName} />
+                            <input type="text" placeholder='Enter your name' value={name} onChange={handleName} />
                         </div>
 
                         <div className='user'>
                             <label className='form-label'>Email</label>
-                            <input type="email" placeholder='Enter your email' onChange={handleEmail} />
+                            <input type="email" placeholder='Enter your email' value={email} onChange={handleEmail} />
                         </div>
 
                         <div className='user'>
                             <label className='form-label'>Password</label>
-                            <input type="password" placeholder='Enter your password' onChange={handlePassword} />
+                            <input type="password" placeholder='Enter your password' value={password} onChange={handlePassword} />
                         </div>
                         <button type='submit'>Sign UP</button>
                     </form>

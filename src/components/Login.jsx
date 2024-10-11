@@ -28,7 +28,11 @@ const Login = () => {
                 password
             })
 
-            console.log(response.data.message);
+            console.log(response);
+            const token = response.data.token;
+            const name = response.data.name
+            localStorage.setItem('token', token)
+            localStorage.setItem('name', name)
         } catch (error) {
             console.log(error);
 
@@ -50,11 +54,11 @@ const Login = () => {
                     </div>
                     <div className='user'>
                         <label className='form-label'>Email</label>
-                        <input type="email" placeholder='Enter your email' onChange={handleEmail} />
+                        <input type="email" placeholder='Enter your email' value={email} onChange={handleEmail} />
                     </div>
                     <div>
                         <label className='form-label'>Password</label>
-                        <input type="password" placeholder='Enter your password' onChange={handlePassword} />
+                        <input type="password" placeholder='Enter your password' value={password} onChange={handlePassword} />
                     </div>
                     <div className='button'>
                         <button type='submit'>SignIn</button>
