@@ -15,7 +15,10 @@ function App() {
           <Route path='/signup' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/' element={<Home />} />
+          {/* admin  */}
           <Route path='/admin/apps/new' element={<CreateApps />} />
+          {/* category */}
+
         </Routes>
       </BrowserRouter>
     </div>
