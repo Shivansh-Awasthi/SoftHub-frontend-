@@ -3,6 +3,7 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Home from './components/Home'
 import CreateApps from './components/admin/CreateApps'
+import Mac from './components/category/Mac'
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
           {/* admin  */}
           <Route path='/admin/apps/new' element={<CreateApps />} />
           {/* category */}
-
+          <Route path='/category/mac/games' element={<Mac />} />
         </Routes>
       </BrowserRouter>
     </div>
