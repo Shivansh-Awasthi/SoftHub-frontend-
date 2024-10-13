@@ -1,24 +1,28 @@
-import React from 'react'
+import React from 'react';
 
 const Mac = () => {
     return (
-        <div className='container'>
-            <div className='cover'>
-                <h1>Games</h1>
+        <div className='container mx-auto p-4'>
+            <div className='cover mb-6'>
+                <h1 className='font-bold text-3xl mb-4'>Games <span>1000</span></h1>
             </div>
-            <div className='cards'>
-                <div className='card'>
-                    <div className='card-img'></div>
-                    <div className='card-info'>
-                        <div className='title'>
-                            <h3>Game Name</h3>
-                        </div>
-                        <div>Size: 40gb</div>
-                    </div>
+            <div className="flex flex-col rounded-2xl w-64 bg-[#ffffff] shadow-xl">
+                <figure
+                    className="flex justify-center items-center rounded-t-2xl overflow-hidden"
+                >
+                    <img
+                        src="https://img.goodfon.com/wallpaper/nbig/4/a6/assassin-s-creed-unity-arno-1436.webp"
+                        alt="Card Preview"
+                        className="rounded-t-2xl transition-transform duration-300 ease-in-out transform hover:scale-110"
+                    />
+                </figure>
+                <div className="flex flex-col p-3">
+                    <div className="text-sm font-normal  text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis">Generator overflow-hidden overflow-hidden</div>
+                    <div className=" text-xs font-thin  text-[#ffffff]">size: 20gb</div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Mac
+export default Mac;
