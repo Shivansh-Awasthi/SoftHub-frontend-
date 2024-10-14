@@ -32,7 +32,7 @@ const PcSoftwares = () => {
     return (
         <div className='container mx-auto p-4'>
             <div className='cover mb-6'>
-                <h1 className='font-bold text-3xl mb-4'>Games <span className='font-medium ml-2 text-[#8E8E8E]'>{data.length}</span></h1>
+                <h1 className='font-medium text-3xl mb-4'>PC Softwares <span className='font-medium ml-2 text-[#8E8E8E]'>{data.length}</span></h1>
             </div>
 
             <div className="flex flex-wrap justify-start gap-8 max-w-full">
