@@ -108,7 +108,7 @@ const CreateApps = () => {
                         <label className='form-label'>Upload App Images.</label>
                         <input type="file" placeholder='please upload the imagesof the product' multiple onChange={handleThumbnail} />
                     </div>
-                    <div className='button'>
+                    <div className='bg-blue-500  text-white rounded'>
                         <button type='submit'>Submit</button>
                     </div>
                 </form>
