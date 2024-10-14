@@ -5,6 +5,9 @@ import Home from './components/Home'
 import CreateApps from './components/admin/CreateApps'
 import Mac from './components/category/Mac'
 import Pc from './components/category/Pc'
+import Android from './components/category/Android'
+import MacSoftwares from './components/category/MacSoftwares'
+import PcSoftwares from './components/category/PcSoftwares'
 
 
 function App() {
@@ -21,7 +24,10 @@ function App() {
           <Route path='/admin/apps/new' element={<CreateApps />} />
           {/* category */}
           <Route path='/category/mac/games' element={<Mac />} />
+          <Route path='/category/mac/softwares' element={<MacSoftwares />} />
           <Route path='/category/pc/games' element={<Pc />} />
+          <Route path='/category/pc/softwares' element={<PcSoftwares />} />
+          <Route path='/category/android/games' element={<Android />} />
         </Routes>
       </BrowserRouter>
     </div>
