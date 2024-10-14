@@ -4,6 +4,7 @@ import Login from './components/Login'
 import Home from './components/Home'
 import CreateApps from './components/admin/CreateApps'
 import Mac from './components/category/Mac'
+import Pc from './components/category/Pc'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path='/admin/apps/new' element={<CreateApps />} />
           {/* category */}
           <Route path='/category/mac/games' element={<Mac />} />
+          <Route path='/category/pc/games' element={<Pc />} />
         </Routes>
       </BrowserRouter>
     </div>
