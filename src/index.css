@@ -4,7 +4,16 @@
 
 
 
-* {
+html,
+body {
     background-color: #1e1e1e;
     color: white;
+    /* Optional: Set default text color */
+    height: 100%;
+    /* Ensure body takes full height */
+}
+
+* {
+    box-sizing: border-box;
+    /* Prevent layout issues */
 }
