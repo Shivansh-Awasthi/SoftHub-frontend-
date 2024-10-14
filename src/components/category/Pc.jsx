@@ -1,8 +1,70 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const Pc = () => {
+
+
+    const [data, setData] = useState([])
+
+
+    const handleData = async () => {
+
+        try {
+
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/pc`)
+            setData(response.data.apps)
+
+        } catch (error) {
+            console.log("Error fetching pc games " + error);
+
+        }
+
+    }
+
+    useEffect(() => {
+        handleData()
+    }, [])
+
+
+
+
+
+
     return (
-        <div>Pc</div>
+        <div>
+            <div className='container mx-auto p-4'>
+                <div className='cover mb-6'>
+                    <h1 className='font-medium text-3xl mb-4'>Games <span className=' font-medium ml-2 text-[#8E8E8E]'>{data.length}</span></h1>
+                </div>
+
+                <div className="flex flex-wrap justify-start gap-8 max-w-full ">
+
+                    {/* loop */}
+
+                    {data.map((ele) => {
+                        return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-52 shadow-xl overflow-hidden">
+                            <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32">
+                                <img
+                                    src={ele.thumbnail[1]}
+                                    alt={ele.title}
+                                    className=" w-full h-full object-cover transition-transform duration-700 ease-in-out transform hover:scale-110"
+                                />
+                            </figure>
+                            <div className="flex flex-col p-4 bg-[#262626]">
+                                <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626] ">{ele.title}</div>
+                                <div className="text-xs font-thin text-[#ffffff] bg-[#262626] ">Size: {ele.size}</div>
+                            </div>
+                        </div>
+                    })}
+
+                    {/* loop ends */}
+
+
+
+
+                </div>
+            </div>
+        </div>
     )
 }
 
