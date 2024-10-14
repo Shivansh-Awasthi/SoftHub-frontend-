@@ -50,7 +50,7 @@ const CreateApps = () => {
 
 
         try {
-            const response = await axios.post(`${process.env.REACT_API}/apps/admin/create`, formData, {
+            const response = await axios.post(`${process.env.REACT_API}/api/apps/admin/create`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
