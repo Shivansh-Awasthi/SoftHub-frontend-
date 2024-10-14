@@ -41,12 +41,12 @@ const Mac = () => {
                 {data.map((ele) => {
 
                     {/* loop */ }
-                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-52 shadow-xl overflow-hidden">
-                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32">
+                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32 ">
                             <img
                                 src={ele.thumbnail[1]}
                                 alt={ele.title}
-                                className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
+                                className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110 "
                             />
                         </figure>
                         <div className="flex flex-col p-4 bg-[#262626]">
