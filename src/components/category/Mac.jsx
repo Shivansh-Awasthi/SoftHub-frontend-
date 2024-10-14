@@ -42,11 +42,11 @@ const Mac = () => {
 
                     {/* loop */ }
                     return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-52 shadow-xl overflow-hidden">
-                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden">
+                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32">
                             <img
-                                src={ele.thumbnail[0]}
+                                src={ele.thumbnail[1]}
                                 alt={ele.title}
-                                className="rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
+                                className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
                             />
                         </figure>
                         <div className="flex flex-col p-4 bg-[#262626]">
