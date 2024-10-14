@@ -40,7 +40,7 @@ const MacSoftwares = () => {
                 {/* loop */}
 
                 {data.map((ele) => {
-                    return <div className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
                         <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
                             <img
                                 src={ele.thumbnail[0]}
