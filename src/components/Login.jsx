@@ -23,7 +23,7 @@ const Login = () => {
         setPassword('')
 
         try {
-            const response = await axios.post(`${process.env.REACT_API}/user/signin`, {
+            const response = await axios.post(`${process.env.REACT_API}api/user/signin`, {
                 email,
                 password
             })
