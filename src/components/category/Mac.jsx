@@ -23,7 +23,7 @@ const Mac = () => {
     useEffect(() => {
         handleData()
     }, [])
-    console.log(data);
+
 
 
 
@@ -49,9 +49,9 @@ const Mac = () => {
                                 className="rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
                             />
                         </figure>
-                        <div className="flex flex-col p-4">
-                            <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis">{ele.title}</div>
-                            <div className="text-xs font-thin text-[#ffffff]">Size: {ele.size}</div>
+                        <div className="flex flex-col p-4 bg-[#262626]">
+                            <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
+                            <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
                         </div>
                     </div>
 
