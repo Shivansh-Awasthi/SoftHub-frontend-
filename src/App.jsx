@@ -8,6 +8,11 @@ import Pc from './components/category/Pc'
 import Android from './components/category/Android'
 import MacSoftwares from './components/category/MacSoftwares'
 import PcSoftwares from './components/category/PcSoftwares'
+import Ps2 from './components/category/playstation/Ps2'
+import Ps3 from './components/category/playstation/Ps3'
+import Ps4 from './components/category/playstation/Ps4'
+import Ppsspp from './components/category/playstation/Ppsspp'
+import AndroidSoftwares from './components/category/AndroidSoftwares'
 
 
 function App() {
@@ -28,6 +33,13 @@ function App() {
           <Route path='/category/pc/games' element={<Pc />} />
           <Route path='/category/pc/softwares' element={<PcSoftwares />} />
           <Route path='/category/android/games' element={<Android />} />
+          <Route path='/category/android/softwares' element={<AndroidSoftwares />} />
+          {/* playstation iso's routes */}
+          <Route path='/category/ps2/iso' element={<Ps2 />} />
+          <Route path='/category/ps3/iso' element={<Ps3 />} />
+          <Route path='/category/ps4/iso' element={<Ps4 />} />
+          <Route path='/category/ppsspp/iso' element={<Ppsspp />} />
+
         </Routes>
       </BrowserRouter>
     </div>
