@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SiRiotgames } from "react-icons/si";
-import { SiMicrosoftonedrive } from "react-icons/si";
 import { FaPlaystation } from "react-icons/fa";
-import { PiDesktopDuotone } from "react-icons/pi";
 import { TfiAndroid } from "react-icons/tfi";
 import { RiMacbookLine } from "react-icons/ri";
-import { FaChevronDown } from "react-icons/fa";
-import { FaChevronUp } from "react-icons/fa";
-
-
-
-
 
 const Sidebar = () => {
-
     const [logo, setLogo] = useState("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.35_AM_cow9by.png");
+
+    // State to keep track of the selected item
+    const [selected, setSelected] = useState('');
+
+    const handleClick = (item) => {
+        setSelected(item);
+    };
+
     return (
         <aside className="sticky top-0 z-10 flex flex-col w-60 h-screen px-6 py-8 overflow-y-auto border-r border-white border-opacity-5">
             <Link
@@ -32,18 +31,30 @@ const Sidebar = () => {
             </Link>
 
             <div className="flex flex-col justify-between flex-1">
-                <nav className="-mx-3 space-y-6">
+                <nav className="-mx-3 space-y-5">
                     <div className="space-y-3">
                         <label className="px-3 text-xs text-gray-500 uppercase">Games</label>
-                        <Link to="/category/pc/games" className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+                        <Link
+                            to="/category/pc/games"
+                            className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'pcGames' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                            onClick={() => handleClick('pcGames')}
+                        >
                             <SiRiotgames />
                             <span className="mx-2 text-sm font-medium">PC</span>
                         </Link>
-                        <Link to="/category/mac/games" className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+                        <Link
+                            to="/category/mac/games"
+                            className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'macGames' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                            onClick={() => handleClick('macGames')}
+                        >
                             <RiMacbookLine />
                             <span className="mx-2 text-sm font-medium">Mac</span>
                         </Link>
-                        <Link to="/category/android/games" className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+                        <Link
+                            to="/category/android/games"
+                            className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'androidGames' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                            onClick={() => handleClick('androidGames')}
+                        >
                             <TfiAndroid />
                             <span className="mx-2 text-sm font-medium">Android</span>
                         </Link>
@@ -51,15 +62,27 @@ const Sidebar = () => {
 
                     <div className="space-y-3">
                         <label className="px-3 text-xs text-gray-500 uppercase">Softwares</label>
-                        <Link to="/category/pc/softwares" className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+                        <Link
+                            to="/category/pc/softwares"
+                            className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'pcSoftwares' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                            onClick={() => handleClick('pcSoftwares')}
+                        >
                             <SiRiotgames />
                             <span className="mx-2 text-sm font-medium">PC</span>
                         </Link>
-                        <Link to="/category/mac/softwares" className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+                        <Link
+                            to="/category/mac/softwares"
+                            className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'macSoftwares' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                            onClick={() => handleClick('macSoftwares')}
+                        >
                             <RiMacbookLine />
                             <span className="mx-2 text-sm font-medium">Mac</span>
                         </Link>
-                        <Link to="/category/android/softwares" className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+                        <Link
+                            to="/category/android/softwares"
+                            className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'androidSoftwares' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                            onClick={() => handleClick('androidSoftwares')}
+                        >
                             <TfiAndroid />
                             <span className="mx-2 text-sm font-medium">Android</span>
                         </Link>
@@ -67,15 +90,27 @@ const Sidebar = () => {
 
                     <div className="space-y-3">
                         <label className="px-3 text-xs text-gray-500 uppercase">Playstation ISO's</label>
-                        <Link to="/category/ppsspp/iso" className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+                        <Link
+                            to="/category/ppsspp/iso"
+                            className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ppsspp' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                            onClick={() => handleClick('ppsspp')}
+                        >
                             <FaPlaystation />
                             <span className="mx-2 text-sm font-medium">PPSSPP</span>
                         </Link>
-                        <Link to="/category/ps2/iso" className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+                        <Link
+                            to="/category/ps2/iso"
+                            className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ps2' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                            onClick={() => handleClick('ps2')}
+                        >
                             <FaPlaystation />
                             <span className="mx-2 text-sm font-medium">PS2</span>
                         </Link>
-                        <Link to="/category/ps3/iso" className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700">
+                        <Link
+                            to="/category/ps3/iso"
+                            className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ps3' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                            onClick={() => handleClick('ps3')}
+                        >
                             <FaPlaystation />
                             <span className="mx-2 text-sm font-medium">PS3</span>
                         </Link>
@@ -96,9 +131,8 @@ const Sidebar = () => {
                 <span className="mx-1">,</span>
                 <Link to="#" className="no-underline hover:underline">Contacts</Link>
             </div>
-
         </aside>
-    )
-}
+    );
+};
 
-export default Sidebar
+export default Sidebar;
