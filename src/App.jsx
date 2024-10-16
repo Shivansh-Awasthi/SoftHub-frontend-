@@ -14,6 +14,8 @@ import Ps4 from './components/category/playstation/Ps4';
 import Ppsspp from './components/category/playstation/Ppsspp';
 import AndroidSoftwares from './components/category/android/AndroidSoftwares';
 import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import SearchResults from './components/searchResults';
 
 function App() {
   return (
@@ -21,10 +23,14 @@ function App() {
       <div className="flex"> {/* Flex container for layout */}
         <Sidebar /> {/* Sidebar on the left */}
         <div className="flex-1 p-8"> {/* Main content area */}
+          <Header />
           <Routes>
             <Route path='/signup' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/' element={<Home />} />
+
+            <Route path='/search' element={<SearchResults />} />
+
             {/* admin routes */}
             <Route path='/admin/apps/new' element={<CreateApps />} />
             {/* category routes */}

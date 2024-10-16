@@ -40,7 +40,6 @@ const SearchResults = () => {
         }
     }, [data, query]);
 
-    console.log(filteredData);
 
     return (
         <div>
