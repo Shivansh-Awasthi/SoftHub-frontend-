@@ -9,6 +9,7 @@ const SearchResults = () => {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [loading, setLoading] = useState(true); // Loading state
+    const [error, setError] = useState(''); // Error message state
 
     const handleData = async () => {
         setLoading(true); // Start loading
@@ -27,10 +28,16 @@ const SearchResults = () => {
     }, []);
 
     useEffect(() => {
-        const results = data.filter(item =>
-            item.title.toLowerCase().includes(query.toLowerCase())
-        );
-        setFilteredData(results);
+        if (!query || query.length < 1) {
+            setError('An empty search field was entered or the search string contains less than 1 character, due to which the search was suspended.');
+            setFilteredData([]); // Clear filtered data
+        } else {
+            setError(''); // Clear error message
+            const results = data.filter(item =>
+                item.title.toLowerCase().includes(query.toLowerCase())
+            );
+            setFilteredData(results);
+        }
     }, [data, query]);
 
     console.log(filteredData);
@@ -38,7 +45,7 @@ const SearchResults = () => {
     return (
         <div>
             <div className='cover mb-6'>
-                {filteredData.length > 0 && (
+                {filteredData.length > 0 && !error && (
                     <h1 className='font-medium text-3xl mb-4'>
                         Search Results <span className='font-medium ml-2 text-[#8E8E8E]'>{filteredData.length}</span>
                     </h1>
@@ -48,6 +55,13 @@ const SearchResults = () => {
             {loading ? ( // Show loading message while fetching data
                 <div className="p-6 bg-[#2c2c2c] rounded-lg text-sm text-center border border-white border-opacity-10 shadow-lg">
                     <p>Loading...</p>
+                </div>
+            ) : error ? (
+                <div>
+                    <h1 className='font-medium text-3xl mb-6'>Oops! Something went wrong</h1>
+                    <div className="p-6 mr-96 bg-[#2c2c2c] rounded-lg text-sm text-center border border-white border-opacity-10 shadow-lg">
+                        <p>{error}</p>
+                    </div>
                 </div>
             ) : filteredData.length === 0 ? (
                 <div>
