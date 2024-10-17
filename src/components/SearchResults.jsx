@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Loader from './Loading Animations/Loader';
 
 const SearchResults = () => {
     const query = new URLSearchParams(useLocation().search).get('query');
-    console.log(query);
+
 
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -41,6 +42,7 @@ const SearchResults = () => {
     }, [data, query]);
 
 
+
     return (
         <div>
             <div className='cover mb-6'>
@@ -52,9 +54,8 @@ const SearchResults = () => {
             </div>
 
             {loading ? ( // Show loading message while fetching data
-                <div className="p-6 bg-[#2c2c2c] rounded-lg text-sm text-center border border-white border-opacity-10 shadow-lg">
-                    <p>Loading...</p>
-                </div>
+
+                <Loader />
             ) : error ? (
                 <div>
                     <h1 className='font-medium text-3xl mb-6'>Oops! Something went wrong</h1>
