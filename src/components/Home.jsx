@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Ps2 from './category/playstation/Ps2';
 
 const images = [
     'https://www.dubaitraveltourism.com/assets/images/tours/gallery/gallery-01699700340-img-worlds-of-adventrue.jpg',
@@ -118,6 +119,33 @@ const Home = () => {
     useEffect(() => {
         handleAndroidData()
     }, [])
+
+
+
+    // ps2 iso's
+
+
+    const [Ps2data, setPs2Data] = useState([])
+
+
+    const handlePs2Data = async () => {
+
+        try {
+
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/ps2`)
+            setPs2Data(response.data.apps)
+
+        } catch (error) {
+            console.log("Error fetching android softwares " + error);
+
+        }
+
+    }
+
+    useEffect(() => {
+        handlePs2Data()
+    }, [])
+
 
 
 
@@ -316,7 +344,7 @@ const Home = () => {
             {/* Android Games */}
 
 
-            <div className='cover mb-2 flex justify-between items-center pb-10'>
+            <div className='cover mb-2 flex justify-between items-center'>
                 <h1 className='font-medium text-xl mb-4'>
                     Android Games
                     <span className='font-medium ml-2 text-[#8E8E8E]'>{Androiddata.length}</span>
@@ -327,7 +355,7 @@ const Home = () => {
             </div>
 
 
-            <div className="flex flex-wrap justify-start gap-8 max-w-full">
+            <div className="flex flex-wrap justify-start gap-8 max-w-full pb-10">
 
 
                 {/* loop */}
@@ -352,6 +380,40 @@ const Home = () => {
             </div>
 
 
+            {/* Ps2 roms */}
+
+            <div className='cover mb-2 flex justify-between items-center'>
+                <h1 className='font-medium text-xl mb-4'>
+                    PS2 Roms
+                    <span className='font-medium ml-2 text-[#8E8E8E]'>{Ps2data.length}</span>
+                </h1>
+                <Link to="/category/ps2/iso" className="text-blue-500 hover:underline text-xs">
+                    See All
+                </Link>
+            </div>
+
+            <div className="flex flex-wrap justify-start gap-8 max-w-full">
+
+                {/* loop */}
+
+                {Ps2data.slice(0, 8).map((ele) => {
+                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10  hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                        <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
+                            <img
+                                src={ele.thumbnail[0]}
+                                alt={ele.title}
+                                className="rounded-full w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
+                            />
+                        </div>
+                        <div className="flex flex-col p-4 bg-[#262626]">
+                            <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2"> {ele.title} </div>
+                            <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
+                        </div>
+                    </div>
+                })}
+
+                {/* loop ends */}
+            </div>
 
 
 
