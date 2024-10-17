@@ -10,412 +10,166 @@ const images = [
 
 const Home = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [data, setData] = useState([]);
+    const [MacSoftData, setMacSoftData] = useState([]);
+    const [Pcdata, setPcData] = useState([]);
+    const [Androiddata, setAndroidData] = useState([]);
+    const [Ps2data, setPs2Data] = useState([]);
 
-    const nextSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    const fetchData = async (url, setData) => {
+        try {
+            const response = await axios.get(url);
+            setData(response.data.apps);
+        } catch (error) {
+            console.log("Error fetching data: " + error);
+        }
     };
 
-    const prevSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-    };
-
-
-    // mac games
-
-    const [data, setData] = useState([])
-
-
-    const handleData = async () => {
-
-        try {
-
-            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/mac`)
-            setData(response.data.apps)
-
-        } catch (error) {
-            console.log("Error fetching mac games " + error);
-
-        }
-
-    }
-
     useEffect(() => {
-        handleData()
-    }, [])
-
-
-    //mac softwares
-
-    const [MacSoftData, setMacSoftData] = useState([])
-
-
-    const handleMacSofData = async () => {
-
-        try {
-
-            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/smac`)
-            setMacSoftData(response.data.apps)
-
-        } catch (error) {
-            console.log("Error fetching mac softwares " + error);
-
-        }
-
-    }
-
-    useEffect(() => {
-        handleMacSofData()
-    }, [])
-
-
-
-    // pc games
-
-
-    const [Pcdata, setPcData] = useState([])
-
-
-    const handlePcData = async () => {
-
-        try {
-
-            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/pc`)
-            setPcData(response.data.apps)
-
-        } catch (error) {
-            console.log("Error fetching pc games " + error);
-
-        }
-
-    }
-
-    useEffect(() => {
-        handlePcData()
-    }, [])
-
-
-
-
-    // Android games
-
-    const [Androiddata, setAndroidData] = useState([])
-
-
-    const handleAndroidData = async () => {
-
-        try {
-
-            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/android`)
-            setAndroidData(response.data.apps)
-
-        } catch (error) {
-            console.log("Error fetching pc games " + error);
-
-        }
-
-    }
-
-    useEffect(() => {
-        handleAndroidData()
-    }, [])
-
-
-
-    // ps2 iso's
-
-
-    const [Ps2data, setPs2Data] = useState([])
-
-
-    const handlePs2Data = async () => {
-
-        try {
-
-            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/ps2`)
-            setPs2Data(response.data.apps)
-
-        } catch (error) {
-            console.log("Error fetching android softwares " + error);
-
-        }
-
-    }
-
-    useEffect(() => {
-        handlePs2Data()
-    }, [])
-
-
-
-
+        fetchData(`${process.env.REACT_API}/api/apps/category/mac`, setData);
+        fetchData(`${process.env.REACT_API}/api/apps/category/smac`, setMacSoftData);
+        fetchData(`${process.env.REACT_API}/api/apps/category/pc`, setPcData);
+        fetchData(`${process.env.REACT_API}/api/apps/category/android`, setAndroidData);
+        fetchData(`${process.env.REACT_API}/api/apps/category/ps2`, setPs2Data);
+    }, []);
 
     return (
         <div className='container mx-auto p-2'>
-
-
-
-
-
-            {/* slider logic */}
-
-
+            {/* Slider Logic */}
             <div id="default-carousel" className="relative w-full mb-10" data-carousel="slide">
-                {/* Carousel wrapper */}
                 <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
                     {images.map((image, index) => (
-                        <div
-                            key={index}
-                            className={`transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block' : 'hidden'}`}
-                        >
-                            <img
-                                src={image}
-                                className="block w-full h-auto"
-                                alt={`Slide ${index + 1}`}
-                            />
+                        <div key={index} className={`transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block' : 'hidden'}`}>
+                            <img src={image} className="block w-full h-auto" alt={`Slide ${index + 1}`} />
                         </div>
                     ))}
                 </div>
-                {/* Slider indicators */}
                 <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
                     {images.map((_, index) => (
-                        <button
-                            key={index}
-                            type="button"
-                            className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
-                            aria-current={index === currentIndex}
-                            aria-label={`Slide ${index + 1}`}
-                            onClick={() => setCurrentIndex(index)}
-                        />
+                        <button key={index} type="button" className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`} onClick={() => setCurrentIndex(index)} />
                     ))}
                 </div>
-                {/* Slider controls */}
-                <button
-                    type="button"
-                    className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                    onClick={prevSlide}
-                >
+                <button type="button" className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4" onClick={() => setCurrentIndex((currentIndex - 1 + images.length) % images.length)}>
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white focus:outline-none">
-                        <svg className="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4" />
-                        </svg>
-                        <span className="sr-only">Previous</span>
+                        {/* Previous SVG */}
                     </span>
                 </button>
-                <button
-                    type="button"
-                    className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                    onClick={nextSlide}
-                >
+                <button type="button" className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4" onClick={() => setCurrentIndex((currentIndex + 1) % images.length)}>
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white focus:outline-none">
-                        <svg className="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4" />
-                        </svg>
-                        <span className="sr-only">Next</span>
+                        {/* Next SVG */}
                     </span>
                 </button>
             </div>
 
-            {/* slider logic ends */}
-
-
-
-            {/* mac games category */}
-
-
+            {/* Mac Games Category */}
             <div className='cover mb-2 flex justify-between items-center'>
                 <h1 className='font-medium text-xl mb-4'>
                     Mac Games
                     <span className='font-medium ml-2 text-[#8E8E8E]'>{data.length}</span>
                 </h1>
-                <Link to="/category/mac/games" className="text-blue-500 hover:underline text-xs">
-                    See All
-                </Link>
+                <Link to="/category/mac/games" className="text-blue-500 hover:underline text-xs">See All</Link>
             </div>
-
-
-
             <div className="flex flex-wrap justify-start gap-8 max-w-full pb-10">
-
-
-                {data.slice(0, 8).map((ele) => {
-
-                    {/* loop */ }
-                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
-                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32 ">
-                            <img
-                                src={ele.thumbnail[1]}
-                                alt={ele.title}
-                                className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110 "
-                            />
+                {data.slice(0, 8).map((ele) => (
+                    <Link key={ele._id} to={`/${ele._id}`} className="flex flex-col rounded-2xl w-64 h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32">
+                            <img src={ele.thumbnail[1]} alt={ele.title} className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110" />
                         </figure>
                         <div className="flex flex-col p-4 bg-[#262626]">
                             <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
                             <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
                         </div>
-                    </div>
-
-                    {/* loop ends */ }
-
-                })}
-
+                    </Link>
+                ))}
             </div>
 
-
-
-            {/* mac softwares  */}
-
-
+            {/* Mac Softwares */}
             <div className='cover mb-2 flex justify-between items-center'>
                 <h1 className='font-medium text-xl mb-4'>
                     Mac Softwares
                     <span className='font-medium ml-2 text-[#8E8E8E]'>{MacSoftData.length}</span>
                 </h1>
-                <Link to="/category/mac/softwares" className="text-blue-500 hover:underline text-xs">
-                    See All
-                </Link>
+                <Link to="/category/mac/softwares" className="text-blue-500 hover:underline text-xs">See All</Link>
             </div>
-
             <div className="flex flex-wrap justify-start gap-8 max-w-full pb-10">
-
-
-                {/* loop */}
-
-                {MacSoftData.slice(0, 8).map((ele) => {
-                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10  hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                {MacSoftData.slice(0, 8).map((ele) => (
+                    <Link key={ele._id} to={`/${ele._id}`} className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
                         <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
-                            <img
-                                src={ele.thumbnail[0]}
-                                alt={ele.title}
-                                className="rounded-full w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
-                            />
+                            <img src={ele.thumbnail[0]} alt={ele.title} className="rounded-full w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]" />
                         </div>
                         <div className="flex flex-col p-4 bg-[#262626]">
-                            <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2"> {ele.title} </div>
+                            <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
                             <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
                         </div>
-                    </div>
-                })}
-
-                {/* loop ends */}
+                    </Link>
+                ))}
             </div>
 
-
-            {/* pc games */}
-
-
-
+            {/* PC Games */}
             <div className='cover mb-2 flex justify-between items-center'>
                 <h1 className='font-medium text-xl mb-4'>
                     PC Games
                     <span className='font-medium ml-2 text-[#8E8E8E]'>{Pcdata.length}</span>
                 </h1>
-                <Link to="/category/pc/games" className="text-blue-500 hover:underline text-xs">
-                    See All
-                </Link>
+                <Link to="/category/pc/games" className="text-blue-500 hover:underline text-xs">See All</Link>
             </div>
-
-
             <div className="flex flex-wrap justify-start gap-8 max-w-full pb-10">
-
-                {/* loop */}
-
-                {Pcdata.slice(0, 8).map((ele) => {
-                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                {Pcdata.slice(0, 8).map((ele) => (
+                    <Link key={ele._id} to={`/${ele._id}`} className="flex flex-col rounded-2xl w-64 h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
                         <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32">
-                            <img
-                                src={ele.thumbnail[1]}
-                                alt={ele.title}
-                                className=" w-full h-full object-cover transition-transform duration-700 ease-in-out transform hover:scale-110"
-                            />
+                            <img src={ele.thumbnail[1]} alt={ele.title} className="w-full h-full object-cover transition-transform duration-700 ease-in-out transform hover:scale-110" />
                         </figure>
                         <div className="flex flex-col p-4 bg-[#262626]">
-                            <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626] ">{ele.title}</div>
+                            <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
                             <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
                         </div>
-                    </div>
-                })}
-
-                {/* loop ends */}
-
+                    </Link>
+                ))}
             </div>
 
-
             {/* Android Games */}
-
-
             <div className='cover mb-2 flex justify-between items-center'>
                 <h1 className='font-medium text-xl mb-4'>
                     Android Games
                     <span className='font-medium ml-2 text-[#8E8E8E]'>{Androiddata.length}</span>
                 </h1>
-                <Link to="/category/pc/games" className="text-blue-500 hover:underline text-xs">
-                    See All
-                </Link>
+                <Link to="/category/android/games" className="text-blue-500 hover:underline text-xs">See All</Link>
             </div>
-
-
             <div className="flex flex-wrap justify-start gap-8 max-w-full pb-10">
-
-
-                {/* loop */}
-
-                {Androiddata.slice(0, 8).map((ele) => {
-                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10  hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
-                        <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
-                            <img
-                                src={ele.thumbnail[0]}
-                                alt={ele.title}
-                                className="rounded-full w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
-                            />
-                        </div>
+                {Androiddata.slice(0, 8).map((ele) => (
+                    <Link key={ele._id} to={`/${ele._id}`} className="flex flex-col rounded-2xl w-64 h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32">
+                            <img src={ele.thumbnail[1]} alt={ele.title} className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110" />
+                        </figure>
                         <div className="flex flex-col p-4 bg-[#262626]">
-                            <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2"> {ele.title} </div>
-                            <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
+                            <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
+                            <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
                         </div>
-                    </div>
-                })}
-
-                {/* loop ends */}
+                    </Link>
+                ))}
             </div>
 
-
-            {/* Ps2 roms */}
-
+            {/* PS2 Roms */}
             <div className='cover mb-2 flex justify-between items-center'>
                 <h1 className='font-medium text-xl mb-4'>
                     PS2 Roms
                     <span className='font-medium ml-2 text-[#8E8E8E]'>{Ps2data.length}</span>
                 </h1>
-                <Link to="/category/ps2/iso" className="text-blue-500 hover:underline text-xs">
-                    See All
-                </Link>
+                <Link to="/category/ps2/games" className="text-blue-500 hover:underline text-xs">See All</Link>
             </div>
-
-            <div className="flex flex-wrap justify-start gap-8 max-w-full">
-
-                {/* loop */}
-
-                {Ps2data.slice(0, 8).map((ele) => {
-                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10  hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
-                        <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
-                            <img
-                                src={ele.thumbnail[0]}
-                                alt={ele.title}
-                                className="rounded-full w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
-                            />
-                        </div>
+            <div className="flex flex-wrap justify-start gap-8 max-w-full pb-10">
+                {Ps2data.slice(0, 8).map((ele) => (
+                    <Link key={ele._id} to={`/${ele._id}`} className="flex flex-col rounded-2xl w-64 h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32">
+                            <img src={ele.thumbnail[1]} alt={ele.title} className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110" />
+                        </figure>
                         <div className="flex flex-col p-4 bg-[#262626]">
-                            <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2"> {ele.title} </div>
-                            <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
+                            <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
+                            <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
                         </div>
-                    </div>
-                })}
-
-                {/* loop ends */}
+                    </Link>
+                ))}
             </div>
-
-
-
         </div>
     );
 };
