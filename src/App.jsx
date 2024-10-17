@@ -16,6 +16,7 @@ import AndroidSoftwares from './components/category/android/AndroidSoftwares';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import SearchResults from './components/searchResults';
+import SingleApp from './components/SingleApp';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path='/signup' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/' element={<Home />} />
+            <Route path='/:id' element={<SingleApp />} />
 
             <Route path='/search' element={<SearchResults />} />
 
