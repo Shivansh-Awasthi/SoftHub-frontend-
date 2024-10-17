@@ -17,7 +17,7 @@ const Header = () => {
     };
 
     return (
-        <header className="flex flex-wrap items-center justify-between p-0 pb-6">
+        <header className="flex flex-wrap items-center justify-between px-2 pb-6">
             <div className="flex flex-wrap relative border border-white border-opacity-5 rounded-lg w-full max-w-[730px]"> {/* Adjusted width */}
                 <form onSubmit={handleSearch} className="w-full flex items-center">
                     <input
