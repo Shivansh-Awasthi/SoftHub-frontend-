@@ -19,7 +19,8 @@ const Home = () => {
     const fetchData = async (url, setData) => {
         try {
             const response = await axios.get(url);
-            setData(response.data.apps);
+            const sortedData = response.data.apps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setData(sortedData);
         } catch (error) {
             console.log("Error fetching data: " + error);
         }
