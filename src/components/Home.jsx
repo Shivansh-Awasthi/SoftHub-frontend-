@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Ps2 from './category/playstation/Ps2';
 
 const images = [
     'https://www.dubaitraveltourism.com/assets/images/tours/gallery/gallery-01699700340-img-worlds-of-adventrue.jpg',
