@@ -46,7 +46,7 @@ const Home = () => {
                         </div>
                     ))}
                 </div>
-                <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
+                <div className="absolute  flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
                     {images.map((_, index) => (
                         <button
                             key={index}
@@ -58,7 +58,7 @@ const Home = () => {
                 </div>
                 <button
                     type="button"
-                    className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4"
+                    className="absolute top-0 left-0  flex items-center justify-center h-full px-4"
                     onClick={() => setCurrentIndex((currentIndex - 1 + images.length) % images.length)}
                 >
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white focus:outline-none">
@@ -67,7 +67,7 @@ const Home = () => {
                 </button>
                 <button
                     type="button"
-                    className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4"
+                    className="absolute top-0 right-0  flex items-center justify-center h-full px-4"
                     onClick={() => setCurrentIndex((currentIndex + 1) % images.length)}
                 >
                     <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white focus:outline-none">
