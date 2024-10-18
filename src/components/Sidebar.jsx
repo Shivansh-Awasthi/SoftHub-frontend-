@@ -50,7 +50,7 @@ const Sidebar = () => {
     };
 
     return (
-        <>
+        <div>
             {/* Hamburger / Close menu icon */}
             {isMobileView && (
                 <button
@@ -188,7 +188,7 @@ const Sidebar = () => {
                     </div>
                 </aside>
             )}
-        </>
+        </div>
     );
 };
 

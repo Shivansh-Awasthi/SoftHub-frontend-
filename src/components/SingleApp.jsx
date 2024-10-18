@@ -83,25 +83,27 @@ const SingleApp = () => {
     }
 
     return (
-        <div>
-            <div className='flex flex-wrap px-2'>
+        <div className='z-20'>
+
+            <div className='flex flex-wrap flex-col lg:flex-row px-2 justify-center items-center'>
                 {/* Left Content */}
                 <div className="flex-1">
+
                     {/* Card */}
-                    <div className="flex w-full p-4 max-w-lg flex-col rounded-lg shadow-sm mb-2">
-                        <div className="flex items-center gap-4 text-slate-800 gap-5">
+                    <div className="flex w-full p-2 sm:p-4 max-w-full sm:max-w-lg flex-grow flex-col rounded-lg shadow-sm mb-2">
+                        <div className="flex items-center gap-4 text-slate-800 gap-3 sm:gap-5">
                             <img
                                 src={data.thumbnail && data.thumbnail[0] ? data.thumbnail[0] : "https://via.placeholder.com/58"}
                                 alt={data.title}
-                                className="relative inline-block h-[58px] w-[58px] !rounded-lg object-cover object-center"
+                                className="relative inline-block h-[48px] w-[48px] sm:h-[58px] sm:w-[58px] !rounded-lg object-cover object-center"
                             />
                             <div className="flex w-full flex-col">
-                                <div className="flex items-center justify-between">
-                                    <h1 className="text-white text-4xl font-normal">
+                                <div className=" items-center justify-between">
+                                    <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal whitespace-nowrap">
                                         {data.title}
                                     </h1>
                                 </div>
-                                <p className="text-[11px] text-blue-500 uppercase font-light mt-0.5">
+                                <p className="text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] text-blue-500 uppercase font-light mt-0.5">
                                     {data.platform}
                                 </p>
                             </div>
@@ -110,8 +112,8 @@ const SingleApp = () => {
 
                     {/* Slider Logic */}
                     {data.thumbnail && data.thumbnail.length > 1 && (
-                        <div id="default-carousel" className="relative w-full max-w-[46rem]" data-carousel="slide">
-                            <div className="relative h-auto overflow-hidden rounded-lg md:h-[26rem]">
+                        <div id="default-carousel" className="relative w-full max-w-full sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[46rem]" data-carousel="slide">
+                            <div className="relative h-auto overflow-hidden rounded-lg md:h-[20rem] lg:h-[26rem]">
                                 {data.thumbnail.slice(1).map((image, index) => (
                                     <div key={index} className={`transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block' : 'hidden'}`}>
                                         <img src={image} className="block w-full h-auto" alt={`Slide ${index + 2}`} />
@@ -119,12 +121,12 @@ const SingleApp = () => {
                                 ))}
                             </div>
                             {/* Slider indicators */}
-                            <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
+                            <div className="absolute  flex -translate-x-1/2 bottom-2 sm:bottom-3 lg:bottom-5 left-1/2 space-x-2 sm:space-x-3">
                                 {data.thumbnail.slice(1).map((_, index) => (
                                     <button
                                         key={index}
                                         type="button"
-                                        className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
+                                        className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
                                         aria-current={index === currentIndex}
                                         aria-label={`Slide ${index + 2}`}
                                         onClick={() => setCurrentIndex(index)}
@@ -132,18 +134,18 @@ const SingleApp = () => {
                                 ))}
                             </div>
                             {/* Slider controls */}
-                            <button type="button" className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" onClick={prevSlide}>
-                                <FaAngleLeft className='text-xl' />
+                            <button type="button" className="absolute top-0 left-0  flex items-center justify-center h-full px-2 sm:px-4 cursor-pointer group focus:outline-none" onClick={prevSlide}>
+                                <FaAngleLeft className='text-lg sm:text-xl' />
                             </button>
-                            <button type="button" className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" onClick={nextSlide}>
-                                <FaAngleRight className='text-xl' />
+                            <button type="button" className="absolute top-0 right-0  flex items-center justify-center h-full px-2 sm:px-4 cursor-pointer group focus:outline-none" onClick={nextSlide}>
+                                <FaAngleRight className='text-lg sm:text-xl' />
                             </button>
                         </div>
                     )}
                 </div>
 
                 {/* Right Card */}
-                <div className="w-full max-w-[22rem] h-full p-8 ml-2 bg-[#262626] rounded-lg shadow-md mt-[6.3rem]">
+                <div className="w-full max-w-[22rem] h-full p-8 ml-2 bg-[#262626] rounded-lg shadow-md mt-10 sm:mt-10 lg:mt-[6.3rem]">
                     <h2 className="text-xs font-semibold text-[#8E8E8E] ">Platform</h2>
                     <p className="text-sm text-[#fff] mb-6">{data.platform}</p>
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Interface language</h2>
@@ -166,13 +168,13 @@ const SingleApp = () => {
             </div>
 
             {/* Description Section */}
-            <div className="mt-8 p-20 bg-[#262626] rounded-xl">
+            <div className="mt-8 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-20 bg-[#262626] rounded-xl z-20">
                 <div className="text-center p-1">
-                    <h2 className="text-3xl font-normal text-[#8E8E8E] hover:text-[#fff]">Description</h2>
+                    <h2 className="text-2xl sm:text-3xl font-normal text-[#8E8E8E] hover:text-[#fff]">Description</h2>
                     <div className="h-0.5 bg-[#8E8E8E] opacity-20 w-full mt-2 mb-4"></div>
                 </div>
                 <p
-                    className="text-sm text-[#fff]"
+                    className="text-sm sm:text-base md:text-lg text-[#fff]"
                     dangerouslySetInnerHTML={{
                         __html: showMore
                             ? (data.description ? data.description.replace(/\\n/g, '<br />') : "No description available.")
@@ -181,7 +183,7 @@ const SingleApp = () => {
                 />
                 {/* Show More / Collapse Button */}
                 <button
-                    className="mt-4 text-blue-500"
+                    className="mt-4 text-blue-500 hover:underline"
                     onClick={toggleShowMore}
                 >
                     {showMore ? "Collapse" : "Show More"}
@@ -189,39 +191,53 @@ const SingleApp = () => {
             </div>
 
             {/* Modal for Download Instructions */}
-            {showModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black  backdrop-blur-sm bg-opacity-50 z-50">
-                    <div className="bg-[#262626] px-24 py-8 rounded-lg w-full max-w-4xl mx-auto text-center relative">
-                        {/* Close Icon */}
-                        <div className="absolute top-4 right-4 cursor-pointer" onClick={closeModal}>
-                            <RxCross2 className="mr-5 mt-5 text-xl text-[#8E8E8E] hover:text-[#fff]" />
+            {
+                showModal && (
+                    <div className="fixed inset-1 flex items-center justify-center bg-black backdrop-blur-sm bg-opacity-50 z-20">
+                        <div className="bg-[#262626] px-6 sm:px-12 lg:px-24 py-6 sm:py-8 rounded-lg w-full max-w-4xl mx-auto text-center relative">
+                            {/* Close Icon */}
+                            <div className="absolute top-4 right-4 cursor-pointer" onClick={closeModal}>
+                                <RxCross2 className="mr-2 sm:mr-4 text-xl text-[#8E8E8E] hover:text-[#fff]" />
+                            </div>
+                            <h3 className="text-2xl sm:text-3xl font-normal">Installation Instructions</h3>
+                            <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">MAC</h2>
+                            <p className="mt-1 text-sm sm:text-base">Run the downloaded image and drag the application to the Applications folder shortcut.</p>
+                            <p className="text-sm sm:text-base">Once copying is complete, the application can be launched via Launchpad.</p>
+                            <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PC</h2>
+                            <p className="mt-1 text-sm sm:text-base">Extract the downloaded zip and click install.</p>
+                            <p className="text-sm sm:text-base">Once the installation is complete, the application can be launched directly.</p>
+                            <div className="mt-4">
+                                <a
+                                    href={data.downloadLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                >
+                                    <div>Direct download link</div>
+                                    <div className='text-xl'><LiaDownloadSolid /></div>
+                                </a>
+                            </div>
+                            <p className="mt-4 text-sm sm:text-base">Doesn't download? Broken file? Doesn't work? Gives an error? How to update?</p>
+                            <p className="text-sm sm:text-base">We have collected all the answers on this page.</p>
                         </div>
-                        <h3 className="text-3xl font-normal text-center">Installation instructions</h3>
-                        <h2 className='mt-3 text-center text-[#8E8E8E] hover:underline'>MAC</h2>
-                        <p className="mt-1 text-sm">Run the downloaded image and drag the application to the Applications folder shortcut.</p>
-                        <p className="text-sm">Once copying is complete, the application can be launched via Launchpad.</p>
-                        <h2 className='mt-3 text-center text-[#8E8E8E] hover:underline'>PC</h2>
-                        <p className="mt-1 text-sm">Extract the downloaded zip and click install.</p>
-                        <p className="text-sm">Once the installation is complete, the application can be launched directly.</p>
-                        <div className="mt-4">
-                            <a
-                                href={data.downloadLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex gap-4 justify-center items-center py-3 px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
-                            >
-                                <div>Direct download link</div>
-                                <div className='text-xl'><LiaDownloadSolid /></div>
-                            </a>
-                        </div>
-                        <p className="mt-4">Doesn't download? Broken file? Doesn't work? Gives an error? How to update?</p>
-                        <p>We have collected all the answers on this page.</p>
                     </div>
-                </div>
-            )}
+                )
+            }
 
 
-        </div>
+            <div
+                className="absolute inset-0"
+                style={{
+                    backgroundImage: `url('${data.thumbnail[2]}')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    opacity: 0.03,
+                    zIndex: 0,
+                    pointerEvents: 'none', // Allows interaction with elements above this
+                }}
+            ></div>
+
+        </div >
     );
 };
 
