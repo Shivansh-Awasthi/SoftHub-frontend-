@@ -52,6 +52,11 @@ const Sidebar = () => {
         setIsSidebarVisible(!isSidebarVisible);
     };
 
+    // Function to close the sidebar
+    const closeSidebar = () => {
+        setIsSidebarVisible(false);
+    };
+
     return (
         <div>
             {/* Hamburger / Close menu icon */}
@@ -99,7 +104,10 @@ const Sidebar = () => {
                                 <Link
                                     to="/category/pc/games"
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'pcGames' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('pcGames')}
+                                    onClick={() => {
+                                        handleClick('pcGames');
+                                        closeSidebar(); // Close sidebar on link click
+                                    }}
                                 >
                                     <SiRiotgames />
                                     <span className="mx-2 text-sm font-medium">PC</span>
@@ -107,7 +115,10 @@ const Sidebar = () => {
                                 <Link
                                     to="/category/mac/games"
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'macGames' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('macGames')}
+                                    onClick={() => {
+                                        handleClick('macGames');
+                                        closeSidebar(); // Close sidebar on link click
+                                    }}
                                 >
                                     <RiMacbookLine />
                                     <span className="mx-2 text-sm font-medium">Mac</span>
@@ -115,7 +126,10 @@ const Sidebar = () => {
                                 <Link
                                     to="/category/android/games"
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'androidGames' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('androidGames')}
+                                    onClick={() => {
+                                        handleClick('androidGames');
+                                        closeSidebar(); // Close sidebar on link click
+                                    }}
                                 >
                                     <TfiAndroid />
                                     <span className="mx-2 text-sm font-medium">Android</span>
@@ -128,7 +142,10 @@ const Sidebar = () => {
                                 <Link
                                     to="/category/pc/softwares"
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'pcSoftwares' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('pcSoftwares')}
+                                    onClick={() => {
+                                        handleClick('pcSoftwares');
+                                        closeSidebar(); // Close sidebar on link click
+                                    }}
                                 >
                                     <SiRiotgames />
                                     <span className="mx-2 text-sm font-medium">PC</span>
@@ -136,7 +153,10 @@ const Sidebar = () => {
                                 <Link
                                     to="/category/mac/softwares"
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'macSoftwares' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('macSoftwares')}
+                                    onClick={() => {
+                                        handleClick('macSoftwares');
+                                        closeSidebar(); // Close sidebar on link click
+                                    }}
                                 >
                                     <RiMacbookLine />
                                     <span className="mx-2 text-sm font-medium">Mac</span>
@@ -144,7 +164,10 @@ const Sidebar = () => {
                                 <Link
                                     to="/category/android/softwares"
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'androidSoftwares' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('androidSoftwares')}
+                                    onClick={() => {
+                                        handleClick('androidSoftwares');
+                                        closeSidebar(); // Close sidebar on link click
+                                    }}
                                 >
                                     <TfiAndroid />
                                     <span className="mx-2 text-sm font-medium">Android</span>
@@ -157,26 +180,13 @@ const Sidebar = () => {
                                 <Link
                                     to="/category/ppsspp/iso"
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ppsspp' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('ppsspp')}
+                                    onClick={() => {
+                                        handleClick('ppsspp');
+                                        closeSidebar(); // Close sidebar on link click
+                                    }}
                                 >
                                     <FaPlaystation />
                                     <span className="mx-2 text-sm font-medium">PPSSPP</span>
-                                </Link>
-                                <Link
-                                    to="/category/ps2/iso"
-                                    className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ps2' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('ps2')}
-                                >
-                                    <FaPlaystation />
-                                    <span className="mx-2 text-sm font-medium">PS2</span>
-                                </Link>
-                                <Link
-                                    to="/category/ps3/iso"
-                                    className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ps3' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('ps3')}
-                                >
-                                    <FaPlaystation />
-                                    <span className="mx-2 text-sm font-medium">PS3</span>
                                 </Link>
                             </div>
                         </nav>
