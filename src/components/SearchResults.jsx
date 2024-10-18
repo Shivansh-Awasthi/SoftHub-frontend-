@@ -88,9 +88,9 @@ const SearchResults = () => {
                                 </span>
                             </div>
                             <div className="ml-auto flex space-x-28">
-                                <span className="text-gray-500 text-xs w-20 text-left">{ele.platform}</span>
-                                <span className="text-gray-500 text-xs w-20 text-left">{ele.size}</span>
-                                <span className="text-gray-500 text-xs w-20 text-left">{formattedDate}</span>
+                                <span className="text-gray-500 text-xs w-20 hidden md:block text-left">{ele.platform}</span>
+                                <span className="text-gray-500 text-xs w-20 hidden md:block text-left">{ele.size}</span>
+                                <span className="text-gray-500 text-xs hidden md:block w-20 text-left">{formattedDate}</span>
                             </div>
                         </div>
                     );
