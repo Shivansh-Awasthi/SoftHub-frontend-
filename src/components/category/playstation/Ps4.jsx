@@ -21,7 +21,6 @@ const Ps4 = () => {
                 },
             });
 
-            console.log(response.data); // Log the response
             setData(response.data.apps);
             setTotalItems(response.data.total || 0); // Ensure totalItems is a number
         } catch (error) {
