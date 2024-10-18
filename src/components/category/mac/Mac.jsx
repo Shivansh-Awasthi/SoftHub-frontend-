@@ -29,7 +29,7 @@ const Mac = () => {
         <div className='container mx-auto p-2'>
             <div className='cover mb-6'>
                 <h1 className='font-medium text-3xl mb-4'>
-                    Games <span className='font-medium ml-2 text-[#8E8E8E]'>{totalApps}</span>
+                    Mac Games <span className='font-medium ml-2 text-[#8E8E8E]'>{totalApps}</span>
                 </h1>
             </div>
 
