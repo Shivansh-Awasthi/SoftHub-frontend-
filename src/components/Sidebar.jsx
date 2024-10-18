@@ -59,12 +59,12 @@ const Sidebar = () => {
     };
 
     return (
-        <div>
+        <div className='bg-[#1E1E1E]'>
             {/* Hamburger / Close menu icon */}
             {isMobileView && (
                 <button
                     onClick={toggleSidebar}
-                    className="p-3 fixed top-4 left-4 z-30 text-white rounded-lg bg-blue-500 shadow-md"
+                    className="p-3 fixed bottom-4 left-4 z-30 text-white rounded-lg bg-blue-500 shadow-md"
                 >
                     {isSidebarVisible ? <HiX size={24} /> : <HiMenu size={24} />}
                 </button>
@@ -81,7 +81,7 @@ const Sidebar = () => {
             {/* Sidebar */}
             {isSidebarVisible && (
                 <aside
-                    className={`md:sticky top-0 z-20 flex flex-col ${isMobileView ? 'fixed w-full h-screen bg-[#262626]' : 'w-60'} h-screen px-6 py-8 overflow-y-auto border-r border-white border-opacity-5`}
+                    className={`md:sticky top-0 z-20 flex flex-col ${isMobileView ? 'fixed w-full h-screen bg-[#1E1E1E]' : 'w-60'} h-screen px-6 py-8 overflow-y-auto border-r border-white border-opacity-5`}
                 >
                     <Link
                         to="/"
