@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const MacSoftwares = () => {
     const [data, setData] = useState([]);
@@ -27,7 +28,11 @@ const MacSoftwares = () => {
 
             <div className="flex flex-wrap justify-start gap-8 max-w-full">
                 {data.map((ele) => (
-                    <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10  hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                    <Link
+                        key={ele._id}
+                        to={`/${ele._id}`} // Change this to the correct path for the software page
+                        className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
+                    >
                         <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
                             <img
                                 src={ele.thumbnail[0]}
@@ -39,7 +44,7 @@ const MacSoftwares = () => {
                             <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
                             <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>

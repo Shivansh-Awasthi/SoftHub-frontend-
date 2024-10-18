@@ -1,71 +1,56 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Pc = () => {
-
-
-    const [data, setData] = useState([])
-
+    const [data, setData] = useState([]);
 
     const handleData = async () => {
-
         try {
-
-            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/pc`)
-            setData(response.data.apps)
-
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/pc`);
+            setData(response.data.apps);
         } catch (error) {
             console.log("Error fetching pc games " + error);
-
         }
-
-    }
+    };
 
     useEffect(() => {
-        handleData()
-    }, [])
-
-
-
-
-
+        handleData();
+    }, []);
 
     return (
         <div>
             <div className='container mx-auto p-2'>
                 <div className='cover mb-6'>
-                    <h1 className='font-medium text-3xl mb-4'>Games <span className=' font-medium ml-2 text-[#8E8E8E]'>{data.length}</span></h1>
+                    <h1 className='font-medium text-3xl mb-4'>Games <span className='font-medium ml-2 text-[#8E8E8E]'>{data.length}</span></h1>
                 </div>
 
                 <div className="flex flex-wrap justify-start gap-8 max-w-full ">
-
                     {/* loop */}
-
-                    {data.map((ele) => {
-                        return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                    {data.map((ele) => (
+                        <Link
+                            key={ele._id}
+                            to={`/${ele._id}`} // Change this to the correct path for the game page
+                            className="flex flex-col rounded-2xl w-64 h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
+                        >
                             <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32">
                                 <img
                                     src={ele.thumbnail[1]}
                                     alt={ele.title}
-                                    className=" w-full h-full object-cover transition-transform duration-700 ease-in-out transform hover:scale-110"
+                                    className="w-full h-full object-cover transition-transform duration-700 ease-in-out transform hover:scale-110"
                                 />
                             </figure>
                             <div className="flex flex-col p-4 bg-[#262626]">
-                                <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626] ">{ele.title}</div>
+                                <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
                                 <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
                             </div>
-                        </div>
-                    })}
-
+                        </Link>
+                    ))}
                     {/* loop ends */}
-
-
-
-
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Pc
+export default Pc;

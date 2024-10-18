@@ -1,32 +1,22 @@
-import axios from 'axios'
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Android = () => {
-
-
-    const [data, setData] = useState([])
-
+    const [data, setData] = useState([]);
 
     const handleData = async () => {
-
         try {
-
-            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/android`)
-            setData(response.data.apps)
-
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/android`);
+            setData(response.data.apps);
         } catch (error) {
-            console.log("Error fetching pc games " + error);
-
+            console.log("Error fetching android games " + error);
         }
-
-    }
+    };
 
     useEffect(() => {
-        handleData()
-    }, [])
-
-
-
+        handleData();
+    }, []);
 
     return (
         <div className='container mx-auto p-2'>
@@ -35,12 +25,13 @@ const Android = () => {
             </div>
 
             <div className="flex flex-wrap justify-start gap-8 max-w-full">
-
-
                 {/* loop */}
-
-                {data.map((ele) => {
-                    return <div key={ele._id} className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10  hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75">
+                {data.map((ele) => (
+                    <Link
+                        key={ele._id}
+                        to={`/${ele._id}`} // Change this to the correct path for the game page
+                        className="flex flex-col rounded-2xl w-64 h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
+                    >
                         <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
                             <img
                                 src={ele.thumbnail[0]}
@@ -49,12 +40,11 @@ const Android = () => {
                             />
                         </div>
                         <div className="flex flex-col p-4 bg-[#262626]">
-                            <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2"> {ele.title} </div>
+                            <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
                             <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
                         </div>
-                    </div>
-                })}
-
+                    </Link>
+                ))}
                 {/* loop ends */}
             </div>
         </div>
