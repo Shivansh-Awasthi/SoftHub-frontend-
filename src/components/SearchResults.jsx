@@ -76,21 +76,21 @@ const SearchResults = () => {
                     const formattedDate = `${originalDate.getDate()}.${originalDate.getMonth() + 1}.${originalDate.getFullYear()}`;
 
                     return (
-                        <div key={ele.id} className="flex items-center p-3 pl-6 pr-24 bg-[#242424] text-white rounded-lg border border-white border-opacity-10 shadow-lg">
+                        <div key={ele.id} className="flex items-center p-2 pl-6 pr-24 bg-[#242424] text-white rounded-lg border border-white border-opacity-10 shadow-lg">
                             <div className="flex items-center">
                                 <img
                                     src={ele.thumbnail[0]}
                                     alt="Game Img"
                                     className="object-cover w-10 h-10 rounded-lg transition-transform duration-700 ease-in-out transform hover:scale-110"
                                 />
-                                <span className="ml-4 font-small text-lg">
+                                <span className="ml-4 font-normal text-base overflow-hidden whitespace-nowrap text-ellipsis">
                                     {ele.title}
                                 </span>
                             </div>
-                            <div className="ml-auto flex space-x-28">
-                                <span className="text-gray-500 text-xs w-20 hidden md:block text-left">{ele.platform}</span>
-                                <span className="text-gray-500 text-xs w-20 hidden md:block text-left">{ele.size}</span>
-                                <span className="text-gray-500 text-xs hidden md:block w-20 text-left">{formattedDate}</span>
+                            <div className="ml-auto flex space-x-28 sticky">
+                                <span className=" text-gray-500 text-xs w-20 hidden md:block text-left">{ele.platform}</span>
+                                <span className=" text-gray-500 text-xs w-20 hidden sm:block text-left">{ele.size}</span>
+                                <span className="text-gray-500 text-xs w-20 hidden lg:block w-20 text-left">{formattedDate}</span>
                             </div>
                         </div>
                     );

@@ -6,17 +6,24 @@ import { RxCross2 } from "react-icons/rx";
 
 const SingleApp = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [data, setData] = useState({});
+    const [data, setData] = useState(null); // Change to null initially
     const [showMore, setShowMore] = useState(false);
     const [showModal, setShowModal] = useState(false); // State to control modal visibility
     const { id } = useParams();
+    const [error, setError] = useState(null); // State to handle errors
 
     const singleData = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_API}/api/apps/get/${id}`);
-            setData(response.data.app);
+            if (response.data.app) {
+                setData(response.data.app);
+                setError(null); // Clear any previous error
+            } else {
+                throw new Error("App not found");
+            }
         } catch (error) {
             console.error("Error fetching data:", error);
+            setError("App not found. Please check the App and try again."); // Set error message
         }
     };
 
@@ -55,6 +62,24 @@ const SingleApp = () => {
     const closeModal = () => {
         setShowModal(false); // Hide the modal
     };
+
+    // If there's an error, show an error message
+    if (error) {
+        return (
+            <div className="flex justify-center items-center h-[40rem] ">
+                <h1 className="text-2xl text-red-500">{error}</h1>
+            </div>
+        );
+    }
+
+    // If data is still loading, you can show a loading spinner or placeholder
+    if (!data) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <h1 className="text-2xl text-gray-500">Loading...</h1>
+            </div>
+        );
+    }
 
     return (
         <div>
