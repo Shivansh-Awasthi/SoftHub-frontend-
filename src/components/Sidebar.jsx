@@ -86,7 +86,10 @@ const Sidebar = () => {
                     <Link
                         to="/"
                         className='flex items-center mb-6'
-                        onClick={handleLogoClick} // Call handleLogoClick to reset selected
+                        onClick={() => {
+                            handleClick();
+                            closeSidebar(); // Close sidebar on link click if in mobile view
+                        }} // Call handleLogoClick to reset selected
                         onMouseEnter={() => setLogo("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.39_AM_gzfxsu.png")}
                         onMouseLeave={() => setLogo("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.35_AM_cow9by.png")}
                     >
