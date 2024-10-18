@@ -4,35 +4,32 @@ import { SiRiotgames } from "react-icons/si";
 import { FaPlaystation } from "react-icons/fa";
 import { TfiAndroid } from "react-icons/tfi";
 import { RiMacbookLine } from "react-icons/ri";
-import { HiMenu, HiX } from "react-icons/hi"; // Importing the icons
+import { HiMenu, HiX } from "react-icons/hi";
+import { GiCrossedSabres } from "react-icons/gi";
 
 const Sidebar = () => {
     const [logo, setLogo] = useState("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.35_AM_cow9by.png");
 
-    // State to keep track of the selected item
     const [selected, setSelected] = useState('');
-
-    // State for sidebar visibility on small screens
-    const [isSidebarVisible, setIsSidebarVisible] = useState(true);
-    const [isMobileView, setIsMobileView] = useState(false); // To track mobile view
+    const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+    const [isMobileView, setIsMobileView] = useState(false);
 
     const handleClick = (item) => {
         setSelected(item);
     };
 
-    // Check for screen resize to toggle mobile view
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 568) {
                 setIsMobileView(true);
-                setIsSidebarVisible(false); // Automatically hide the sidebar on small screens
+                setIsSidebarVisible(false);
             } else {
                 setIsMobileView(false);
-                setIsSidebarVisible(true); // Show the sidebar on larger screens
+                setIsSidebarVisible(true);
             }
         };
 
-        handleResize(); // Initial check
+        handleResize();
         window.addEventListener('resize', handleResize);
 
         return () => {
@@ -40,25 +37,44 @@ const Sidebar = () => {
         };
     }, []);
 
-    // Toggle sidebar visibility when hamburger icon is clicked
+    useEffect(() => {
+        if (isSidebarVisible && isMobileView) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [isSidebarVisible, isMobileView]);
+
     const toggleSidebar = () => {
         setIsSidebarVisible(!isSidebarVisible);
     };
 
     return (
         <>
-            {/* Hamburger menu icon */}
+            {/* Hamburger / Close menu icon */}
             {isMobileView && (
                 <button
                     onClick={toggleSidebar}
-                    className="p-3 bg-blue-500 fixed top-2 left-2 z-20 text-white rounded-md">
-                    {isSidebarVisible ? <HiX size={24} /> : <HiMenu size={24} />} {/* Toggle between icons */}
+                    className="p-3 fixed top-4 left-4 z-30 text-white rounded-lg bg-blue-500 shadow-md" // Increased z-index and added shadow for visibility
+                >
+                    {isSidebarVisible ? <HiX size={24} /> : <HiMenu size={24} />}
                 </button>
+            )}
+
+
+            {/* Overlay */}
+            {isMobileView && isSidebarVisible && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-20" // Adjusted z-index to be below the button
+                    onClick={toggleSidebar}
+                ></div>
             )}
 
             {/* Sidebar */}
             {isSidebarVisible && (
-                <aside className="sticky top-0 z-10 flex flex-col w-60 h-screen px-6 py-8 overflow-y-auto border-r border-white border-opacity-5">
+                <aside
+                    className={`md:sticky top-0 z-20 flex flex-col ${isMobileView ? 'fixed w-full h-screen bg-[#262626]' : 'w-60'} h-screen px-6 py-8 overflow-y-auto border-r border-white border-opacity-5`}
+                >
                     <Link
                         to="/"
                         className='flex items-center mb-6'
@@ -74,6 +90,7 @@ const Sidebar = () => {
 
                     <div className="flex flex-col justify-between flex-1">
                         <nav className="-mx-3 space-y-5">
+                            {/* Games */}
                             <div className="space-y-3">
                                 <label className="px-3 text-xs text-gray-500 uppercase">Games</label>
                                 <Link
@@ -102,6 +119,7 @@ const Sidebar = () => {
                                 </Link>
                             </div>
 
+                            {/* Softwares */}
                             <div className="space-y-3">
                                 <label className="px-3 text-xs text-gray-500 uppercase">Softwares</label>
                                 <Link
@@ -130,6 +148,7 @@ const Sidebar = () => {
                                 </Link>
                             </div>
 
+                            {/* PlayStation ISO's */}
                             <div className="space-y-3">
                                 <label className="px-3 text-xs text-gray-500 uppercase">Playstation ISO's</label>
                                 <Link
