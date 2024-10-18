@@ -5,7 +5,6 @@ import { FaPlaystation } from "react-icons/fa";
 import { TfiAndroid } from "react-icons/tfi";
 import { RiMacbookLine } from "react-icons/ri";
 import { HiMenu, HiX } from "react-icons/hi";
-import { GiCrossedSabres } from "react-icons/gi";
 
 const Sidebar = () => {
     const [logo, setLogo] = useState("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.35_AM_cow9by.png");
@@ -52,9 +51,11 @@ const Sidebar = () => {
         setIsSidebarVisible(!isSidebarVisible);
     };
 
-    // Function to close the sidebar
+    // Function to close the sidebar only when in mobile view
     const closeSidebar = () => {
-        setIsSidebarVisible(false);
+        if (isMobileView) {
+            setIsSidebarVisible(false);
+        }
     };
 
     return (
@@ -106,7 +107,7 @@ const Sidebar = () => {
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'pcGames' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
                                     onClick={() => {
                                         handleClick('pcGames');
-                                        closeSidebar(); // Close sidebar on link click
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
                                     }}
                                 >
                                     <SiRiotgames />
@@ -117,7 +118,7 @@ const Sidebar = () => {
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'macGames' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
                                     onClick={() => {
                                         handleClick('macGames');
-                                        closeSidebar(); // Close sidebar on link click
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
                                     }}
                                 >
                                     <RiMacbookLine />
@@ -128,7 +129,7 @@ const Sidebar = () => {
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'androidGames' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
                                     onClick={() => {
                                         handleClick('androidGames');
-                                        closeSidebar(); // Close sidebar on link click
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
                                     }}
                                 >
                                     <TfiAndroid />
@@ -144,7 +145,7 @@ const Sidebar = () => {
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'pcSoftwares' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
                                     onClick={() => {
                                         handleClick('pcSoftwares');
-                                        closeSidebar(); // Close sidebar on link click
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
                                     }}
                                 >
                                     <SiRiotgames />
@@ -155,7 +156,7 @@ const Sidebar = () => {
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'macSoftwares' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
                                     onClick={() => {
                                         handleClick('macSoftwares');
-                                        closeSidebar(); // Close sidebar on link click
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
                                     }}
                                 >
                                     <RiMacbookLine />
@@ -166,7 +167,7 @@ const Sidebar = () => {
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'androidSoftwares' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
                                     onClick={() => {
                                         handleClick('androidSoftwares');
-                                        closeSidebar(); // Close sidebar on link click
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
                                     }}
                                 >
                                     <TfiAndroid />
@@ -182,7 +183,7 @@ const Sidebar = () => {
                                     className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ppsspp' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
                                     onClick={() => {
                                         handleClick('ppsspp');
-                                        closeSidebar(); // Close sidebar on link click
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
                                     }}
                                 >
                                     <FaPlaystation />
