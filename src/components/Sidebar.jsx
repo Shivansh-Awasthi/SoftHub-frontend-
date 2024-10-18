@@ -9,13 +9,16 @@ import { GiCrossedSabres } from "react-icons/gi";
 
 const Sidebar = () => {
     const [logo, setLogo] = useState("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.35_AM_cow9by.png");
-
     const [selected, setSelected] = useState('');
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [isMobileView, setIsMobileView] = useState(false);
 
     const handleClick = (item) => {
         setSelected(item);
+    };
+
+    const handleLogoClick = () => {
+        setSelected(''); // Reset selected state when logo is clicked
     };
 
     useEffect(() => {
@@ -55,17 +58,16 @@ const Sidebar = () => {
             {isMobileView && (
                 <button
                     onClick={toggleSidebar}
-                    className="p-3 fixed top-4 left-4 z-30 text-white rounded-lg bg-blue-500 shadow-md" // Increased z-index and added shadow for visibility
+                    className="p-3 fixed top-4 left-4 z-30 text-white rounded-lg bg-blue-500 shadow-md"
                 >
                     {isSidebarVisible ? <HiX size={24} /> : <HiMenu size={24} />}
                 </button>
             )}
 
-
             {/* Overlay */}
             {isMobileView && isSidebarVisible && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-20" // Adjusted z-index to be below the button
+                    className="fixed inset-0 bg-black bg-opacity-50 z-20"
                     onClick={toggleSidebar}
                 ></div>
             )}
@@ -78,6 +80,7 @@ const Sidebar = () => {
                     <Link
                         to="/"
                         className='flex items-center mb-6'
+                        onClick={handleLogoClick} // Call handleLogoClick to reset selected
                         onMouseEnter={() => setLogo("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.39_AM_gzfxsu.png")}
                         onMouseLeave={() => setLogo("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.35_AM_cow9by.png")}
                     >
@@ -174,14 +177,6 @@ const Sidebar = () => {
                                 >
                                     <FaPlaystation />
                                     <span className="mx-2 text-sm font-medium">PS3</span>
-                                </Link>
-                                <Link
-                                    to="/category/ps4/iso"
-                                    className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ps4' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
-                                    onClick={() => handleClick('ps4')}
-                                >
-                                    <FaPlaystation />
-                                    <span className="mx-2 text-sm font-medium">PS4</span>
                                 </Link>
                             </div>
                         </nav>
