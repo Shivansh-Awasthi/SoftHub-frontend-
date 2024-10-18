@@ -189,6 +189,40 @@ const Sidebar = () => {
                                     <FaPlaystation />
                                     <span className="mx-2 text-sm font-medium">PPSSPP</span>
                                 </Link>
+                                <Link
+                                    to="/category/ps2/iso"
+                                    className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ps2' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                                    onClick={() => {
+                                        handleClick('ps2');
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
+                                    }}
+                                >
+                                    <FaPlaystation />
+                                    <span className="mx-2 text-sm font-medium">PS2</span>
+                                </Link>
+                                <Link
+                                    to="/category/ps3/iso"
+                                    className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ps3' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                                    onClick={() => {
+                                        handleClick('ps3');
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
+                                    }}
+                                >
+                                    <FaPlaystation />
+                                    <span className="mx-2 text-sm font-medium">PS3</span>
+                                </Link>
+                                <Link
+                                    to="/category/ps4/iso"
+                                    className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ps4' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                                    onClick={() => {
+                                        handleClick('ps4');
+                                        closeSidebar(); // Close sidebar on link click if in mobile view
+                                    }}
+                                >
+                                    <FaPlaystation />
+                                    <span className="mx-2 text-sm font-medium">PS4</span>
+                                </Link>
+
                             </div>
                         </nav>
                     </div>
