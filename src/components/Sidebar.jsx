@@ -175,6 +175,14 @@ const Sidebar = () => {
                                     <FaPlaystation />
                                     <span className="mx-2 text-sm font-medium">PS3</span>
                                 </Link>
+                                <Link
+                                    to="/category/ps4/iso"
+                                    className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${selected === 'ps4' ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-500'} dark:text-gray-200`}
+                                    onClick={() => handleClick('ps4')}
+                                >
+                                    <FaPlaystation />
+                                    <span className="mx-2 text-sm font-medium">PS4</span>
+                                </Link>
                             </div>
                         </nav>
                     </div>
