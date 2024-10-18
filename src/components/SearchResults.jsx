@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom'; // Import Link
 import axios from 'axios';
 import Loader from './Loading Animations/Loader';
 
 const SearchResults = () => {
     const query = new URLSearchParams(useLocation().search).get('query');
-
 
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -41,8 +40,6 @@ const SearchResults = () => {
         }
     }, [data, query]);
 
-
-
     return (
         <div>
             <div className='cover mb-6'>
@@ -54,7 +51,6 @@ const SearchResults = () => {
             </div>
 
             {loading ? ( // Show loading message while fetching data
-
                 <Loader />
             ) : error ? (
                 <div>
@@ -76,7 +72,7 @@ const SearchResults = () => {
                     const formattedDate = `${originalDate.getDate()}.${originalDate.getMonth() + 1}.${originalDate.getFullYear()}`;
 
                     return (
-                        <div key={ele.id} className="flex items-center p-2 pl-6 pr-24 bg-[#242424] text-white rounded-lg border border-white border-opacity-10 shadow-lg">
+                        <Link to={`/${ele._id}`} key={ele._id} className="flex flex-wrap items-center p-2 pl-6 pr-24 bg-[#242424] text-white rounded-lg border border-white border-opacity-10 shadow-lg hover:bg-gray-700 transition">
                             <div className="flex items-center">
                                 <img
                                     src={ele.thumbnail[0]}
@@ -92,7 +88,7 @@ const SearchResults = () => {
                                 <span className=" text-gray-500 text-xs w-20 hidden sm:block text-left">{ele.size}</span>
                                 <span className="text-gray-500 text-xs w-20 hidden lg:block w-20 text-left">{formattedDate}</span>
                             </div>
-                        </div>
+                        </Link>
                     );
                 })
             )}
