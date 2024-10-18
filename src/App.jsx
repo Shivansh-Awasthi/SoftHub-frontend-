@@ -15,7 +15,7 @@ import Ppsspp from './components/category/playstation/Ppsspp';
 import AndroidSoftwares from './components/category/android/AndroidSoftwares';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
-import SearchResults from './components/searchResults';
+import SearchResults from './components/SearchResults';
 import SingleApp from './components/SingleApp';
 
 function App() {
