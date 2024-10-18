@@ -6,7 +6,7 @@ const Pc = () => {
     const [data, setData] = useState([]);
     const [totalApps, setTotalApps] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 4;
+    const itemsPerPage = 48;
 
     const handleData = async (page) => {
         try {
