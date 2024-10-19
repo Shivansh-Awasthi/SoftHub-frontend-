@@ -32,8 +32,10 @@ const Login = () => {
 
             const token = response.data.token;
             const name = response.data.user.username;
+            const role = response.data.user.role;
             localStorage.setItem('token', token);
             localStorage.setItem('name', name);
+            localStorage.setItem('role', role);
 
             // Show success toast notification
             toast.success(`Welcome back, ${name}! Redirecting to home...`, {
