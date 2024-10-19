@@ -96,7 +96,7 @@ const Home = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {data.map((ele) => (
+                    {data.slice(0, 8).map((ele) => (
                         <Link
                             key={ele._id}
                             to={`/${ele._id}`}
@@ -129,7 +129,7 @@ const Home = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {MacSoftData.map((ele) => (
+                    {MacSoftData.slice(0, 8).map((ele) => (
                         <Link
                             key={ele._id}
                             to={`/${ele._id}`}
@@ -161,7 +161,7 @@ const Home = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {Pcdata.map((ele) => (
+                    {Pcdata.slice(0, 8).map((ele) => (
                         <Link
                             key={ele._id}
                             to={`/${ele._id}`}
@@ -192,7 +192,7 @@ const Home = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {Androiddata.map((ele) => (
+                    {Androiddata.slice(0, 8).map((ele) => (
                         <Link
                             key={ele._id}
                             to={`/${ele._id}`}
@@ -224,7 +224,7 @@ const Home = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {Ps2data.map((ele) => (
+                    {Ps2data.slice(0, 8).map((ele) => (
                         <Link
                             key={ele._id}
                             to={`/${ele._id}`}
