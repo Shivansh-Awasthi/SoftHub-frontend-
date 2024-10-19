@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom'; // Import Link
+import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
 import Loader from './Loading Animations/Loader';
 
@@ -8,18 +8,19 @@ const SearchResults = () => {
 
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
-    const [loading, setLoading] = useState(true); // Loading state
-    const [error, setError] = useState(''); // Error message state
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
     const handleData = async () => {
-        setLoading(true); // Start loading
+        setLoading(true);
         try {
             const response = await axios.get(`${process.env.REACT_API}/api/apps/all`);
             setData(response.data.apps);
         } catch (error) {
-            console.log("Error fetching android softwares " + error);
+            console.log("Error fetching apps: ", error);
+            setError('Failed to load data. Please try again later.');
         } finally {
-            setLoading(false); // End loading
+            setLoading(false);
         }
     };
 
@@ -28,15 +29,17 @@ const SearchResults = () => {
     }, []);
 
     useEffect(() => {
-        if (!query || query.length < 1) {
-            setError('An empty search field was entered or the search string contains less than 1 character, due to which the search was suspended.');
-            setFilteredData([]); // Clear filtered data
-        } else {
-            setError(''); // Clear error message
-            const results = data.filter(item =>
-                item.title.toLowerCase().includes(query.toLowerCase())
-            );
-            setFilteredData(results);
+        if (data.length > 0) { // Check if data is available
+            if (!query || query.length < 1) {
+                setError('Search field is empty.');
+                setFilteredData([]);
+            } else {
+                setError('');
+                const results = data.filter(item =>
+                    item.title.toLowerCase().includes(query.toLowerCase())
+                );
+                setFilteredData(results);
+            }
         }
     }, [data, query]);
 
