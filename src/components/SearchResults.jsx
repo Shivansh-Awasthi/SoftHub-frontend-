@@ -31,7 +31,7 @@ const SearchResults = () => {
     }, []);
 
     useEffect(() => {
-        console.log('Query:', query);  // Debugging log
+
         if (data.length > 0) {
             if (!query || query.length < 1) {
                 setError('Search field is empty.');
@@ -41,11 +41,15 @@ const SearchResults = () => {
                 const results = data.filter(item =>
                     item.title.toLowerCase().includes(query.toLowerCase())
                 );
-                console.log('Filtered Results:', results); // Debugging log
+
                 setFilteredData(results);
             }
         }
     }, [data, query]);
+
+
+
+
 
     return (
         <div>
@@ -57,48 +61,45 @@ const SearchResults = () => {
                 )}
             </div>
 
-            {loading ? ( // Show loading message while fetching data
-                <Loader />
-            ) : error ? (
-                <div>
-                    <h1 className='font-medium text-3xl mb-6'>Oops! Something went wrong</h1>
-                    <div className="p-6 mr-96 bg-[#2c2c2c] rounded-lg text-sm text-center border border-white border-opacity-10 shadow-lg">
-                        <p>{error}</p>
-                    </div>
-                </div>
-            ) : filteredData.length === 0 ? (
-                <div>
-                    <h1 className='font-medium text-3xl mb-6'>Oops! Something went wrong</h1>
-                    <div className="p-6 mr-96 bg-[#2c2c2c] rounded-lg text-sm text-center border border-white border-opacity-10 shadow-lg">
-                        <p>Sorry, your site search did not yield any results. Try changing or shortening your query.</p>
-                    </div>
-                </div>
-            ) : (
-                filteredData.map((ele) => {
-                    const originalDate = new Date(ele.updatedAt);
-                    const formattedDate = `${originalDate.getDate()}.${originalDate.getMonth() + 1}.${originalDate.getFullYear()}`;
 
-                    return (
-                        <Link to={`/${ele._id}`} key={ele._id} className="flex flex-wrap items-center p-2 pl-6 pr-24 bg-[#242424] text-white rounded-lg border border-white border-opacity-10 shadow-lg hover:bg-gray-700 transition">
-                            <div className="flex items-center">
-                                <img
-                                    src={ele.thumbnail[0]}
-                                    alt="Game Img"
-                                    className="object-cover w-10 h-10 rounded-lg transition-transform duration-700 ease-in-out transform hover:scale-110"
-                                />
-                                <span className="ml-4 font-normal text-base overflow-hidden whitespace-nowrap text-ellipsis">
-                                    {ele.title}
-                                </span>
-                            </div>
-                            <div className="ml-auto flex space-x-28 sticky">
-                                <span className=" text-gray-500 text-xs w-20 hidden md:block text-left">{ele.platform}</span>
-                                <span className=" text-gray-500 text-xs w-20 hidden sm:block text-left">{ele.size}</span>
-                                <span className="text-gray-500 text-xs w-20 hidden lg:block w-20 text-left">{formattedDate}</span>
-                            </div>
-                        </Link>
-                    );
-                })
-            )}
+
+
+            <div className="w-full p-4 border border-gray-200 border-opacity-5 bg-[#262626] rounded-lg shadow  sm:p-8 ">
+                <div className="flow-root">
+                    <ul role="list" className="divide-y divide-gray-700">
+
+                        {/* loop */}
+                        {filteredData.map((ele) => (
+                            <li key={ele._id} className="py-2 sm:py-2">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex-shrink-0">
+                                        <img className="w-12 h-12 rounded-xl" src={ele.thumbnail[0]} alt={ele.title} />
+                                    </div>
+                                    <div className="flex-1 min-w-0 ms-4">
+                                        <p className="text-normal font-light truncate text-white">
+                                            {ele.title}
+                                        </p>
+                                        <p className="text-sm text-gray-500 truncate ">
+                                            {ele.platform}
+                                        </p>
+                                    </div>
+                                    <div className="flex-1 flex justify-center text-sm font-semibold text-gray-500 hidden sm:block">
+                                        {ele.size}
+                                    </div>
+                                    <div className="text-right text-sm text-gray-500 hidden md:block ">
+                                        {new Date(ele.updatedAt).toLocaleDateString()}
+                                    </div>
+                                </div>
+                            </li>
+                        ))}
+                        {/* loop ends */}
+
+                    </ul>
+                </div>
+            </div>
+
+
+
         </div>
     );
 }
