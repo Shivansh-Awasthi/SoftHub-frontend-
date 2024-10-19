@@ -17,6 +17,7 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import SearchResults from './components/SearchResults';
 import SingleApp from './components/SingleApp';
+import Logout from './components/Logout';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route path='/signup' element={<Register />} />
             <Route path='/login' element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path='/' element={<Home />} />
             <Route path='/:id' element={<SingleApp />} />
 
