@@ -29,7 +29,8 @@ const SearchResults = () => {
     }, []);
 
     useEffect(() => {
-        if (data.length > 0) { // Check if data is available
+        console.log('Query:', query);  // Debugging log
+        if (data.length > 0) {
             if (!query || query.length < 1) {
                 setError('Search field is empty.');
                 setFilteredData([]);
@@ -38,6 +39,7 @@ const SearchResults = () => {
                 const results = data.filter(item =>
                     item.title.toLowerCase().includes(query.toLowerCase())
                 );
+                console.log('Filtered Results:', results); // Debugging log
                 setFilteredData(results);
             }
         }
