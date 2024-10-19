@@ -22,7 +22,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth <= 600) {
+            if (window.innerWidth <= 768) {
                 setIsMobileView(true);
                 setIsSidebarVisible(false);
             } else {
