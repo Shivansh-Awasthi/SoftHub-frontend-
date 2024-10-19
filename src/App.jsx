@@ -21,9 +21,9 @@ import SingleApp from './components/SingleApp';
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex"> {/* Flex container for layout */}
-        <Sidebar /> {/* Sidebar on the left */}
-        <div className="flex-1 p-8"> {/* Main content area */}
+      <div className="flex h-screen"> {/* Flex container for layout */}
+        <Sidebar className="w-1/4" /> {/* Sidebar on the left */}
+        <div className="flex-1 p-8 overflow-auto"> {/* Main content area */}
           <Header />
           <Routes>
             <Route path='/signup' element={<Register />} />
