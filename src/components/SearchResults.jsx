@@ -11,9 +11,11 @@ const SearchResults = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+
     const handleData = async () => {
         setLoading(true);
         try {
+            // Make sure the URL is correct
             const response = await axios.get(`${process.env.REACT_API}/api/apps/all`);
             setData(response.data.apps);
         } catch (error) {
