@@ -86,14 +86,10 @@ const SearchResults = () => {
                         <ul role="list" className="divide-y divide-gray-700">
 
                             {/* loop */}
-                            {filteredData.map((ele) => {
 
-                                const originalDate = new Date(ele.updatedAt);
-                                const formattedDate = `${originalDate.getDate()}.${originalDate.getMonth() + 1}.${originalDate.getFullYear()}`;
-
-
-                                return <li key={ele._id} className="py-2 sm:py-2">
-                                    <div className="flex items-center justify-between">
+                            {filteredData.map((ele) => (
+                                <li key={ele._id} className="py-2 sm:py-2">
+                                    <Link to={`/${ele._id}`} className="flex items-center justify-between w-full">
                                         <div className="flex-shrink-0">
                                             <img className="w-12 h-12 rounded-xl object-cover hover:rounded-full" src={ele.thumbnail[0]} alt={ele.title} />
                                         </div>
@@ -111,11 +107,9 @@ const SearchResults = () => {
                                         <div className="text-right text-sm text-gray-500 hidden md:block ">
                                             {new Date(ele.updatedAt).toLocaleDateString()}
                                         </div>
-                                    </div>
+                                    </Link>
                                 </li>
-                            })}
-                            {/* loop ends */}
-
+                            ))}
                         </ul>
                     </div>
                 </div>
