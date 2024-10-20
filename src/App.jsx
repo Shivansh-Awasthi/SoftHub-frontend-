@@ -3,6 +3,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
 import CreateApps from './components/admin/CreateApps';
+import EditApps from './components/admin/EditApps';
 import Mac from './components/category/mac/Mac';
 import Pc from './components/category/pc/Pc';
 import Android from './components/category/android/Android';
@@ -18,6 +19,7 @@ import Header from './components/Header';
 import SearchResults from './components/SearchResults';
 import SingleApp from './components/SingleApp';
 import Logout from './components/Logout';
+import DeleteApps from './components/admin/DeleteApps';
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
 
             {/* admin routes */}
             <Route path='/admin/apps/new' element={<CreateApps />} />
+            <Route path='/admin/apps/edit/:id' element={<EditApps />} />
+            <Route path='/admin/apps/delete/:id' element={<DeleteApps />} />
             {/* category routes */}
             <Route path='/category/mac/games' element={<Mac />} />
             <Route path='/category/mac/softwares' element={<MacSoftwares />} />
