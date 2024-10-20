@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 const images = [
+    'https://res.cloudinary.com/dkp1pshuw/image/upload/v1729425726/adobe_fdeqsq.webp',
     'https://res.cloudinary.com/dkp1pshuw/image/upload/v1729206949/office_ayoau9.webp',
     'https://res.cloudinary.com/dkp1pshuw/image/upload/v1729206949/drweb_hovn29.webp',
     'https://res.cloudinary.com/dkp1pshuw/image/upload/v1729206949/tg_bno0n5.webp',
