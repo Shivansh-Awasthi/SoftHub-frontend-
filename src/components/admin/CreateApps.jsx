@@ -12,6 +12,7 @@ const CreateApps = () => {
     const [thumbnail, setThumbnail] = useState([]);
     const [downloadLink, setDownloadLink] = useState("");
     const [size, setSize] = useState("");
+    const [unit, setUnit] = useState('MB');
     const [category, setCategory] = useState("");
     const [loading, setLoading] = useState(false); // Add loading state
 
@@ -36,7 +37,7 @@ const CreateApps = () => {
         formData.append('isPaid', isPaid);
         formData.append('price', price);
         formData.append('downloadLink', downloadLink);
-        formData.append('size', size);
+        formData.append('size', `${size} ${unit}`);
         formData.append('category', category);
         thumbnail.forEach(file => {
             formData.append('thumbnail', file);
@@ -63,6 +64,20 @@ const CreateApps = () => {
             setLoading(false); // Reset loading state
         }
     };
+
+    // Category options
+    const categories = [
+        { value: "pc", label: "PC Games" },
+        { value: "spc", label: "PC Softwares" },
+        { value: "mac", label: "Mac Games" },
+        { value: "smac", label: "Mac Softwares" },
+        { value: "android", label: "Android Games" },
+        { value: "sandroid", label: "Android Softwares" },
+        { value: "ppsspp", label: "PPSSPP Iso" },
+        { value: "ps2", label: "PS2 Iso" },
+        { value: "ps3", label: "PS3 Iso" },
+        { value: "ps4", label: "PS4 Iso" },
+    ];
 
     return (
         <div className='container p-6'>
@@ -140,42 +155,53 @@ const CreateApps = () => {
                     </div>
                     <div className='mb-5'>
                         <label className='block mb-2 text-sm font-medium text-gray-300'>Size</label>
-                        <input
-                            type="text"
-                            placeholder='enter the size'
-                            value={size}
-                            onChange={(e) => setSize(e.target.value)}
-                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        />
+                        <div className="flex">
+                            <input
+                                type="number"
+                                placeholder='enter the size'
+                                value={size}
+                                onChange={(e) => setSize(e.target.value)} // Update only the size value
+                                className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            />
+                            <select
+                                value={unit}
+                                onChange={(e) => setUnit(e.target.value)} // Update the unit based on selection
+                                className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+                            >
+                                <option value="GB">GB</option>
+                                <option value="MB">MB</option>
+                            </select>
+                        </div>
                     </div>
                     <div className='mb-5'>
                         <label className='block mb-2 text-sm font-medium text-gray-300'>Category</label>
-                        <input
-                            type="text"
-                            placeholder='enter required category'
+                        <select
                             value={category}
-                            onChange={(e) => setCategory(e.target.value)}
+                            onChange={(e) => setCategory(e.target.value)} // Update category state based on selection
                             className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        />
+                        >
+                            <option value="">Select Category</option>
+                            {categories.map((cat) => (
+                                <option key={cat.value} value={cat.value}>{cat.label}</option>
+                            ))}
+                        </select>
                     </div>
                     <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Upload App Images</label>
+                        <label className='block mb-2 text-sm font-medium text-gray-300'>Thumbnail</label>
                         <input
                             type="file"
                             multiple
+                            accept="image/*,video/*"
                             onChange={handleThumbnail}
-                            className="block w-full text-sm text-gray-300 border border-gray-600 rounded-lg cursor-pointer bg-gray-700"
+                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         />
-                        <div className="mt-1 text-sm text-gray-500">You can upload up to 20 images.</div>
                     </div>
-
-                    {loading && <p className="text-center text-white">Loading...</p>} {/* Loading message */}
                     <button
-                        type='submit'
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-                        disabled={loading} // Disable button while loading
+                        type="submit"
+                        disabled={loading} // Disable button when loading
+                        className={`w-full py-2 px-4 rounded-lg ${loading ? 'bg-gray-500' : 'bg-blue-600 hover:bg-blue-700'} text-white font-bold`}
                     >
-                        {loading ? 'Submitting...' : 'Submit'} {/* Change button text based on loading state */}
+                        {loading ? 'Creating...' : 'Create App'} {/* Change button text based on loading state */}
                     </button>
                 </form>
             </div>
