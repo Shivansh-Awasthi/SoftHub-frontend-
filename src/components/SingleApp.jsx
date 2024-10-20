@@ -231,7 +231,7 @@ const SingleApp = () => {
                     backgroundImage: `url('${data.thumbnail[2]}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    opacity: 0.03,
+                    opacity: 0.05,
                     zIndex: 0,
                     pointerEvents: 'none', // Allows interaction with elements above this
                 }}
