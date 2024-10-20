@@ -41,7 +41,7 @@ const Home = () => {
             {/* Slider Logic */}
             <div id="default-carousel" className="relative w-full mb-10" data-carousel="slide">
                 {/* Carousel Container */}
-                <div className="relative h-56 sm:h-72 md:h-96 lg:h-[32rem] overflow-hidden rounded-lg">
+                <div className="relative h-56 sm:h-72 md:h-88 lg:h-[25rem] overflow-hidden rounded-lg">
                     {images.map((image, index) => (
                         <div
                             key={index}
