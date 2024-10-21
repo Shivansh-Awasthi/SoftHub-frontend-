@@ -37,6 +37,25 @@ const Home = () => {
         fetchData(`${process.env.REACT_API}/api/apps/category/ps2`, setPs2Data);
     }, []);
 
+
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.async = true;
+        script.setAttribute('data-cfasync', 'false');
+        script.src = '//pl24762479.cpmrevenuegate.com/e80c7ffbab6b2709da3883379e9eb1fa/invoke.js';
+        document.getElementById('ad-container-1').appendChild(script);
+
+        const iframeScript = document.createElement('iframe');
+        iframeScript.src = '//ad.a-ads.com/2360078?size=728x90';
+        iframeScript.style.width = '728px';
+        iframeScript.style.height = '90px';
+        iframeScript.style.border = '0px';
+        iframeScript.style.padding = '0';
+        iframeScript.style.overflow = 'hidden';
+        iframeScript.style.backgroundColor = 'transparent';
+        document.getElementById('frame').appendChild(iframeScript);
+    }, []);
+
     return (
         <div className='container mx-auto p-2'>
             {/* Slider Logic */}
@@ -120,15 +139,19 @@ const Home = () => {
             </div>
 
 
-            <div className='ad'>
-                <script async="async" data-cfasync="false" src="//pl24762479.cpmrevenuegate.com/e80c7ffbab6b2709da3883379e9eb1fa/invoke.js"></script>
-                <div id="container-e80c7ffbab6b2709da3883379e9eb1fa"></div>
-            </div>
             <div>
-                <script async="async" data-cfasync="false" src="//pl24762479.cpmrevenuegate.com/e80c7ffbab6b2709da3883379e9eb1fa/invoke.js"></script>
-                <div id="container-e80c7ffbab6b2709da3883379e9eb1fa"></div>
+                <div id="ad-container-1"></div>
+                <div id="frame" style={{ width: '728px' }}>
+                    <a
+                        style={{ display: 'block', textAlign: 'right', fontSize: '12px' }}
+                        href="https://aads.com/campaigns/new/?source_id=2360078&source_type=ad_unit&partner=2360078"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Advertise here
+                    </a>
+                </div>
             </div>
-            <div><div id="frame" style="width: 728px;"><iframe data-aa='2360078' src='//ad.a-ads.com/2360078?size=728x90' style='width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe><a style="display: block; text-align: right; font-size: 12px" id="frame-link" href="https://aads.com/campaigns/new/?source_id=2360078&source_type=ad_unit&partner=2360078">Advertise here</a></div></div>
 
 
 
@@ -258,7 +281,6 @@ const Home = () => {
                 </div>
 
             </div>
-
 
 
         </div>
