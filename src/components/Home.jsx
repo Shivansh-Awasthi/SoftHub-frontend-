@@ -120,6 +120,12 @@ const Home = () => {
             </div>
 
 
+            <div className='ad'>
+                <script async="async" data-cfasync="false" src="//pl24762479.cpmrevenuegate.com/e80c7ffbab6b2709da3883379e9eb1fa/invoke.js"></script>
+                <div id="container-e80c7ffbab6b2709da3883379e9eb1fa"></div>
+            </div>
+
+
 
             {/* Mac Softwares */}
             <div className='container mx-auto p-2'>
