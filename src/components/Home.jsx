@@ -128,6 +128,7 @@ const Home = () => {
                 <script async="async" data-cfasync="false" src="//pl24762479.cpmrevenuegate.com/e80c7ffbab6b2709da3883379e9eb1fa/invoke.js"></script>
                 <div id="container-e80c7ffbab6b2709da3883379e9eb1fa"></div>
             </div>
+            <div><div id="frame" style="width: 728px;"><iframe data-aa='2360078' src='//ad.a-ads.com/2360078?size=728x90' style='width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe><a style="display: block; text-align: right; font-size: 12px" id="frame-link" href="https://aads.com/campaigns/new/?source_id=2360078&source_type=ad_unit&partner=2360078">Advertise here</a></div></div>
 
 
 
