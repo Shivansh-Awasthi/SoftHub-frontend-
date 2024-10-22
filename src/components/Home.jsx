@@ -38,23 +38,7 @@ const Home = () => {
     }, []);
 
 
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.async = true;
-        script.setAttribute('data-cfasync', 'false');
-        script.src = '//pl24762479.cpmrevenuegate.com/e80c7ffbab6b2709da3883379e9eb1fa/invoke.js';
-        document.getElementById('ad-container-1').appendChild(script);
 
-        const iframeScript = document.createElement('iframe');
-        iframeScript.src = '//ad.a-ads.com/2360078?size=728x90';
-        iframeScript.style.width = '728px';
-        iframeScript.style.height = '90px';
-        iframeScript.style.border = '0px';
-        iframeScript.style.padding = '0';
-        iframeScript.style.overflow = 'hidden';
-        iframeScript.style.backgroundColor = 'transparent';
-        document.getElementById('frame').appendChild(iframeScript);
-    }, []);
 
     return (
         <div className='container mx-auto p-2'>
@@ -138,20 +122,6 @@ const Home = () => {
                 </div>
             </div>
 
-
-            <div>
-                <div id="ad-container-1"></div>
-                <div id="frame" style={{ width: '728px' }}>
-                    <a
-                        style={{ display: 'block', textAlign: 'right', fontSize: '12px' }}
-                        href="https://aads.com/campaigns/new/?source_id=2360078&source_type=ad_unit&partner=2360078"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Advertise here
-                    </a>
-                </div>
-            </div>
 
 
 
