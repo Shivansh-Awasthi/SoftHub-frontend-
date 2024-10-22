@@ -93,10 +93,11 @@ const Home = () => {
 
             {/* Mac Games Category */}
             <div className='container mx-auto p-2'>
-                <div className='cover mb-6'>
+                <div className='cover mb-6 flex justify-between items-center'>
                     <h1 className='font-medium text-3xl mb-4'>
                         Mac Games <span className='font-medium ml-2 text-[#8E8E8E]'>{data.length}</span>
                     </h1>
+                    <Link to={`/category/mac/games`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -127,10 +128,11 @@ const Home = () => {
 
             {/* Mac Softwares */}
             <div className='container mx-auto p-2'>
-                <div className='cover mb-6'>
+                <div className='cover mb-6 flex justify-between items-center'>
                     <h1 className='font-medium text-3xl mb-4'>
                         Mac Softwares <span className='font-medium ml-2 text-[#8E8E8E]'>{MacSoftData.length}</span>
                     </h1>
+                    <Link to={`/category/mac/softwares`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -159,10 +161,11 @@ const Home = () => {
 
             {/* PC Games */}
             <div className='container mx-auto p-2'>
-                <div className='cover mb-6'>
+                <div className='cover mb-6 flex justify-between items-center'>
                     <h1 className='font-medium text-3xl mb-4'>
                         Pc Games <span className='font-medium ml-2 text-[#8E8E8E]'>{Pcdata.length}</span>
                     </h1>
+                    <Link to={`/category/pc/games`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -190,10 +193,11 @@ const Home = () => {
 
             {/* Android Games */}
             <div className='container mx-auto p-2'>
-                <div className='cover mb-6'>
+                <div className='cover mb-6 flex justify-between items-center'>
                     <h1 className='font-medium text-3xl mb-4'>
                         Android Games <span className='font-medium ml-2 text-[#8E8E8E]'>{Androiddata.length}</span>
                     </h1>
+                    <Link to={`/category/android/games`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -222,10 +226,11 @@ const Home = () => {
 
             {/* PS2 Roms */}
             <div className='container mx-auto p-2'>
-                <div className='cover mb-6'>
+                <div className='cover mb-6 flex justify-between items-center'>
                     <h1 className='font-medium text-3xl mb-4'>
                         PS2 Roms <span className='font-medium ml-2 text-[#8E8E8E]'>{Ps2data.length}</span>
                     </h1>
+                    <Link to={`/category/ps2/iso`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
