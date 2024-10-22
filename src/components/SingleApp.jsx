@@ -95,11 +95,11 @@ const SingleApp = () => {
                             <img
                                 src={data.thumbnail && data.thumbnail[0] ? data.thumbnail[0] : "https://via.placeholder.com/58"}
                                 alt={data.title}
-                                className="relative inline-block h-[48px] w-[48px] sm:h-[58px] sm:w-[58px] !rounded-lg object-cover object-center"
+                                className="relative inline-block h-[48px] w-[48px] sm:h-[58px] sm:w-[58px] rounded-lg object-cover object-center"
                             />
-                            <div className="flex w-full flex-col">
-                                <div className=" items-center justify-between">
-                                    <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal whitespace-nowrap">
+                            <div className="flex w-full flex-col overflow-hidden">
+                                <div className="w-full flex items-center justify-between overflow-hidden">
+                                    <h1 className="text-white text-xl sm:text-lg md:text-xl lg:text-4xl font-normal whitespace-nowrap overflow-hidden text-ellipsis truncate max-w-full">
                                         {data.title}
                                     </h1>
                                 </div>
