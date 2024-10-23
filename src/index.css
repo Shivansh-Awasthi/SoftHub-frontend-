@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 html,
 body {
     background-color: #1e1e1e;
@@ -11,9 +9,35 @@ body {
     /* Optional: Set default text color */
     height: 100%;
     /* Ensure body takes full height */
+    margin: 0;
+    /* Remove default body margin */
 }
 
 * {
     box-sizing: border-box;
     /* Prevent layout issues */
+}
+
+/* Hide scrollbar in Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
+/* Hide scrollbar for Firefox */
+body {
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Hide scrollbar in Edge and Internet Explorer */
+body {
+    -ms-overflow-style: none;
+    /* Internet Explorer and Edge */
+}
+
+/* Optional: Allow specific elements to show scrollbar if needed */
+.scrollable {
+    overflow-y: auto;
+    /* Allows vertical scroll */
 }
