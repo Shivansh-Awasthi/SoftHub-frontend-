@@ -85,7 +85,7 @@ const SingleApp = () => {
     return (
         <div className='z-20'>
 
-            <div className='flex flex-wrap flex-col lg:flex-row px-2 justify-center items-center'>
+            <div className='flex flex-wrap flex-col lg:flex-row px-2 justify-center items-center '>
                 {/* Left Content */}
                 <div className="flex-1">
 
@@ -99,7 +99,7 @@ const SingleApp = () => {
                             />
                             <div className="flex w-full flex-col overflow-hidden">
                                 <div className="w-full flex items-center justify-between overflow-hidden">
-                                    <h1 className="text-white text-xl sm:text-lg md:text-xl lg:text-4xl font-normal whitespace-nowrap overflow-hidden text-ellipsis truncate max-w-full">
+                                    <h1 className="text-white text-xl sm:text-lg md:text-xl lg:text-4xl font-normal overflow-hidden text-ellipsis truncate max-w-full whitespace-normal md:whitespace-nowrap">
                                         {data.title}
                                     </h1>
                                 </div>
@@ -112,11 +112,15 @@ const SingleApp = () => {
 
                     {/* Slider Logic */}
                     {data.thumbnail && data.thumbnail.length > 1 && (
-                        <div id="default-carousel" className="relative w-full max-w-full sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[46rem]" data-carousel="slide">
-                            <div className="relative h-auto overflow-hidden rounded-lg md:h-[20rem] lg:h-[26rem]">
+                        <div id="default-carousel" className="relative w-full max-w-full sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[46rem]">
+                            <div className="relative h-[12rem] md:h-[20rem] lg:h-[26rem] overflow-hidden rounded-lg">
                                 {data.thumbnail.slice(1).map((image, index) => (
-                                    <div key={index} className={`transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block' : 'hidden'}`}>
-                                        <img src={image} className="block w-full h-auto" alt={`Slide ${index + 2}`} />
+                                    <div key={index} className={`transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block' : 'hidden'} h-full`}>
+                                        <img
+                                            src={image}
+                                            className="block w-full h-full object-cover"
+                                            alt={`Slide ${index + 2}`}
+                                        />
                                     </div>
                                 ))}
                             </div>
@@ -145,7 +149,7 @@ const SingleApp = () => {
                 </div>
 
                 {/* Right Card */}
-                <div className="w-full max-w-[22rem] h-full p-8 ml-2 bg-[#262626] rounded-lg shadow-md mt-10 sm:mt-10 lg:mt-[6.3rem]">
+                <div className="ml-4 w-full max-w-[22rem] h-full p-8 ml-2 bg-[#262626] rounded-lg shadow-md mt-10 sm:mt-10 lg:mt-[6.3rem]">
                     <h2 className="text-xs font-semibold text-[#8E8E8E] ">Platform</h2>
                     <p className="text-sm text-[#fff] mb-6">{data.platform}</p>
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Interface language</h2>
