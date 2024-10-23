@@ -86,7 +86,7 @@ const Sidebar = () => {
             >
                 <Link
                     to="/"
-                    className='flex items-center mb-6'
+                    className='flex items-center mb-6 '
                     onClick={() => {
                         handleClick();
                         closeSidebar();
@@ -94,11 +94,12 @@ const Sidebar = () => {
                     onMouseEnter={() => setLogo("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.39_AM_gzfxsu.png")}
                     onMouseLeave={() => setLogo("https://res.cloudinary.com/dkp1pshuw/image/upload/v1729024140/Screenshot_2024-10-16_at_1.54.35_AM_cow9by.png")}
                 >
-                    <img className="h-11 w-11 mr-2 p-1" src={logo} alt="Logo" />
-                    <h1 className='text-xl font-semibold tracking-wider'>
+                    <img className="h-11 w-11 mr-2 mt-6 rotate-[-5deg]" src={logo} alt="Logo" />
+                    {/* <h1 className='text-xl font-semibold tracking-wider'>
                         <span>Soft</span>
                         <span className='text-[#8E8E8E]'>Hub</span>
-                    </h1>
+                    </h1> */}
+                    <img className='h-14 w-28 rotate-[-5deg]' src="https://res.cloudinary.com/dkp1pshuw/image/upload/v1729674759/ToxicGames-Logo_f13goa.png" alt="logo" />
                 </Link>
 
                 <div className="flex flex-col justify-between flex-1">
