@@ -81,7 +81,7 @@ const Sidebar = () => {
             <aside
                 className={`md:sticky top-0 z-20 flex flex-col w-full h-screen px-8 py-8 border-r border-white border-opacity-5 
                 ${isMobileView ? 'fixed w-full bg-[#1E1E1E] transition-transform duration-300' : 'w-60'} 
-                ${isSidebarVisible || !isMobileView ? 'transform-none' : '-translate-x-full'}`}
+                ${isSidebarVisible || !isMobileView ? 'transform-none' : '-translate-x-full overflow-y-auto scrollbar-hide'}`}
                 style={{ overflowY: isSidebarVisible ? 'auto' : 'hidden' }}  // Allow scrolling when sidebar is visible
             >
                 <Link
