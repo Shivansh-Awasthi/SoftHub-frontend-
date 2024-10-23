@@ -264,31 +264,7 @@ const Home = () => {
             {/* ads */}
 
 
-            <div className="flex flex-col md:flex-row items-center justify-center" style={{ maxWidth: '728px', margin: '0 auto' }}>
-                <iframe
-                    data-aa='2360622'
-                    src='//ad.a-ads.com/2360622?size=728x90'
-                    style={{
-                        width: '100%', // Set width to 100% to allow responsiveness
-                        height: '90px',
-                        border: '0',
-                        padding: '0',
-                        overflow: 'hidden',
-                        backgroundColor: 'transparent'
-                    }}
-                    title="Advertisement"
-                ></iframe>
-                <a
-                    style={{ display: 'block', textAlign: 'right', fontSize: '12px' }}
-                    id="frame-link"
-                    href="https://aads.com/campaigns/new/?source_id=2360622&source_type=ad_unit&partner=2360622"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 md:mt-0 md:ml-2" // Add margin for better spacing on larger screens
-                >
-                    Advertise here
-                </a>
-            </div>
+            <div id="frame" style="width: 100%;"><iframe data-aa='2360622' src='//acceptable.a-ads.com/2360622' style='border:0px; padding:0; width:100%; height:100%; overflow:hidden; background-color: transparent;'></iframe><a style="display: block; text-align: right; font-size: 12px" id="frame-link" href="https://aads.com/campaigns/new/?source_id=2360622&source_type=ad_unit&partner=2360622">Advertise here</a></div>
 
 
         </div>
