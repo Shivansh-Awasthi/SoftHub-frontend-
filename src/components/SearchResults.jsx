@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
-import Loader from './Loading Animations/Loader';
+import Loader from './Loading/Loader';
 
 const SearchResults = () => {
     const query = new URLSearchParams(useLocation().search).get('query');
