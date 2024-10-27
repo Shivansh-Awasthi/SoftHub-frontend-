@@ -20,8 +20,14 @@ import SearchResults from './components/SearchResults';
 import SingleApp from './components/SingleApp';
 import Logout from './components/Logout';
 import DeleteApps from './components/admin/DeleteApps';
+import { useEffect } from 'react';
 
 function App() {
+
+  useEffect(() => {
+    document.getElementById('root').style.visibility = 'visible';
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="flex h-screen"> {/* Flex container for layout */}
