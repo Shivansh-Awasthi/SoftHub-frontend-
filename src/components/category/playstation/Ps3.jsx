@@ -64,7 +64,7 @@ const Ps3 = () => {
                                 <img
                                     src={ele.thumbnail[0]}
                                     alt={ele.title}
-                                    className="rounded-full w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
+                                    className="rounded-lg w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
                                 />
                             </div>
                             <div className="flex flex-col p-4 bg-[#262626]">
