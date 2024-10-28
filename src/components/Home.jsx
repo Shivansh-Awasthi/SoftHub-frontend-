@@ -39,34 +39,6 @@ const Home = () => {
     }, []);
 
 
-
-    // ads
-    useEffect(() => {
-        // Create the script element
-        const script = document.createElement("script");
-        script.src = "//pl24836806.profitablecpmrate.com/e290ae8dd1069eb91a4dfef6ac586535/invoke.js";
-        script.async = true;
-        script.setAttribute("data-cfasync", "false");
-
-        // Append it to the target container
-        const adContainer = document.getElementById("container-e290ae8dd1069eb91a4dfef6ac586535");
-        if (adContainer) {
-            adContainer.appendChild(script);
-        }
-
-        // Cleanup function to remove the script if the component unmounts
-        return () => {
-            if (adContainer) {
-                adContainer.innerHTML = ""; // Clear ad content
-            }
-        };
-    }, []);
-    //   end
-
-
-
-
-
     return (
         <div className='container mx-auto p-2'>
             {/* Slider Logic */}
@@ -225,8 +197,7 @@ const Home = () => {
             <div>
                 <h4 className='text-center text-xs'>Advertisement</h4>
                 <div>
-                    {/* Your other component content here */}
-                    <div id="container-e290ae8dd1069eb91a4dfef6ac586535"></div>
+                    <AdsComponent />
                 </div>
             </div>
             {/* ads adsterra */}
