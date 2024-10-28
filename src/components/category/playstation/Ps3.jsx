@@ -68,7 +68,7 @@ const Ps3 = () => {
                                 />
                             </div>
                             <div className="flex flex-col p-4 bg-[#262626]">
-                                <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
+                                <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
                                 <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
                             </div>
                         </Link>

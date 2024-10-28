@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import AdsComponent from './Ads/AdsComponent';
 
 const images = [
     'https://res.cloudinary.com/dkp1pshuw/image/upload/v1729425726/adobe_fdeqsq.webp',
@@ -153,7 +154,7 @@ const Home = () => {
                                 />
                             </div>
                             <div className="flex flex-col p-4 bg-[#262626]">
-                                <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
+                                <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
                                 <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
                             </div>
                         </Link>
@@ -194,6 +195,15 @@ const Home = () => {
                 </div>
             </div>
 
+
+
+            {/* ads adsterra */}
+            <div>
+                <h4 className='text-center text-xs'>Advertisement</h4>
+                <div><AdsComponent /></div>
+            </div>
+            {/* ads adsterra */}
+
             {/* Android Games */}
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
@@ -218,7 +228,7 @@ const Home = () => {
                                 />
                             </div>
                             <div className="flex flex-col p-4 bg-[#262626]">
-                                <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
+                                <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
                                 <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
                             </div>
                         </Link>
@@ -251,7 +261,7 @@ const Home = () => {
                                 />
                             </div>
                             <div className="flex flex-col p-4 bg-[#262626]">
-                                <div className="text-sm text-center font-normal text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
+                                <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
                                 <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
                             </div>
                         </Link>
@@ -259,39 +269,6 @@ const Home = () => {
                 </div>
 
             </div>
-
-
-            {/* ads */}
-
-            <div id="frame" style={{ width: '100%' }}>
-                <iframe
-                    data-aa='2360622'
-                    src='//acceptable.a-ads.com/2360622'
-                    style={{
-                        border: '0',
-                        padding: '0',
-                        width: '100%', // Make iframe responsive
-                        height: '90px', // Set fixed height for the ad
-                        overflow: 'hidden',
-                        backgroundColor: 'transparent'
-                    }}
-                    title="Advertisement"
-                ></iframe>
-                <a
-                    style={{
-                        display: 'block',
-                        textAlign: 'right',
-                        fontSize: '12px'
-                    }}
-                    id="frame-link"
-                    href="https://aads.com/campaigns/new/?source_id=2360622&source_type=ad_unit&partner=2360622"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Advertise here
-                </a>
-            </div>
-            {/* end */}
 
         </div>
     );
