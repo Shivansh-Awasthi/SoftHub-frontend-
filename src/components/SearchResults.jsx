@@ -97,9 +97,23 @@ const SearchResults = () => {
                                             <p className="text-normal font-light truncate text-white">
                                                 {ele.title}
                                             </p>
-                                            <p className="text-sm text-gray-500 truncate ">
+
+                                            <p
+                                                className={`text-sm text-blue-500 truncate ${ele.platform === 'mac'
+                                                    ? 'text-gray-500'
+                                                    : ele.platform === 'PC'
+                                                        ? 'text-red-500'
+                                                        : ele.platform === 'Android'
+                                                            ? 'text-green-500'
+                                                            : ele.platform === 'Playstation'
+                                                                ? 'text-purple-500'
+                                                                : ''
+                                                    }`}
+                                            >
                                                 {ele.platform}
                                             </p>
+
+
                                         </div>
                                         <div className="flex-1 flex justify-center text-sm font-semibold text-gray-500 hidden sm:block">
                                             {ele.size}
