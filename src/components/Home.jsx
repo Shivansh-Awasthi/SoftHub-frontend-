@@ -263,20 +263,6 @@ const Home = () => {
 
 
 
-
-            {/* ads adsterra */}
-            <div>
-                <h4 className='text-center text-xs'>Advertisement</h4>
-                <div>
-                    <AdsComponent />
-                </div>
-            </div>
-            {/* ads adsterra */}
-
-
-
-
-
             {/* Android Games */}
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
