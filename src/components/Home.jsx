@@ -20,32 +20,175 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
 
 
-    const fetchData = async (url, setData) => {
+    //total games
+
+    const [totalMacGames, setTotalMacGames] = useState(0)
+    const [totalPcGames, setTotalPcGames] = useState(0)
+    const [totalMacSoft, setTotalMacSoft] = useState(0)
+    const [totalAndroidGames, setTotalAndroidGames] = useState(0)
+    const [totalPs2Iso, setTotalPS2Iso] = useState(0)
+
+
+
+
+
+    // mac games
+
+    const handleData = async () => {
+
         try {
-            const response = await axios.get(url);
-            const sortedData = response.data.apps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-            setData(sortedData);
+
+            const initialResponse = await axios.get(`${process.env.REACT_API}/api/apps/category/mac?page=1&limit=48`)
+
+            // dynamic page logic 
+
+            const limitPage = 48;
+            const totalPage = initialResponse.data.total
+
+            const latestPage = Math.ceil(totalPage / limitPage);
+
+
+
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/mac?page=${latestPage}&limit=48`);
+
+
+            setData(response.data.apps);
+            setTotalMacGames(response.data.total)
 
         } catch (error) {
-            console.log("Error fetching data: " + error);
+
+            console.log("Error fetching mac games " + error);
+
         }
-    };
 
-
-
-
-
-
-
+    }
 
     useEffect(() => {
-        fetchData(`${process.env.REACT_API}/api/apps/category/mac?page=2&limit=48`, setData);
-        fetchData(`${process.env.REACT_API}/api/apps/category/smac`, setMacSoftData);
-        fetchData(`${process.env.REACT_API}/api/apps/category/pc`, setPcData);
-        fetchData(`${process.env.REACT_API}/api/apps/category/android`, setAndroidData);
-        fetchData(`${process.env.REACT_API}/api/apps/category/ps2`, setPs2Data);
-    }, []);
+        handleData()
+    }, [])
 
+
+
+    // mac soft
+
+    const handleMacSoftData = async () => {
+
+        try {
+
+            const initialResponse = await axios.get(`${process.env.REACT_API}/api/apps/category/smac`)
+
+
+
+
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/smac`);
+
+
+            setMacSoftData(response.data.apps);
+            setTotalMacSoft(response.data.total)
+
+        } catch (error) {
+
+            console.log("Error fetching mac soft " + error);
+
+        }
+
+    }
+
+    useEffect(() => {
+        handleMacSoftData()
+    }, [])
+
+
+
+
+
+    // pc games
+
+    const handlePcData = async () => {
+
+        try {
+
+            const initialResponse = await axios.get(`${process.env.REACT_API}/api/apps/category/pc?page=1&limit=48`)
+
+            // dynamic page logic 
+
+            const limitPage = 48;
+            const totalPage = initialResponse.data.total
+
+            const latestPage = Math.ceil(totalPage / limitPage);
+
+
+
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/pc?page=${latestPage}&limit=48`);
+
+            setPcData(response.data.apps)
+            setTotalPcGames(response.data.total)
+
+
+        } catch (error) {
+
+            console.log("Error fetching PC games " + error);
+
+        }
+
+    }
+
+    useEffect(() => {
+        handlePcData()
+    }, [])
+
+
+
+    // Android Games
+
+    const handleAndroidData = async () => {
+
+        try {
+
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/android`);
+
+
+            setAndroidData(response.data.apps);
+            setTotalAndroidGames(response.data.total)
+
+        } catch (error) {
+
+            console.log("Error fetching Android games " + error);
+
+        }
+
+    }
+
+    useEffect(() => {
+        handleAndroidData()
+    }, [])
+
+
+
+
+    // PS2 iso
+
+    const handlePS2Data = async () => {
+
+        try {
+
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/category/ps2`);
+
+
+            setPs2Data(response.data.apps);
+            setTotalPS2Iso(response.data.total)
+
+        } catch (error) {
+
+            console.log("Error fetching PS2 ISO's " + error);
+
+        }
+
+    }
+
+    useEffect(() => {
+        handlePS2Data()
+    }, [])
 
 
 
@@ -173,7 +316,7 @@ const Home = () => {
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
                     <h1 className='font-medium text-2xl md:text-3xl '>
-                        Mac Games <span className='font-medium ml-2 text-[#8E8E8E]'>{data.length}</span>
+                        Mac Games <span className='font-medium ml-2 text-[#8E8E8E]'>{totalMacGames}</span>
                     </h1>
                     <Link to={`/category/mac/games`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
@@ -209,7 +352,7 @@ const Home = () => {
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
                     <h1 className='font-medium text-2xl md:text-3xl'>
-                        Mac Softwares <span className='font-medium ml-2 text-[#8E8E8E]'>{MacSoftData.length}</span>
+                        Mac Softwares <span className='font-medium ml-2 text-[#8E8E8E]'>{totalMacSoft}</span>
                     </h1>
                     <Link to={`/category/mac/softwares`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
@@ -242,7 +385,7 @@ const Home = () => {
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
                     <h1 className='font-medium text-2xl md:text-3xl'>
-                        Pc Games <span className='font-medium ml-2 text-[#8E8E8E]'>{Pcdata.length}</span>
+                        Pc Games <span className='font-medium ml-2 text-[#8E8E8E]'>{totalPcGames}</span>
                     </h1>
                     <Link to={`/category/pc/games`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
@@ -277,7 +420,7 @@ const Home = () => {
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
                     <h1 className='font-medium text-2xl md:text-3xl'>
-                        Android Games <span className='font-medium ml-2 text-[#8E8E8E]'>{Androiddata.length}</span>
+                        Android Games <span className='font-medium ml-2 text-[#8E8E8E]'>{totalAndroidGames}</span>
                     </h1>
                     <Link to={`/category/android/games`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
@@ -310,7 +453,7 @@ const Home = () => {
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
                     <h1 className='font-medium text-2xl md:text-3xl'>
-                        PS2 Roms <span className='font-medium ml-2 text-[#8E8E8E]'>{Ps2data.length}</span>
+                        PS2 Roms <span className='font-medium ml-2 text-[#8E8E8E]'>{totalPs2Iso}</span>
                     </h1>
                     <Link to={`/category/ps2/iso`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
