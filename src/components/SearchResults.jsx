@@ -14,12 +14,35 @@ const SearchResults = () => {
 
     const handleData = async () => {
         setLoading(true);
+        let allData = [];  // This will store all the apps fetched...
+        let page = 1;      // Start with the first page
+        const limit = 100;   // Set the limit for each page (adjusting as per your API)
+
         try {
-            // Make sure the URL is correct
-            const response = await axios.get(`${process.env.REACT_API}/api/apps/all`);
-            setData(response.data.apps);
+            while (true) {
+
+                // Fetch the current page of data
+
+                const response = await axios.get(`${process.env.REACT_API}/api/apps/all`, {
+                    params: {
+                        page,    // Page number
+                        limit,   // Limit the number of items per page
+                    },
+                });
+
+                const apps = response.data.apps;
+
+                if (apps.length === 0) {
+                    break; // No more apps to fetch, exit the loop
+                }
+
+                allData = [...allData, ...apps];  // Add the fetched apps to the allData array
+                page += 1;  // Increment the page number for the next request
+            }
+
+            setData(allData);  // Set the final combined data after fetching all pages
         } catch (error) {
-            console.log("Error fetching apps: ", error);
+            console.log("Error fetching apps:", error);
             setError('Failed to load data. Please try again later.');
         } finally {
             setLoading(false);
