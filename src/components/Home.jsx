@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import AdsComponent from './Ads/AdsComponent';
 
 const images = [
     'https://i.pinimg.com/originals/a7/c7/8c/a7c78c1cf8554d3256eba773fd3bfcbe.gif',
@@ -20,23 +19,34 @@ const Home = () => {
     const [Ps2data, setPs2Data] = useState([]);
     const [loading, setLoading] = useState(true);
 
+
     const fetchData = async (url, setData) => {
         try {
             const response = await axios.get(url);
             const sortedData = response.data.apps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             setData(sortedData);
+
         } catch (error) {
             console.log("Error fetching data: " + error);
         }
     };
 
+
+
+
+
+
+
+
     useEffect(() => {
-        fetchData(`${process.env.REACT_API}/api/apps/category/mac`, setData);
+        fetchData(`${process.env.REACT_API}/api/apps/category/mac?page=2&limit=48`, setData);
         fetchData(`${process.env.REACT_API}/api/apps/category/smac`, setMacSoftData);
         fetchData(`${process.env.REACT_API}/api/apps/category/pc`, setPcData);
         fetchData(`${process.env.REACT_API}/api/apps/category/android`, setAndroidData);
         fetchData(`${process.env.REACT_API}/api/apps/category/ps2`, setPs2Data);
     }, []);
+
+
 
 
     return (
