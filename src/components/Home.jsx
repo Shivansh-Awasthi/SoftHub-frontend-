@@ -208,12 +208,12 @@ const Home = () => {
 
                             {/* Overlay text and button on the 4th image (index === 0) */}
                             {index === 2 && (
-                                <div className="absolute inset-0 flex flex-col text-white p-8 ml-6 mt-4 md:p-0 md:ml-20 md:mt-28 z-0">
+                                <div className="absolute inset-0 flex flex-col text-white p-8 ml-6 mt-4 md:p-0 md:ml-20 md:mt-28 z-0 w-full ">
                                     <h2 className="text-lg font-thin mb-4 sm:text-base md:text-lg">SOFTWARE</h2>
-                                    <p className="mb-4 font-semibold sm:text-sm md:text-base">Download Free Softwares On Your Mac</p>
+                                    <p className="mb-4 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">Download Free Softwares On Your Mac</p>
                                     <div className='w-fill'>
                                         <a href="http://localhost:5173/category/mac/softwares" rel="noopener noreferrer">
-                                            <button className="mx-auto ml-0 px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 sm:px-4 sm:py-2 md:px-6 md:py-3">
+                                            <button className="mx-auto ml-0 px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 sm:px-4 sm:py-2 md:px-6 md:py-3 overflow-hidden whitespace-nowrap text-ellipsis">
                                                 Download Now
                                             </button>
                                         </a>
@@ -226,10 +226,10 @@ const Home = () => {
                             {index === 3 && (
                                 <div className="absolute inset-0 flex flex-col text-white p-8 ml-6 mt-4 md:p-0 md:ml-20 md:mt-28 z-0">
                                     <h2 className="text-lg font-thin mb-4 sm:text-base md:text-lg">SOFTWARE</h2>
-                                    <p className="mb-6 font-semibold sm:text-sm md:text-base">Get Microsoft Office 365 For Free On Your Mac</p>
+                                    <p className="mb-6 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">Get Microsoft Office 365 For Free On Your Mac</p>
                                     <div className='w-fill'>
                                         <a href="https://toxicgames.in/67150d922b746bdfa2e4f03d" rel="noopener noreferrer">
-                                            <button className="mx-auto ml-0 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 sm:px-4 sm:py-2 md:px-6 md:py-3">
+                                            <button className="mx-auto ml-0 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 sm:px-4 sm:py-2 md:px-6 md:py-3 overflow-hidden whitespace-nowrap text-ellipsis">
                                                 Get it Now..
                                             </button>
                                         </a>
@@ -244,10 +244,10 @@ const Home = () => {
                             {index === 0 && (
                                 <div className="absolute inset-0 flex flex-col text-white p-8 ml-6 mt-4 md:p-0 md:ml-20 md:mt-28 z-0">
                                     <h2 className="text-lg font-thin mb-4 sm:text-base md:text-lg">Macbook Games</h2>
-                                    <p className="mb-6 font-semibold sm:text-sm md:text-base">Download Your Favourite Games for Free.</p>
+                                    <p className="mb-6 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">Download Your Favourite Games for Free.</p>
                                     <div className='w-fill'>
                                         <a href="https://toxicgames.in/category/mac/games" rel="noopener noreferrer">
-                                            <button className="mx-auto ml-0 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 sm:px-4 sm:py-2 md:px-6 md:py-3">
+                                            <button className="mx-auto ml-0 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 sm:px-4 sm:py-2 md:px-6 md:py-3 overflow-hidden whitespace-nowrap text-ellipsis">
                                                 Download Now..
                                             </button>
                                         </a>
@@ -261,10 +261,10 @@ const Home = () => {
                             {index === 1 && (
                                 <div className="absolute inset-0 flex flex-col text-white p-8 ml-6 mt-4 md:p-0 md:ml-20 md:mt-28 z-0">
                                     <h2 className="text-lg font-thin mb-4 sm:text-base md:text-lg">TELEGRAM CHAT</h2>
-                                    <p className="mb-6 font-semibold sm:text-sm md:text-base">Join Our Channel @freemacgames</p>
+                                    <p className="mb-6 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">Join Our Channel @freemacgames</p>
                                     <div className='w-fill'>
                                         <a href="https://t.me/freemacgames" target="_blank" rel="noopener noreferrer">
-                                            <button className="mx-auto ml-0 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 sm:px-4 sm:py-2 md:px-6 md:py-3">
+                                            <button className="mx-auto ml-0 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 sm:px-4 sm:py-2 md:px-6 md:py-3 overflow-hidden whitespace-nowrap text-ellipsis">
                                                 Join our Telegram
                                             </button>
                                         </a>
