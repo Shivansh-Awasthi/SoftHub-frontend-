@@ -277,12 +277,12 @@ const Home = () => {
                 </div>
 
                 {/* Pagination Dots */}
-                <div className="absolute flex space-x-3 bottom-5 left-1/2 transform -translate-x-1/2">
+                <div className="absolute flex space-x-2 bottom-7 left-1/2 transform -translate-x-1/2">
                     {images.map((_, index) => (
                         <button
                             key={index}
                             type="button"
-                            className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
+                            className={`w-8 h-1 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
                             onClick={() => setCurrentIndex(index)}
                         />
                     ))}
