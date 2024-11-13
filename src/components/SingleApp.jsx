@@ -125,18 +125,19 @@ const SingleApp = () => {
                                 ))}
                             </div>
                             {/* Slider indicators */}
-                            <div className="absolute  flex -translate-x-1/2 bottom-2 sm:bottom-3 lg:bottom-5 left-1/2 space-x-2 sm:space-x-3">
+                            <div className="absolute flex -translate-x-1/2 bottom-2 sm:bottom-3 lg:bottom-5 left-1/2 space-x-1 sm:space-x-2 overflow-hidden max-w-full justify-center">
                                 {data.thumbnail.slice(1).map((_, index) => (
                                     <button
                                         key={index}
                                         type="button"
-                                        className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
+                                        className={`w-4 h-1 sm:w-8 sm:h-1 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
                                         aria-current={index === currentIndex}
                                         aria-label={`Slide ${index + 2}`}
                                         onClick={() => setCurrentIndex(index)}
                                     />
                                 ))}
                             </div>
+
                             {/* Slider controls */}
                             <button type="button" className="absolute top-0 left-0  flex items-center justify-center h-full px-2 sm:px-4 cursor-pointer group focus:outline-none" onClick={prevSlide}>
                                 <FaAngleLeft className='text-lg sm:text-xl' />
