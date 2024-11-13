@@ -83,9 +83,9 @@ const SingleApp = () => {
     }
 
     return (
-        <div className='z-20'>
+        <div className='z-20]'>
 
-            <div className='flex flex-wrap flex-col lg:flex-row px-2 justify-center items-center '>
+            <div className='flex flex-wrap flex-col lg:flex-row px-2 justify-center items-center'>
                 {/* Left Content */}
                 <div className="flex-1">
 
@@ -233,14 +233,15 @@ const SingleApp = () => {
             <div
                 className="absolute inset-0"
                 style={{
-                    backgroundImage: `url('${data.thumbnail[2]}')`,
+                    background: `linear-gradient(to right, rgba(0, 0, 0, 5), rgba(0, 0, 0, 0) 170%), url('${data.thumbnail[2]}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    opacity: 0.05,
-                    zIndex: 0,
+                    opacity: 0.2,
+                    zIndex: -1,
                     pointerEvents: 'none', // Allows interaction with elements above this
                 }}
-            ></div>
+            >
+            </div>
 
         </div >
     );
