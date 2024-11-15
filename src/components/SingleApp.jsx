@@ -128,8 +128,8 @@ const SingleApp = () => {
 
                     {/* Slider Logic */}
                     {data.thumbnail && data.thumbnail.length > 1 && (
-                        <div id="default-carousel" className="relative w-full max-w-[full] sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[46rem]">
-                            <div className="relative h-full overflow-hidden rounded-lg">
+                        <div id="default-carousel" className="relative w-full max-w-full sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[46rem]">
+                            <div className="relative w-full h-[13rem] sm:h-[19rem] md:h-[20rem] lg:h-[26rem] overflow-hidden rounded-lg">
                                 {data.thumbnail.slice(1).map((image, index) => (
                                     <div key={index} className={`transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block' : 'hidden'} h-full`}>
                                         <img
@@ -266,13 +266,39 @@ const SingleApp = () => {
 
 
                             {/* For Software MAC */}
-                            {data.category.name === 'smac' && (
-                                <>
-                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">Software MAC</h2>
-                                    <p className="mt-1 text-sm sm:text-base">Follow the instructions to mount the image, then drag the application to the Applications folder.</p>
-                                    <p className="text-sm sm:text-base">This version may require additional configurations for certain users.</p>
-                                </>
-                            )}
+                            <div>
+                                {data.category.name === 'smac' && (
+                                    <div>
+                                        <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">Software MAC</h2>
+                                        <p className="mt-1 text-sm sm:text-base">Follow the instructions to mount the image, then drag the application to the Applications folder.</p>
+                                        <p className="text-sm sm:text-base">This version may require additional configurations for certain users.</p>
+                                    </div>
+                                )}
+
+                                {/* Check if gameplayVideos is not empty */}
+                                {data.gameplayVideos && data.gameplayVideos.length > 0 && (
+                                    <div className='mt-4 ring-2 ring-[#9709e3] rounded-lg hover:ring-opacity-75'>
+                                        <h3 className="text-xl sm:text-2xl text-red-500 font-normal mt-1 pt-3">{data.gameplayVideos[0]}</h3>
+
+                                        <div className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                            <div>{data.gameplayVideos[1]}</div>
+                                        </div>
+
+                                        <div className="mt-1">
+                                            <p className=" text-sm sm:text-base flex flex-wrap justify-center items-center py-3 px-6 sm:px-10  w-full rounded-lg bg-[#2E2E2E]  hover:bg-[#1E1E1E] transition break-all">
+                                                <code className='italic'>{data.gameplayVideos[2]}</code>
+                                            </p>
+                                        </div>
+
+                                        <div className="mt-1  text-sm sm:text-base">
+                                            <div className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                <div><HighlightText text={data.gameplayVideos[3]} /></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                            </div>
 
                             {/* For PC */}
                             {data.category.name === 'pc' && (
