@@ -326,11 +326,46 @@ const SingleApp = () => {
 
                             {/* For PC */}
                             {data.category.name === 'pc' && (
-                                <>
-                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PC</h2>
-                                    <p className="mt-1 text-sm sm:text-base">Extract the downloaded zip and click install.</p>
-                                    <p className="text-sm sm:text-base">Once the installation is complete, the application can be launched directly.</p>
-                                </>
+                                <div>
+                                    <div>
+                                        <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PC</h2>
+                                        <p className="mt-1 text-sm sm:text-base">Extract the downloaded zip and click install.</p>
+                                        <p className="text-sm sm:text-base">Once the installation is complete, the application can be launched directly.</p>
+                                    </div>
+
+                                    {/* Check if gameplayVideos is not empty and has enough data */}
+                                    {data.gameplayVideos && data.gameplayVideos.length > 0 && (
+                                        <div className='mt-4 ring-2 ring-[#9709e3] rounded-lg hover:ring-opacity-75'>
+                                            {/* Display data only if the array has enough elements */}
+                                            {data.gameplayVideos[0] && (
+                                                <h3 className="text-xl sm:text-2xl text-red-500 font-normal mt-1 pt-3">{data.gameplayVideos[0]}</h3>
+                                            )}
+
+                                            {data.gameplayVideos[1] && (
+                                                <p className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                                    <div>{data.gameplayVideos[1]}</div>
+                                                </p>
+                                            )}
+
+                                            {data.gameplayVideos[2] && (
+                                                <div className="mt-1">
+                                                    <p className=" text-sm sm:text-base flex flex-wrap justify-center items-center py-3 px-6 sm:px-10  w-full rounded-lg bg-[#2E2E2E]  hover:bg-[#1E1E1E] transition break-all">
+                                                        <code className='italic'>{data.gameplayVideos[2]}</code>
+                                                    </p>
+                                                </div>
+                                            )}
+
+                                            {data.gameplayVideos[3] && (
+                                                <div className="mt-1  text-sm sm:text-base">
+                                                    <p className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                        <div><HighlightText text={data.gameplayVideos[3]} /></div>
+                                                    </p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+
+                                </div>
                             )}
 
                             {/* For Software PC */}
@@ -344,11 +379,45 @@ const SingleApp = () => {
 
                             {/* For Android */}
                             {data.category.name === 'android' && (
-                                <>
-                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">Android</h2>
-                                    <p className="mt-1 text-sm sm:text-base">Install the APK directly on your Android device.</p>
-                                    <p className="text-sm sm:text-base">Ensure that you have enabled installation from unknown sources in your device settings.</p>
-                                </>
+                                <div>
+                                    <div>
+                                        <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">Android</h2>
+                                        <p className="mt-1 text-sm sm:text-base">Install the APK directly on your Android device.</p>
+                                        <p className="text-sm sm:text-base">Ensure that you have enabled installation from unknown sources in your device settings.</p>
+                                    </div>
+
+                                    {/* Check if gameplayVideos is not empty and has enough data */}
+                                    {data.gameplayVideos && data.gameplayVideos.length > 0 && (
+                                        <div className='mt-4 ring-2 ring-[#9709e3] rounded-lg hover:ring-opacity-75'>
+                                            {/* Display data only if the array has enough elements */}
+                                            {data.gameplayVideos[0] && (
+                                                <h3 className="text-xl sm:text-2xl text-red-500 font-normal mt-1 pt-3">{data.gameplayVideos[0]}</h3>
+                                            )}
+
+                                            {data.gameplayVideos[1] && (
+                                                <p className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                                    <div>{data.gameplayVideos[1]}</div>
+                                                </p>
+                                            )}
+
+                                            {data.gameplayVideos[2] && (
+                                                <div className="mt-1">
+                                                    <p className=" text-sm sm:text-base flex flex-wrap justify-center items-center py-3 px-6 sm:px-10  w-full rounded-lg bg-[#2E2E2E]  hover:bg-[#1E1E1E] transition break-all">
+                                                        <code className='italic'>{data.gameplayVideos[2]}</code>
+                                                    </p>
+                                                </div>
+                                            )}
+
+                                            {data.gameplayVideos[3] && (
+                                                <div className="mt-1  text-sm sm:text-base">
+                                                    <p className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                        <div><HighlightText text={data.gameplayVideos[3]} /></div>
+                                                    </p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
                             )}
 
                             {/* For Android Softwares */}
@@ -362,11 +431,46 @@ const SingleApp = () => {
 
                             {/* For PlayStation (ps2, ps3, ps4, ppsspp) */}
                             {['Playstation'].includes(data.platform) && (
-                                <>
-                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PlayStation</h2>
-                                    <p className="mt-1 text-sm sm:text-base">For PlayStation, follow the platform-specific instructions to install or load the game on your console.</p>
-                                    <p className="text-sm sm:text-base">Make sure to check compatibility with your system and follow any necessary steps for each specific PlayStation version.</p>
-                                </>
+
+                                <div>
+                                    <div>
+                                        <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PlayStation</h2>
+                                        <p className="mt-1 text-sm sm:text-base">For PlayStation, follow the platform-specific instructions to install or load the game on your console.</p>
+                                        <p className="text-sm sm:text-base">Make sure to check compatibility with your system and follow any necessary steps for each specific PlayStation version.</p>
+                                    </div>
+                                    {/* Check if gameplayVideos is not empty and has enough data */}
+                                    {data.gameplayVideos && data.gameplayVideos.length > 0 && (
+                                        <div className='mt-4 ring-2 ring-[#9709e3] rounded-lg hover:ring-opacity-75'>
+                                            {/* Display data only if the array has enough elements */}
+                                            {data.gameplayVideos[0] && (
+                                                <h3 className="text-xl sm:text-2xl text-red-500 font-normal mt-1 pt-3">{data.gameplayVideos[0]}</h3>
+                                            )}
+
+                                            {data.gameplayVideos[1] && (
+                                                <p className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                                    <div>{data.gameplayVideos[1]}</div>
+                                                </p>
+                                            )}
+
+                                            {data.gameplayVideos[2] && (
+                                                <div className="mt-1">
+                                                    <p className=" text-sm sm:text-base flex flex-wrap justify-center items-center py-3 px-6 sm:px-10  w-full rounded-lg bg-[#2E2E2E]  hover:bg-[#1E1E1E] transition break-all">
+                                                        <code className='italic'>{data.gameplayVideos[2]}</code>
+                                                    </p>
+                                                </div>
+                                            )}
+
+                                            {data.gameplayVideos[3] && (
+                                                <div className="mt-1  text-sm sm:text-base">
+                                                    <p className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                        <div><HighlightText text={data.gameplayVideos[3]} /></div>
+                                                    </p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+
+                                </div>
                             )}
 
                             {/* Download Link */}
