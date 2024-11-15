@@ -276,7 +276,7 @@ const SingleApp = () => {
                                 )}
 
                                 {/* Check if gameplayVideos is not empty */}
-                                {data.gameplayVideos && data.gameplayVideos.length > 0 && (
+                                {/* {data.gameplayVideos && data.gameplayVideos.length > 0 && (
                                     <div className='mt-4 ring-2 ring-[#9709e3] rounded-lg hover:ring-opacity-75'>
                                         <h3 className="text-xl sm:text-2xl text-red-500 font-normal mt-1 pt-3">{data.gameplayVideos[0]}</h3>
 
@@ -296,7 +296,7 @@ const SingleApp = () => {
                                             </div>
                                         </div>
                                     </div>
-                                )}
+                                )} */}
 
                             </div>
 
