@@ -82,6 +82,22 @@ const SingleApp = () => {
         );
     }
 
+
+    //change color function
+
+    function HighlightText({ text }) {
+        // Function to wrap specific words in span
+        const highlightWords = (input) => {
+            return input.replace(/\\y(.*?)\\y/g, "<span class='text-orange-400'>$1</span>");
+        };
+
+        return (
+            <div
+                dangerouslySetInnerHTML={{ __html: highlightWords(text) }}
+            />
+        );
+    }
+
     return (
         <div className='z-20]'>
 
@@ -195,6 +211,9 @@ const SingleApp = () => {
                 </button>
             </div>
 
+
+            {/* DOWNLOAD BUTTON SECTION */}
+
             {/* Modal for Download Instructions */}
             {
                 showModal && (
@@ -205,12 +224,96 @@ const SingleApp = () => {
                                 <RxCross2 className="mr-2 sm:mr-4 text-xl text-[#8E8E8E] hover:text-[#fff]" />
                             </div>
                             <h3 className="text-2xl sm:text-3xl font-normal">Installation Instructions</h3>
-                            <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">MAC</h2>
-                            <p className="mt-1 text-sm sm:text-base">Run the downloaded image and drag the application to the Applications folder shortcut.</p>
-                            <p className="text-sm sm:text-base">Once copying is complete, the application can be launched via Launchpad.</p>
-                            <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PC</h2>
-                            <p className="mt-1 text-sm sm:text-base">Extract the downloaded zip and click install.</p>
-                            <p className="text-sm sm:text-base">Once the installation is complete, the application can be launched directly.</p>
+
+
+
+                            {/* For MAC */}
+
+                            {data.category.name === 'mac' && (
+                                <div>
+                                    {console.log(data.gameplayVideos)}
+                                    <div>
+                                        <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">MAC</h2>
+                                        <p className="mt-1 text-sm sm:text-base">Run the downloaded image and drag the application to the Applications folder shortcut.</p>
+                                        <p className="text-sm sm:text-base">Once copying is complete, the application can be launched via Launchpad.</p>
+                                    </div>
+                                    <div className='mt-4 ring-2 ring-[#9709e3] rounded-lg hover:ring-opacity-75'>
+                                        <h3 className="text-xl sm:text-2xl text-red-500 font-normal mt-1 pt-3">{data.gameplayVideos[0]}</h3>
+
+                                        <p className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                            <div>{data.gameplayVideos[1]}</div>
+                                        </p>
+
+                                        <div className="mt-1">
+                                            <p className=" text-sm sm:text-base flex flex-wrap justify-center items-center py-3 px-6 sm:px-10  w-full rounded-lg bg-[#2E2E2E]  hover:bg-[#1E1E1E] transition break-all">
+                                                <code className='italic'>{data.gameplayVideos[2]}</code>
+                                            </p>
+                                        </div>
+
+                                        <div className="mt-1  text-sm sm:text-base">
+                                            <p className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                <div> <HighlightText text={data.gameplayVideos[3]} /></div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* For Software MAC */}
+                            {data.category.name === 'smac' && (
+                                <>
+                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">Software MAC</h2>
+                                    <p className="mt-1 text-sm sm:text-base">Follow the instructions to mount the image, then drag the application to the Applications folder.</p>
+                                    <p className="text-sm sm:text-base">This version may require additional configurations for certain users.</p>
+                                </>
+                            )}
+
+                            {/* For PC */}
+                            {data.category.name === 'pc' && (
+                                <>
+                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PC</h2>
+                                    <p className="mt-1 text-sm sm:text-base">Extract the downloaded zip and click install.</p>
+                                    <p className="text-sm sm:text-base">Once the installation is complete, the application can be launched directly.</p>
+                                </>
+                            )}
+
+                            {/* For Software PC */}
+                            {data.category.name === 'spc' && (
+                                <>
+                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">Software PC</h2>
+                                    <p className="mt-1 text-sm sm:text-base">Run the installer and follow the setup process. It might need additional configurations for software compatibility.</p>
+                                    <p className="text-sm sm:text-base">After installation, the software will be ready to use.</p>
+                                </>
+                            )}
+
+                            {/* For Android */}
+                            {data.category.name === 'android' && (
+                                <>
+                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">Android</h2>
+                                    <p className="mt-1 text-sm sm:text-base">Install the APK directly on your Android device.</p>
+                                    <p className="text-sm sm:text-base">Ensure that you have enabled installation from unknown sources in your device settings.</p>
+                                </>
+                            )}
+
+                            {/* For Android Softwares */}
+                            {data.category.name === 'sandroid' && (
+                                <>
+                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">Android</h2>
+                                    <p className="mt-1 text-sm sm:text-base">Install the APK directly on your Android device.</p>
+                                    <p className="text-sm sm:text-base">Ensure that you have enabled installation from unknown sources in your device settings.</p>
+                                </>
+                            )}
+
+                            {/* For PlayStation (ps2, ps3, ps4, ppsspp) */}
+                            {['Playstation'].includes(data.platform) && (
+                                <>
+                                    <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PlayStation</h2>
+                                    <p className="mt-1 text-sm sm:text-base">For PlayStation, follow the platform-specific instructions to install or load the game on your console.</p>
+                                    <p className="text-sm sm:text-base">Make sure to check compatibility with your system and follow any necessary steps for each specific PlayStation version.</p>
+                                </>
+                            )}
+
+                            {/* Download Link */}
                             <div className="mt-4">
                                 <a
                                     href={data.downloadLink}
@@ -222,12 +325,17 @@ const SingleApp = () => {
                                     <div className='text-xl'><LiaDownloadSolid /></div>
                                 </a>
                             </div>
+
+                            {/* Troubleshooting Section */}
                             <p className="mt-4 text-sm sm:text-base">Doesn't download? Broken file? Doesn't work? Gives an error? How to update?</p>
                             <p className="text-sm sm:text-base">We have collected all the answers on this page.</p>
                         </div>
-                    </div>
+                    </div >
                 )
             }
+
+
+
 
 
             <div
