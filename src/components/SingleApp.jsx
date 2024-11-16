@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { LiaDownloadSolid } from "react-icons/lia";
 import { RxCross2 } from "react-icons/rx";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import GiscusComments from './GiscusComments';
 
 const SingleApp = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -191,7 +192,7 @@ const SingleApp = () => {
             </div>
 
             {/* Description Section */}
-            <div className="mt-8 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-20 bg-[#262626] rounded-xl z-20 ring-2 ring-[#2E2E2E] rounded-lg">
+            <div className="mt-8 mb-8 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-20 bg-[#262626] rounded-xl z-20 ring-2 ring-[#2E2E2E] rounded-lg">
                 <div className="text-center p-1">
                     <h2 className="text-2xl sm:text-3xl font-normal text-[#8E8E8E] hover:text-[#fff]">Description</h2>
                     <div className="h-0.5 bg-[#8E8E8E] opacity-20 w-full mt-2 mb-4"></div>
@@ -513,6 +514,11 @@ const SingleApp = () => {
                     pointerEvents: 'none', // Allows interaction with elements above this
                 }}
             >
+            </div>
+            <div>
+                {console.log(data._id)}
+                <GiscusComments objectId={data._id} />
+
             </div>
 
         </div >
