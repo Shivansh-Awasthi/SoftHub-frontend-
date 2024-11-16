@@ -98,6 +98,8 @@ const SingleApp = () => {
         );
     }
 
+
+
     return (
         <div className='z-20]'>
 
@@ -270,6 +272,8 @@ const SingleApp = () => {
                                             )}
                                         </div>
                                     )}
+
+                                    <div className='flex flex-wrap justify-center text-center mt-2 text-sm'> How To Download? How to Install?&nbsp; <a href="https://vimeo.com/1030290869?share=copy" target='_blank' className=' text-blue-600 hover:underline'> click here</a></div>
 
                                 </div>
                             )}
@@ -476,7 +480,7 @@ const SingleApp = () => {
                             {/* Download Link */}
                             <div className="mt-4">
                                 <a
-                                    href={data.downloadLink}
+                                    href={data.downloadLink[0]}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
@@ -488,7 +492,7 @@ const SingleApp = () => {
 
                             {/* Troubleshooting Section */}
                             <p className="mt-4 text-sm sm:text-base">Doesn't download? Broken file? Doesn't work? Gives an error? How to update?</p>
-                            <p className="text-sm sm:text-base">We have collected all the answers on this page.</p>
+                            <p className="text-sm sm:text-base">We have collected all the answers on our <a href="https://t.me/downloadmacgames" target='_blank' className='text-cyan-600 text-base hover:underline'>Telegram Group</a>.</p>
                         </div>
                     </div >
                 )
