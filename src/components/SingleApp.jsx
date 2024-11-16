@@ -104,12 +104,12 @@ const SingleApp = () => {
     return (
         <div className='z-20]'>
 
-            <div className='flex flex-wrap flex-col lg:flex-row px-2 justify-center items-center'>
+            <div className='flex flex-wrap flex-col xl:flex-row px-2 justify-center items-center'>
                 {/* Left Content */}
                 <div className="flex-1">
 
                     {/* Card */}
-                    <div className="flex w-full p-2 sm:p-4 max-w-full sm:max-w-lg flex-grow flex-col rounded-lg shadow-sm mb-2">
+                    <div className="flex w-full p-2 sm:p-4 max-w-full sm:max-w-lg flex-grow flex-col rounded-lg shadow-sm ">
                         <div className="flex items-center gap-4 text-slate-800 gap-3 sm:gap-5">
                             <img
                                 src={data.thumbnail && data.thumbnail[0] ? data.thumbnail[0] : "https://via.placeholder.com/58"}
@@ -131,7 +131,7 @@ const SingleApp = () => {
 
                     {/* Slider Logic */}
                     {data.thumbnail && data.thumbnail.length > 1 && (
-                        <div id="default-carousel" className="relative w-full max-w-full sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[46rem]">
+                        <div id="default-carousel" className="flex relative w-full max-w-full ">
                             <div className="relative w-full h-[13rem] sm:h-[19rem] md:h-[20rem] lg:h-[26rem] overflow-hidden rounded-lg">
                                 {data.thumbnail.slice(1).map((image, index) => (
                                     <div key={index} className={`transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block' : 'hidden'} h-full`}>
@@ -169,7 +169,7 @@ const SingleApp = () => {
                 </div>
 
                 {/* Right Card */}
-                <div className="ml-4 w-full max-w-[22rem] h-full p-8 ml-2 bg-[#262626] rounded-lg shadow-md mt-10 sm:mt-10 lg:mt-[6.3rem] ring-1 ring-[#3E3E3E]">
+                <div className="w-full max-w-[22rem] md:ml-4 lg:ml-4 h-full p-8 bg-[#262626] rounded-lg shadow-md mt-6 xl:mt-[6rem] ring-1 ring-[#3E3E3E]">
                     <h2 className="text-xs font-semibold text-[#8E8E8E] ">Platform</h2>
                     <p className="text-sm text-[#fff] mb-6">{data.platform}</p>
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Interface language</h2>
