@@ -168,7 +168,7 @@ const SingleApp = () => {
                 </div>
 
                 {/* Right Card */}
-                <div className="ml-4 w-full max-w-[22rem] h-full p-8 ml-2 bg-[#262626] rounded-lg shadow-md mt-10 sm:mt-10 lg:mt-[6.3rem]">
+                <div className="ml-4 w-full max-w-[22rem] h-full p-8 ml-2 bg-[#262626] rounded-lg shadow-md mt-10 sm:mt-10 lg:mt-[6.3rem] ring-1 ring-[#3E3E3E]">
                     <h2 className="text-xs font-semibold text-[#8E8E8E] ">Platform</h2>
                     <p className="text-sm text-[#fff] mb-6">{data.platform}</p>
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Interface language</h2>
@@ -191,7 +191,7 @@ const SingleApp = () => {
             </div>
 
             {/* Description Section */}
-            <div className="mt-8 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-20 bg-[#262626] rounded-xl z-20">
+            <div className="mt-8 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-20 bg-[#262626] rounded-xl z-20 ring-2 ring-[#2E2E2E] rounded-lg">
                 <div className="text-center p-1">
                     <h2 className="text-2xl sm:text-3xl font-normal text-[#8E8E8E] hover:text-[#fff]">Description</h2>
                     <div className="h-0.5 bg-[#8E8E8E] opacity-20 w-full mt-2 mb-4"></div>
@@ -505,10 +505,10 @@ const SingleApp = () => {
             <div
                 className="absolute inset-0"
                 style={{
-                    background: `linear-gradient(to right, rgba(0, 0, 0, 5), rgba(0, 0, 0, 0) 170%), url('${data.thumbnail[2]}')`,
+                    background: `linear-gradient(to top right, rgba(0, 0, 0, 1)50%, rgba(0, 0, 0, 0) 100%), url('${data.thumbnail[2]}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    opacity: 0.2,
+                    opacity: 0.5,
                     zIndex: -1,
                     pointerEvents: 'none', // Allows interaction with elements above this
                 }}
