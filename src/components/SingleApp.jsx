@@ -516,7 +516,6 @@ const SingleApp = () => {
             >
             </div>
             <div>
-                {console.log(data._id)}
                 <GiscusComments objectId={data._id} />
 
             </div>
