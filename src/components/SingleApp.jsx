@@ -192,7 +192,7 @@ const SingleApp = () => {
             </div>
 
             {/* Description Section */}
-            <div className="mt-8 mb-8 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-20 bg-[#262626] rounded-xl z-20 ring-2 ring-[#2E2E2E] rounded-lg">
+            <div className="mt-8 mb-8 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-20 bg-[#262626]  z-20 ring-2 ring-[#2E2E2E] rounded-lg">
                 <div className="text-center p-1">
                     <h2 className="text-2xl sm:text-3xl font-normal text-[#8E8E8E] hover:text-[#fff]">Description</h2>
                     <div className="h-0.5 bg-[#8E8E8E] opacity-20 w-full mt-2 mb-4"></div>
@@ -515,10 +515,13 @@ const SingleApp = () => {
                 }}
             >
             </div>
-            <div>
-                <GiscusComments objectId={data._id} />
-
+            <div className='ring-2 ring-[#2E2E2E] rounded-lg flex flex-col items-center'>
+                <h2 className='pt-4 mb-8 text-2xl sm:text-3xl font-normal text-[#8E8E8E] hover:text-[#fff]'>Comments</h2>
+                <div className='flex justify-center w-full'>
+                    <GiscusComments objectId={data._id} />
+                </div>
             </div>
+
 
         </div >
     );
