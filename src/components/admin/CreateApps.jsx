@@ -10,11 +10,11 @@ const CreateApps = () => {
     const [isPaid, setIsPaid] = useState(false);
     const [price, setPrice] = useState(0);
     const [thumbnail, setThumbnail] = useState([]);
-    const [downloadLink, setDownloadLink] = useState("");
+    const [downloadLink, setDownloadLinks] = useState(["no", "no", "no", "no"]);
     const [size, setSize] = useState("");
     const [unit, setUnit] = useState('MB');
     const [category, setCategory] = useState("");
-    const [loading, setLoading] = useState(false); // Add loading state
+    const [loading, setLoading] = useState(false);
 
     const handleThumbnail = (e) => {
         const files = Array.from(e.target.files);
@@ -26,9 +26,23 @@ const CreateApps = () => {
         setThumbnail((prevFiles) => [...prevFiles, ...files]);
     };
 
+    const handleDownloadLinkChange = (index, value) => {
+        const newLinks = [...downloadLink];
+        newLinks[index] = value;
+        setDownloadLinks(newLinks);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); // Set loading to true
+        setLoading(true);
+
+        const filteredDownloadLink = downloadLink.filter(link => link.trim() !== "");
+
+        if (filteredDownloadLink.length === 0) {
+            toast.error("Please provide at least one download link!");
+            setLoading(false);
+            return;
+        }
 
         const formData = new FormData();
         formData.append('title', title);
@@ -36,9 +50,14 @@ const CreateApps = () => {
         formData.append('platform', platform);
         formData.append('isPaid', isPaid);
         formData.append('price', price);
-        formData.append('downloadLink', downloadLink);
         formData.append('size', `${size} ${unit}`);
         formData.append('category', category);
+
+        // Append each download link individually
+        filteredDownloadLink.forEach((link) => {
+            formData.append('downloadLink[]', link);
+        });
+
         thumbnail.forEach(file => {
             formData.append('thumbnail', file);
         });
@@ -52,20 +71,18 @@ const CreateApps = () => {
                 },
             });
 
-            toast.success("App created successfully!"); // Show success toast
-            // Refresh the page after a delay to allow the toast to be seen
+            toast.success("App created successfully!");
             setTimeout(() => {
-                window.location.reload(); // Refresh the page
+                window.location.reload();
             }, 2000);
         } catch (error) {
             console.error("Error submitting form:", error.response?.data || error.message);
-            toast.error("Error creating app! Please try again."); // Show error toast
+            toast.error("Error creating app! Please try again.");
         } finally {
-            setLoading(false); // Reset loading state
+            setLoading(false);
         }
     };
 
-    // Category options
     const categories = [
         { value: "pc", label: "PC Games" },
         { value: "spc", label: "PC Softwares" },
@@ -77,6 +94,15 @@ const CreateApps = () => {
         { value: "ps2", label: "PS2 Iso" },
         { value: "ps3", label: "PS3 Iso" },
         { value: "ps4", label: "PS4 Iso" },
+    ];
+
+
+    // Define custom labels and placeholders
+    const downloadLinkLabelsAndPlaceholders = [
+        { label: "Direct Link", placeholder: "Enter the Direct link" },
+        { label: "OneDrive", placeholder: "Enter the oneDrive link" },
+        { label: "Torrent", placeholder: "Enter the Torrent link" },
+        { label: "Other Links", placeholder: "Enter other download link" },
     ];
 
     return (
@@ -143,16 +169,23 @@ const CreateApps = () => {
                             className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         />
                     </div>
-                    <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Download Link</label>
-                        <input
-                            type="text"
-                            placeholder='paste your download link'
-                            value={downloadLink}
-                            onChange={(e) => setDownloadLink(e.target.value)}
-                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        />
-                    </div>
+
+                    {/* Download Links */}
+                    {downloadLink.map((link, index) => (
+                        <div className='mb-5' key={index}>
+                            <label className='block mb-2 text-sm font-medium text-gray-300'>
+                                {downloadLinkLabelsAndPlaceholders[index]?.label || `Download Link ${index + 1}`}
+                            </label>
+                            <input
+                                type="text"
+                                placeholder={downloadLinkLabelsAndPlaceholders[index]?.placeholder || `Paste your download link ${index + 1}`}
+                                value={link}
+                                onChange={(e) => handleDownloadLinkChange(index, e.target.value)}
+                                className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            />
+                        </div>
+                    ))}
+
                     <div className='mb-5'>
                         <label className='block mb-2 text-sm font-medium text-gray-300'>Size</label>
                         <div className="flex">
@@ -160,12 +193,12 @@ const CreateApps = () => {
                                 type="number"
                                 placeholder='enter the size'
                                 value={size}
-                                onChange={(e) => setSize(e.target.value)} // Update only the size value
+                                onChange={(e) => setSize(e.target.value)}
                                 className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             />
                             <select
                                 value={unit}
-                                onChange={(e) => setUnit(e.target.value)} // Update the unit based on selection
+                                onChange={(e) => setUnit(e.target.value)}
                                 className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
                             >
                                 <option value="GB">GB</option>
@@ -173,19 +206,23 @@ const CreateApps = () => {
                             </select>
                         </div>
                     </div>
+
+                    {/* Categories */}
                     <div className='mb-5'>
                         <label className='block mb-2 text-sm font-medium text-gray-300'>Category</label>
                         <select
                             value={category}
-                            onChange={(e) => setCategory(e.target.value)} // Update category state based on selection
+                            onChange={(e) => setCategory(e.target.value)}
                             className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         >
                             <option value="">Select Category</option>
-                            {categories.map((cat) => (
-                                <option key={cat.value} value={cat.value}>{cat.label}</option>
+                            {categories.map((category, index) => (
+                                <option key={index} value={category.value}>{category.label}</option>
                             ))}
                         </select>
                     </div>
+
+                    {/* Thumbnail */}
                     <div className='mb-5'>
                         <label className='block mb-2 text-sm font-medium text-gray-300'>Thumbnail</label>
                         <input
@@ -196,12 +233,14 @@ const CreateApps = () => {
                             className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         />
                     </div>
+
+                    {/* Submit */}
                     <button
                         type="submit"
-                        disabled={loading} // Disable button when loading
-                        className={`w-full py-2 px-4 rounded-lg ${loading ? 'bg-gray-500' : 'bg-blue-600 hover:bg-blue-700'} text-white font-bold`}
+                        disabled={loading}
+                        className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-50"
                     >
-                        {loading ? 'Creating...' : 'Create App'} {/* Change button text based on loading state */}
+                        {loading ? "Submitting..." : "Submit"}
                     </button>
                 </form>
             </div>
