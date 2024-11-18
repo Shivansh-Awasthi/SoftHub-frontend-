@@ -100,9 +100,6 @@ const SingleApp = () => {
     }
 
 
-    console.log(data);
-
-
 
     return (
         <div className='z-20]'>
