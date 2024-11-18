@@ -149,7 +149,7 @@ const CreateApps = () => {
                             <option value="Playstation">Playstation</option>
                         </select>
                     </div>
-                    <div className='flex items-center mb-5'>
+                    {/* <div className='flex items-center mb-5'>
                         <input
                             id="isPaid"
                             type="checkbox"
@@ -168,7 +168,7 @@ const CreateApps = () => {
                             onChange={(e) => setPrice(e.target.value)}
                             className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         />
-                    </div>
+                    </div> */}
 
                     {/* Download Links */}
                     {downloadLink.map((link, index) => (
