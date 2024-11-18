@@ -31,21 +31,21 @@ const Pc = () => {
                 <h1 className='font-medium text-3xl mb-4'>Games <span className='font-medium ml-2 text-[#8E8E8E]'>{totalApps}</span></h1>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
                 {data.map((ele) => (
                     <Link
                         key={ele._id}
                         to={`/${ele._id}`}
                         className="flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
                     >
-                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-32">
+                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
                             <img
                                 src={ele.thumbnail[1]}
                                 alt={ele.title}
                                 className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
                             />
                         </figure>
-                        <div className="flex flex-col p-4 bg-[#262626] flex-grow">
+                        <div className="flex flex-col p-3 bg-[#262626] flex-grow">
                             <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis">{ele.title}</div>
                             <div className="text-xs font-thin text-[#ffffff]">Size: {ele.size}</div>
                         </div>
