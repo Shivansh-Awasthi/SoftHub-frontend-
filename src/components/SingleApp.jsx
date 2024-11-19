@@ -251,9 +251,9 @@ const SingleApp = () => {
                                             )}
 
                                             {data.gameplayVideos[1] && (
-                                                <p className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                                <div className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
                                                     <div>{data.gameplayVideos[1]}</div>
-                                                </p>
+                                                </div>
                                             )}
 
                                             {data.gameplayVideos[2] && (
@@ -266,9 +266,9 @@ const SingleApp = () => {
 
                                             {data.gameplayVideos[3] && (
                                                 <div className="mt-1  text-sm sm:text-base">
-                                                    <p className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                    <div className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
                                                         <div><HighlightText text={data.gameplayVideos[3]} /></div>
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             )}
                                         </div>
@@ -299,9 +299,9 @@ const SingleApp = () => {
                                             )}
 
                                             {data.gameplayVideos[1] && (
-                                                <p className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                                <div className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
                                                     <div>{data.gameplayVideos[1]}</div>
-                                                </p>
+                                                </div>
                                             )}
 
                                             {data.gameplayVideos[2] && (
@@ -314,9 +314,9 @@ const SingleApp = () => {
 
                                             {data.gameplayVideos[3] && (
                                                 <div className="mt-1  text-sm sm:text-base">
-                                                    <p className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                    <div className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
                                                         <div><HighlightText text={data.gameplayVideos[3]} /></div>
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             )}
                                         </div>
@@ -347,9 +347,9 @@ const SingleApp = () => {
                                             )}
 
                                             {data.gameplayVideos[1] && (
-                                                <p className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                                <div className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
                                                     <div>{data.gameplayVideos[1]}</div>
-                                                </p>
+                                                </div>
                                             )}
 
                                             {data.gameplayVideos[2] && (
@@ -362,9 +362,9 @@ const SingleApp = () => {
 
                                             {data.gameplayVideos[3] && (
                                                 <div className="mt-1  text-sm sm:text-base">
-                                                    <p className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                    <div className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
                                                         <div><HighlightText text={data.gameplayVideos[3]} /></div>
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             )}
                                         </div>
@@ -400,9 +400,9 @@ const SingleApp = () => {
                                             )}
 
                                             {data.gameplayVideos[1] && (
-                                                <p className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                                <div className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
                                                     <div>{data.gameplayVideos[1]}</div>
-                                                </p>
+                                                </div>
                                             )}
 
                                             {data.gameplayVideos[2] && (
@@ -415,9 +415,9 @@ const SingleApp = () => {
 
                                             {data.gameplayVideos[3] && (
                                                 <div className="mt-1  text-sm sm:text-base">
-                                                    <p className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                    <div className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
                                                         <div><HighlightText text={data.gameplayVideos[3]} /></div>
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             )}
                                         </div>
@@ -441,7 +441,7 @@ const SingleApp = () => {
                                     <div>
                                         <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PlayStation</h2>
                                         <p className="mt-1 text-sm sm:text-base">For PlayStation, follow the platform-specific instructions to install or load the game on your console.</p>
-                                        <p className="text-sm sm:text-base">Make sure to check compatibility with your system and follow any necessary steps for each specific PlayStation version.</p>
+                                        <p className="text-sm sm:text-base text-yellow-300">To run these on PC, download the appropriate versions of Emulators <a className='text-blue-600 hover:underline' href='https://www.ppsspp.org/download/' target='_blank'>PPSSPP</a>, <a className='text-blue-600 hover:underline' href='https://pcsx2.net/' target='_blank'>PCSX2</a>, or <a className='text-blue-600 hover:underline' href='https://rpcs3.net/download' target='_blank'>RPCS3</a>, and enjoy your gameplay!</p>
                                     </div>
                                     {/* Check if gameplayVideos is not empty and has enough data */}
                                     {data.gameplayVideos && data.gameplayVideos.length > 0 && (
@@ -452,9 +452,9 @@ const SingleApp = () => {
                                             )}
 
                                             {data.gameplayVideos[1] && (
-                                                <p className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
+                                                <div className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
                                                     <div>{data.gameplayVideos[1]}</div>
-                                                </p>
+                                                </div>
                                             )}
 
                                             {data.gameplayVideos[2] && (
@@ -467,9 +467,9 @@ const SingleApp = () => {
 
                                             {data.gameplayVideos[3] && (
                                                 <div className="mt-1  text-sm sm:text-base">
-                                                    <p className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
+                                                    <div className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
                                                         <div><HighlightText text={data.gameplayVideos[3]} /></div>
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             )}
                                         </div>
@@ -571,7 +571,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Direct download link</div>
+                                                <div>Download from Torrent</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -586,7 +586,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Download from OneDrive</div>
+                                                <div>Torrent link 2</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -601,7 +601,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Download Torrent file</div>
+                                                <div>Torrent link 3</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -631,7 +631,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Download from Mediafire</div>
+                                                <div>Mirror Link</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -652,7 +652,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Direct download link</div>
+                                                <div>Download Apk</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -667,7 +667,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Download from OneDrive</div>
+                                                <div>Download Apk (Mirror)</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -682,7 +682,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Download Torrent file</div>
+                                                <div>Download Obb</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -697,7 +697,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Other Download Links</div>
+                                                <div>Download Obb (Mirror)</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -712,7 +712,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Download from Mediafire</div>
+                                                <div>Other Download link</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -747,7 +747,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Download from OneDrive</div>
+                                                <div>Download (Mirror)</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -762,7 +762,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Download Torrent file</div>
+                                                <div>Download (Mirror - 2)</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -777,7 +777,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Other Download Links</div>
+                                                <div>Other  link</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
@@ -792,7 +792,7 @@ const SingleApp = () => {
                                                 rel="noopener noreferrer"
                                                 className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
                                             >
-                                                <div>Download from Mediafire</div>
+                                                <div>Download file</div>
                                                 <div className='text-xl'><LiaDownloadSolid /></div>
                                             </a>
                                         </div>
