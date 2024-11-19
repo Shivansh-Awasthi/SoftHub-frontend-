@@ -478,80 +478,329 @@ const SingleApp = () => {
                                 </div>
                             )}
 
-                            {/* Direct Download Link */}
-                            {data.downloadLink[0] && data.downloadLink[0] !== "no" && (
-                                <div className="mt-4">
-                                    <a
-                                        href={data.downloadLink[0]}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
-                                    >
-                                        <div>Direct download link</div>
-                                        <div className='text-xl'><LiaDownloadSolid /></div>
-                                    </a>
+
+
+                            {data.platform === "Mac" && (
+                                <div>
+                                    {/* Direct Download Link */}
+                                    {data.downloadLink[0] && data.downloadLink[0] !== "no" && (
+                                        <div className="mt-4">
+                                            <a
+                                                href={data.downloadLink[0]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Direct download link</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* OneDrive Download Link */}
+                                    {data.downloadLink[1] && data.downloadLink[1] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[1]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download from OneDrive</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* Torrent Download Link */}
+                                    {data.downloadLink[2] && data.downloadLink[2] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[2]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download Torrent file</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* Other Download Links */}
+                                    {data.downloadLink[3] && data.downloadLink[3] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[3]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Other Download Links</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* MediaFire Download Links */}
+                                    {data.downloadLink[4] && data.downloadLink[4] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[4]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download from Mediafire</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
                             )}
 
-                            {/* OneDrive Download Link */}
-                            {data.downloadLink[1] && data.downloadLink[1] !== "no" && (
-                                <div className="mt-2">
-                                    <a
-                                        href={data.downloadLink[1]}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
-                                    >
-                                        <div>Download from OneDrive</div>
-                                        <div className='text-xl'><LiaDownloadSolid /></div>
-                                    </a>
+
+                            {data.platform === "PC" && (
+                                <div>
+                                    {/* Direct Download Link */}
+                                    {data.downloadLink[0] && data.downloadLink[0] !== "no" && (
+                                        <div className="mt-4">
+                                            <a
+                                                href={data.downloadLink[0]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Direct download link</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* OneDrive Download Link */}
+                                    {data.downloadLink[1] && data.downloadLink[1] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[1]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download from OneDrive</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* Torrent Download Link */}
+                                    {data.downloadLink[2] && data.downloadLink[2] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[2]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download Torrent file</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* Other Download Links */}
+                                    {data.downloadLink[3] && data.downloadLink[3] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[3]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Other Download Links</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* MediaFire Download Links */}
+                                    {data.downloadLink[4] && data.downloadLink[4] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[4]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download from Mediafire</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
                             )}
 
-                            {/* Torrent Download Link */}
-                            {data.downloadLink[2] && data.downloadLink[2] !== "no" && (
-                                <div className="mt-2">
-                                    <a
-                                        href={data.downloadLink[2]}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
-                                    >
-                                        <div>Download Torrent file</div>
-                                        <div className='text-xl'><LiaDownloadSolid /></div>
-                                    </a>
+
+
+                            {data.platform === "Android" && (
+                                <div>
+                                    {/* Direct Download Link */}
+                                    {data.downloadLink[0] && data.downloadLink[0] !== "no" && (
+                                        <div className="mt-4">
+                                            <a
+                                                href={data.downloadLink[0]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Direct download link</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* OneDrive Download Link */}
+                                    {data.downloadLink[1] && data.downloadLink[1] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[1]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download from OneDrive</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* Torrent Download Link */}
+                                    {data.downloadLink[2] && data.downloadLink[2] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[2]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download Torrent file</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* Other Download Links */}
+                                    {data.downloadLink[3] && data.downloadLink[3] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[3]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Other Download Links</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* MediaFire Download Links */}
+                                    {data.downloadLink[4] && data.downloadLink[4] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[4]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download from Mediafire</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
                             )}
 
-                            {/* Other Download Links */}
-                            {data.downloadLink[3] && data.downloadLink[3] !== "no" && (
-                                <div className="mt-2">
-                                    <a
-                                        href={data.downloadLink[3]}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
-                                    >
-                                        <div>Other Download Links</div>
-                                        <div className='text-xl'><LiaDownloadSolid /></div>
-                                    </a>
+
+                            {data.platform === "Playstation" && (
+                                <div>
+                                    {/* Direct Download Link */}
+                                    {data.downloadLink[0] && data.downloadLink[0] !== "no" && (
+                                        <div className="mt-4">
+                                            <a
+                                                href={data.downloadLink[0]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Direct download link</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* OneDrive Download Link */}
+                                    {data.downloadLink[1] && data.downloadLink[1] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[1]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download from OneDrive</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* Torrent Download Link */}
+                                    {data.downloadLink[2] && data.downloadLink[2] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[2]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download Torrent file</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* Other Download Links */}
+                                    {data.downloadLink[3] && data.downloadLink[3] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[3]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Other Download Links</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* MediaFire Download Links */}
+                                    {data.downloadLink[4] && data.downloadLink[4] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[4]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download from Mediafire</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
                             )}
 
-                            {/* MediaFire Download Links */}
-                            {data.downloadLink[4] && data.downloadLink[4] !== "no" && (
-                                <div className="mt-2">
-                                    <a
-                                        href={data.downloadLink[4]}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
-                                    >
-                                        <div>Download from Mediafire</div>
-                                        <div className='text-xl'><LiaDownloadSolid /></div>
-                                    </a>
-                                </div>
-                            )}
+
 
 
 
