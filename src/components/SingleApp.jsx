@@ -220,7 +220,7 @@ const SingleApp = () => {
             {/* Modal for Download Instructions */}
             {
                 showModal && (
-                    <div className="fixed inset-1 flex items-center justify-center bg-black backdrop-blur-sm bg-opacity-50 z-20">
+                    <div className="fixed inset-1 flex items-center justify-center bg-black backdrop-blur-sm bg-opacity-50 z-20 overflow-y-auto">
                         <div className="bg-[#262626] px-6 sm:px-12 lg:px-24 py-6 sm:py-8 rounded-lg w-full max-w-4xl mx-auto text-center relative">
                             {/* Close Icon */}
                             <div className="absolute top-4 right-4 cursor-pointer" onClick={closeModal}>
