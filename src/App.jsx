@@ -25,7 +25,7 @@ import { useEffect } from 'react';
 function App() {
 
   useEffect(() => {
-    document.getElementById('root').style.display = 'block';
+    document.getElementById('root').style.visibility = 'visible';
   }, []);
 
   return (
