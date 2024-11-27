@@ -330,7 +330,7 @@ const Home = () => {
                         >
                             <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
                                 <img
-                                    src={ele.thumbnail[1]}
+                                    src={ele.coverImg}
                                     alt={ele.title}
                                     className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
                                 />
@@ -399,7 +399,7 @@ const Home = () => {
                         >
                             <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
                                 <img
-                                    src={ele.thumbnail[1]}
+                                    src={ele.coverImg}
                                     alt={ele.title}
                                     className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
                                 />
