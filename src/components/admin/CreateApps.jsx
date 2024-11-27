@@ -14,6 +14,7 @@ const CreateApps = () => {
     const [size, setSize] = useState("");
     const [unit, setUnit] = useState('MB');
     const [category, setCategory] = useState("");
+    const [coverImg, setCoverImg] = useState("");
     const [loading, setLoading] = useState(false);
 
     const handleThumbnail = (e) => {
@@ -52,6 +53,7 @@ const CreateApps = () => {
         formData.append('price', price);
         formData.append('size', `${size} ${unit}`);
         formData.append('category', category);
+        formData.append("coverImg", coverImg);
 
         // Append each download link individually
         filteredDownloadLink.forEach((link) => {
@@ -233,6 +235,19 @@ const CreateApps = () => {
                             className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         />
                     </div>
+
+                    <div className='mb-5'>
+                        <label className='block mb-2 text-sm font-medium text-gray-300'>Cover Img</label>
+                        <input
+                            type="text"
+                            placeholder='add cover image'
+                            value={coverImg}
+                            onChange={(e) => setCoverImg(e.target.value)}
+                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            required
+                        />
+                    </div>
+
 
                     {/* Submit */}
                     <button
