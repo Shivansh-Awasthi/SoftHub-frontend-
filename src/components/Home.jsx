@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import LiveCounter from './LiveCounter';
 
 const images = [
     'https://i.pinimg.com/originals/a7/c7/8c/a7c78c1cf8554d3256eba773fd3bfcbe.gif',
@@ -27,8 +28,6 @@ const Home = () => {
     const [totalMacSoft, setTotalMacSoft] = useState(0)
     const [totalAndroidGames, setTotalAndroidGames] = useState(0)
     const [totalPs2Iso, setTotalPS2Iso] = useState(0)
-
-
 
 
 
@@ -192,6 +191,9 @@ const Home = () => {
 
 
 
+
+
+
     return (
         <div className='container mx-auto p-2'>
             {/* Slider Logic */}
@@ -312,6 +314,11 @@ const Home = () => {
             </div>
 
 
+            <div>
+                <LiveCounter />
+            </div>
+
+
             {/* Mac Games Category */}
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
@@ -412,6 +419,7 @@ const Home = () => {
                     ))}
                 </div>
             </div>
+
 
 
 
