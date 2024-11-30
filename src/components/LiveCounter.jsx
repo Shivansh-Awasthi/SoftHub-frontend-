@@ -6,22 +6,22 @@ const LiveCounter = () => {
     useEffect(() => {
         // Retrieve the role from localStorage
         const role = localStorage.getItem('role');
-
-        // Check if the role is 'ADMIN'
         if (role === 'ADMIN') {
-            setIsAdmin(true);  // Set state to true if role is ADMIN
+            setIsAdmin(true);
         }
     }, []);
 
-    // Only render the Elfsight widget if isAdmin is true
-    if (!isAdmin) {
-        return null; // Do nothing, return null if not an ADMIN
-    }
+
+    // Inline styles for showing/hiding the widget based on admin status
+    const widgetStyles = {
+        display: isAdmin ? 'block' : 'none',  // Show for admins, hide for non-admins
+    };
 
     return (
         <div
             className="elfsight-app-b326be27-a48e-4d48-b83e-ce3ea79324ed"
             data-elfsight-app-lazy
+            style={widgetStyles}  // Apply the display styles here
         ></div>
     );
 };
