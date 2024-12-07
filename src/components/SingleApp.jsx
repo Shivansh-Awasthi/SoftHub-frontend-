@@ -242,32 +242,32 @@ const SingleApp = () => {
                                     </div>
 
 
-                                    {/* Check if gameplayVideos is not empty and has enough data */}
-                                    {data.gameplayVideos && data.gameplayVideos.length > 0 && (
+                                    {/* Check if announcement is not empty and has enough data */}
+                                    {data.announcement && data.announcement.length > 0 && (
                                         <div className='mt-4 ring-2 ring-[#9709e3] rounded-lg hover:ring-opacity-75'>
                                             {/* Display data only if the array has enough elements */}
-                                            {data.gameplayVideos[0] && (
-                                                <h3 className="text-xl sm:text-2xl text-red-500 font-normal mt-1 pt-3">{data.gameplayVideos[0]}</h3>
+                                            {data.announcement[0] && (
+                                                <h3 className="text-xl sm:text-2xl text-red-500 font-normal mt-1 pt-3">{data.announcement[0]}</h3>
                                             )}
 
-                                            {data.gameplayVideos[1] && (
+                                            {data.announcement[1] && (
                                                 <div className=" text-sm sm:text-base flex gap-4 justify-center items-center py-2 px-6 sm:px-10 inline-block w-full">
-                                                    <div>{data.gameplayVideos[1]}</div>
+                                                    <div>{data.announcement[1]}</div>
                                                 </div>
                                             )}
 
-                                            {data.gameplayVideos[2] && (
+                                            {data.announcement[2] && (
                                                 <div className="mt-1">
                                                     <p className=" text-sm sm:text-base flex flex-wrap justify-center items-center py-3 px-6 sm:px-10  w-full rounded-lg bg-[#2E2E2E]  hover:bg-[#1E1E1E] transition break-all">
-                                                        <code className='italic'>{data.gameplayVideos[2]}</code>
+                                                        <code className='italic'>{data.announcement[2]}</code>
                                                     </p>
                                                 </div>
                                             )}
 
-                                            {data.gameplayVideos[3] && (
+                                            {data.announcement[3] && (
                                                 <div className="mt-1  text-sm sm:text-base">
                                                     <div className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full">
-                                                        <div><HighlightText text={data.gameplayVideos[3]} /></div>
+                                                        <div><HighlightText text={data.announcement[3]} /></div>
                                                     </div>
                                                 </div>
                                             )}
