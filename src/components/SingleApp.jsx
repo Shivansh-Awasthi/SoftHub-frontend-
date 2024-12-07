@@ -169,7 +169,7 @@ const SingleApp = () => {
                 </div>
 
                 {/* Right Card */}
-                <div className="w-full max-w-[22rem] md:ml-4 lg:ml-4 h-full p-8 bg-[#262626] rounded-lg shadow-md mt-6 xl:mt-[6rem] ring-1 ring-[#3E3E3E]">
+                <div className="w-full max-w-[22rem] md:ml-4 lg:ml-4 h-full p-8 bg-[#262626] rounded-lg shadow-md mt-6 xl:mt-[5.7rem] ring-1 ring-[#3E3E3E]">
                     <h2 className="text-xs font-semibold text-[#8E8E8E] ">Platform</h2>
                     <p className="text-sm text-[#fff] mb-6">{data.platform}</p>
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Interface language</h2>
