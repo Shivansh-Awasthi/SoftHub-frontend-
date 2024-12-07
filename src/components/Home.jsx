@@ -214,7 +214,7 @@ const Home = () => {
                                     <h2 className="text-lg font-thin mb-4 sm:text-base md:text-lg">SOFTWARE</h2>
                                     <p className="mb-4 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">Download Free Softwares On Your Mac</p>
                                     <div className='w-fill'>
-                                        <a href="http://localhost:5173/category/mac/softwares" rel="noopener noreferrer">
+                                        <a href="https://toxicgames.in/category/mac/softwares" rel="noopener noreferrer">
                                             <button className="mx-auto ml-0 px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 sm:px-4 sm:py-2 md:px-6 md:py-3 overflow-hidden whitespace-nowrap text-ellipsis">
                                                 Download Now
                                             </button>
