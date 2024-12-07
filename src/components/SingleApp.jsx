@@ -109,7 +109,7 @@ const SingleApp = () => {
                 <div className="flex-1">
 
                     {/* Card */}
-                    <div className="flex w-full p-2 sm:p-4 max-w-full sm:max-w-lg flex-grow flex-col rounded-lg shadow-sm ">
+                    <div className="flex  p-2 sm:p-4  flex-grow flex-col rounded-lg shadow-sm ">
                         <div className="flex items-center gap-4 text-slate-800 gap-3 sm:gap-5">
                             <img
                                 src={data.thumbnail && data.thumbnail[0] ? data.thumbnail[0] : "https://via.placeholder.com/58"}
@@ -118,7 +118,7 @@ const SingleApp = () => {
                             />
                             <div className="flex w-full flex-col overflow-hidden">
                                 <div className="w-full flex items-center justify-between overflow-hidden">
-                                    <h1 className="text-white text-xl sm:text-lg md:text-xl lg:text-4xl font-normal overflow-hidden text-ellipsis truncate max-w-full whitespace-normal md:whitespace-nowrap">
+                                    <h1 className="text-white text-base sm:text-xl md:text-xl lg:text-3xl font-medium overflow-hidden text-ellipsis truncate max-w-full whitespace-normal md:whitespace-nowrap">
                                         {data.title}
                                     </h1>
                                 </div>
