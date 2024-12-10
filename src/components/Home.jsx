@@ -314,9 +314,9 @@ const Home = () => {
             </div>
 
 
-            <div>
+            {/* <div>
                 <LiveCounter />
-            </div>
+            </div> */}
 
 
             {/* Mac Games Category */}
