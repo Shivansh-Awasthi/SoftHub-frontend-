@@ -319,34 +319,39 @@ const Home = () => {
 
 
             {/* Mac Games Category */}
-            <div className='container mx-auto p-2 mb-6'>
+            <div className="container mx-auto p-2 mb-6">
                 <div className='cover mb-5 flex justify-between items-center'>
-                    <h1 className='font-medium text-2xl md:text-3xl '>
+                    <h1 className='font-medium text-2xl md:text-3xl'>
                         Mac Games <span className='font-medium ml-2 text-[#8E8E8E]'>{totalMacGames}</span>
                     </h1>
                     <Link to={`/category/mac/games`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
 
+                {/* Conditional rendering based on data existence */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
-                    {data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).slice(0, 8).map((ele) => (
-                        <Link
-                            key={ele._id}
-                            to={`/${ele._id}`}
-                            className="flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
-                        >
-                            <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
-                                <img
-                                    src={ele.coverImg}
-                                    alt={ele.title}
-                                    className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
-                                />
-                            </figure>
-                            <div className="flex flex-col p-3 bg-[#262626] flex-grow">
-                                <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
-                                <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
-                            </div>
-                        </Link>
-                    ))}
+                    {Array.isArray(data) && data.length > 0 ? (
+                        data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).slice(0, 8).map((ele) => (
+                            <Link
+                                key={ele._id}
+                                to={`/${ele._id}`}
+                                className="flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
+                            >
+                                <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
+                                    <img
+                                        src={ele.coverImg}
+                                        alt={ele.title}
+                                        className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
+                                    />
+                                </figure>
+                                <div className="flex flex-col p-3 bg-[#262626] flex-grow">
+                                    <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
+                                    <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
+                                </div>
+                            </Link>
+                        ))
+                    ) : (
+                        <div className="text-center text-gray-500">Loading Mac Games...</div> // Loading state
+                    )}
                 </div>
             </div>
 
@@ -354,6 +359,7 @@ const Home = () => {
 
 
 
+            {/* Mac Softwares */}
             {/* Mac Softwares */}
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
@@ -363,30 +369,36 @@ const Home = () => {
                     <Link to={`/category/mac/softwares`} className="text-blue-500 hover:underline text-xs">See All</Link>
                 </div>
 
+                {/* Conditional rendering for Mac Softwares */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {MacSoftData.slice(0, 8).map((ele) => (
-                        <Link
-                            key={ele._id}
-                            to={`/${ele._id}`}
-                            className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
-                        >
-                            <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
-                                <img
-                                    src={ele.thumbnail[0]}
-                                    alt={ele.title}
-                                    className="rounded-lg w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
-                                />
-                            </div>
-                            <div className="flex flex-col p-4 bg-[#262626]">
-                                <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
-                                <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
-                            </div>
-                        </Link>
-                    ))}
+                    {Array.isArray(MacSoftData) && MacSoftData.length > 0 ? (
+                        MacSoftData.slice(0, 8).map((ele) => (
+                            <Link
+                                key={ele._id}
+                                to={`/${ele._id}`}
+                                className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
+                            >
+                                <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
+                                    <img
+                                        src={ele.thumbnail[0]}
+                                        alt={ele.title}
+                                        className="rounded-lg w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
+                                    />
+                                </div>
+                                <div className="flex flex-col p-4 bg-[#262626]">
+                                    <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
+                                    <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
+                                </div>
+                            </Link>
+                        ))
+                    ) : (
+                        <div className="text-center text-gray-500">Loading Mac Softwares...</div> // Loading state
+                    )}
                 </div>
-
             </div>
 
+
+            {/* PC Games */}
             {/* PC Games */}
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
@@ -397,31 +409,38 @@ const Home = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
-                    {Pcdata.slice(0, 8).map((ele) => (
-                        <Link
-                            key={ele._id}
-                            to={`/${ele._id}`}
-                            className="flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
-                        >
-                            <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
-                                <img
-                                    src={ele.coverImg}
-                                    alt={ele.title}
-                                    className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
-                                />
-                            </figure>
-                            <div className="flex flex-col p-3 bg-[#262626] flex-grow">
-                                <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
-                                <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
-                            </div>
-                        </Link>
-                    ))}
+                    {/* Check if Pcdata is an array and has items */}
+                    {Array.isArray(Pcdata) && Pcdata.length > 0 ? (
+                        Pcdata.slice(0, 8).map((ele) => (
+                            <Link
+                                key={ele._id}
+                                to={`/${ele._id}`}
+                                className="flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
+                            >
+                                <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
+                                    <img
+                                        src={ele.coverImg}
+                                        alt={ele.title}
+                                        className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
+                                    />
+                                </figure>
+                                <div className="flex flex-col p-3 bg-[#262626] flex-grow">
+                                    <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
+                                    <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
+                                </div>
+                            </Link>
+                        ))
+                    ) : (
+                        <div className="text-center text-gray-500">Loading PC Games...</div> // Loading state
+                    )}
                 </div>
             </div>
 
 
 
 
+
+            {/* Android Games */}
             {/* Android Games */}
             <div className='container mx-auto p-2 mb-6'>
                 <div className='cover mb-5 flex justify-between items-center'>
@@ -432,28 +451,33 @@ const Home = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {Androiddata.slice(0, 8).map((ele) => (
-                        <Link
-                            key={ele._id}
-                            to={`/${ele._id}`}
-                            className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
-                        >
-                            <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
-                                <img
-                                    src={ele.thumbnail[0]}
-                                    alt={ele.title}
-                                    className="rounded-lg w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
-                                />
-                            </div>
-                            <div className="flex flex-col p-4 bg-[#262626]">
-                                <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
-                                <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
-                            </div>
-                        </Link>
-                    ))}
+                    {/* Check if Androiddata is an array and has items */}
+                    {Array.isArray(Androiddata) && Androiddata.length > 0 ? (
+                        Androiddata.slice(0, 8).map((ele) => (
+                            <Link
+                                key={ele._id}
+                                to={`/${ele._id}`}
+                                className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
+                            >
+                                <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
+                                    <img
+                                        src={ele.thumbnail[0]}
+                                        alt={ele.title}
+                                        className="rounded-lg w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
+                                    />
+                                </div>
+                                <div className="flex flex-col p-4 bg-[#262626]">
+                                    <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
+                                    <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
+                                </div>
+                            </Link>
+                        ))
+                    ) : (
+                        <div className="text-center text-gray-500">Loading Android Games...</div> // Loading state
+                    )}
                 </div>
-
             </div>
+
 
             {/* PS2 Roms */}
             <div className='container mx-auto p-2 mb-6'>
@@ -465,28 +489,33 @@ const Home = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {Ps2data.slice(0, 8).map((ele) => (
-                        <Link
-                            key={ele._id}
-                            to={`/${ele._id}`}
-                            className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
-                        >
-                            <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
-                                <img
-                                    src={ele.thumbnail[0]}
-                                    alt={ele.title}
-                                    className="rounded-lg w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
-                                />
-                            </div>
-                            <div className="flex flex-col p-4 bg-[#262626]">
-                                <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
-                                <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
-                            </div>
-                        </Link>
-                    ))}
+                    {/* Check if Ps2data is an array and has items */}
+                    {Array.isArray(Ps2data) && Ps2data.length > 0 ? (
+                        Ps2data.slice(0, 8).map((ele) => (
+                            <Link
+                                key={ele._id}
+                                to={`/${ele._id}`}
+                                className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
+                            >
+                                <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
+                                    <img
+                                        src={ele.thumbnail[0]}
+                                        alt={ele.title}
+                                        className="rounded-lg w-14 h-14 transition-transform duration-700 ease-in-out transform hover:scale-110 bg-[#262626]"
+                                    />
+                                </div>
+                                <div className="flex flex-col p-4 bg-[#262626]">
+                                    <div className="text-sm text-center font-normal overflow-hidden whitespace-nowrap text-ellipsis text-[#ffffff] bg-[#262626] pb-2">{ele.title}</div>
+                                    <div className="text-xs text-center font-thin text-[#8E8E8E] bg-[#262626]">Size: {ele.size}</div>
+                                </div>
+                            </Link>
+                        ))
+                    ) : (
+                        <div className="text-center text-gray-500">Loading PS2 Roms...</div> // Loading state
+                    )}
                 </div>
-
             </div>
+
 
         </div>
     );
