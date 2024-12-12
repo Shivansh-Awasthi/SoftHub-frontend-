@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import LiveCounter from './LiveCounter';
+import { LiveCounter } from './LiveCounter';
+
 
 const images = [
     'https://i.pinimg.com/originals/a7/c7/8c/a7c78c1cf8554d3256eba773fd3bfcbe.gif',
@@ -191,6 +192,17 @@ const Home = () => {
 
 
 
+    // for count visitors accessable/visible only for the admins
+
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    // Check the role in localStorage on component mount
+    useEffect(() => {
+        const role = localStorage.getItem('role');
+        if (role === 'ADMIN') {
+            setIsAdmin(true); // If the role is "ADMIN", set state to true
+        }
+    }, []);
 
 
 
@@ -314,9 +326,6 @@ const Home = () => {
             </div>
 
 
-            <div>
-                <LiveCounter />
-            </div>
 
 
             {/* Mac Games Category */}
@@ -517,6 +526,14 @@ const Home = () => {
                 </div>
             </div>
 
+
+
+            <div>
+                {/* This div will be visible based on the role */}
+                <div style={{ display: isAdmin ? 'block' : 'none' }}>
+                    <LiveCounter />
+                </div>
+            </div>
 
         </div>
     );
