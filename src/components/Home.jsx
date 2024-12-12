@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import LiveCounter from './LiveCounter';
 
 const images = [
     'https://i.pinimg.com/originals/a7/c7/8c/a7c78c1cf8554d3256eba773fd3bfcbe.gif',
@@ -313,9 +314,9 @@ const Home = () => {
             </div>
 
 
-            {/* <div>
+            <div>
                 <LiveCounter />
-            </div> */}
+            </div>
 
 
             {/* Mac Games Category */}
