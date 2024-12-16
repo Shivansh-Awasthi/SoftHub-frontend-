@@ -5,14 +5,14 @@ import { getDatabase, ref, set, get, child } from 'firebase/database';
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCYOpZvs7wkC7UjDPOe8hoMC-7kXJU8poo",
-    authDomain: "toxicgamescommentbox.firebaseapp.com",
-    projectId: "toxicgamescommentbox",
-    databaseURL: "hhttps://toxicgamescommentbox-default-rtdb.firebaseio.com/",
-    storageBucket: "toxicgamescommentbox.firebasestorage.app",
-    messagingSenderId: "364633446060",
-    appId: "1:364633446060:web:f6616790feb23143dc3109",
-    measurementId: "G-8HYN0H15NJ"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
