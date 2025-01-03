@@ -25,6 +25,26 @@ const Mac = () => {
     // Calculate total pages
     const totalPages = Math.ceil(totalApps / itemsPerPage);
 
+    // Generate an array of page numbers to display (7 clickable pages)
+    const pageNumbers = [];
+    const maxPagesToShow = 7;
+
+    let startPage = Math.max(1, currentPage - 3); // Ensure the first page is at least 1
+    let endPage = Math.min(totalPages, currentPage + 3); // Ensure the last page is not beyond the total pages
+
+    // Adjust to show maxPagesToShow if there's space
+    if (endPage - startPage < maxPagesToShow - 1) {
+        if (currentPage <= 3) {
+            endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+        } else if (currentPage + 3 >= totalPages) {
+            startPage = Math.max(1, endPage - maxPagesToShow + 1);
+        }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(i);
+    }
+
     return (
         <div className='container mx-auto p-2'>
             <div className='cover mb-6'>
@@ -56,19 +76,32 @@ const Mac = () => {
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center mt-10">
+                {/* Previous Button */}
                 <button
                     onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
-                    className="px-4 py-2 mx-2 bg-gray-700 text-white rounded disabled:opacity-50"
+                    className="px-4 py-2 mx-2 bg-gray-700 text-white rounded disabled:opacity-50 hover:scale-110"
                 >
                     Previous
                 </button>
-                <span className="px-4 py-2">Page {currentPage} of {totalPages}</span>
+
+                {/* Page Numbers */}
+                {pageNumbers.map((pageNumber) => (
+                    <button
+                        key={pageNumber}
+                        onClick={() => setCurrentPage(pageNumber)}
+                        className={`px-4 py-2 mx-1 rounded text-gray-300    ${currentPage === pageNumber ? 'bg-blue-600' : 'bg-[#2c2c2c] hover:bg-black hover:text-white hover:scale-110'}`}
+                    >
+                        {pageNumber}
+                    </button>
+                ))}
+
+                {/* Next Button */}
                 <button
                     onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className="px-4 py-2 mx-2 bg-gray-700 text-white rounded disabled:opacity-50"
+                    className="px-4 py-2 mx-2 bg-gray-700 text-white rounded disabled:opacity-50 hover:scale-110"
                 >
                     Next
                 </button>
