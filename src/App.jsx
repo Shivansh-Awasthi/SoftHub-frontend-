@@ -39,7 +39,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path='/' element={<Home />} />
-            <Route path='/:id/download/:slug' element={<SingleApp />} />
+            <Route path='/download/:platform/:slug/:id' element={<SingleApp />} />
 
             <Route path='/search' element={<SearchResults />} />
 

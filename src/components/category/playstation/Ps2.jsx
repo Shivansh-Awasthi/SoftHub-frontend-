@@ -66,7 +66,7 @@ const Ps2 = () => {
                     {data.map((ele) => (
                         <Link
                             key={ele._id}
-                            to={`/${ele._id}/download/${createSlug(ele.title)}`}
+                            to={`/download/${createSlug(ele.platform)}/${createSlug(ele.title)}/${ele._id}`}
                             className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
                         >
                             <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
