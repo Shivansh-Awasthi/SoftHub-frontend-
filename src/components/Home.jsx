@@ -207,6 +207,14 @@ const Home = () => {
     }, []);
 
 
+    const createSlug = (title) => {
+        return title
+            .toLowerCase() // Convert to lowercase
+            .replace(/[^\w\s-]/g, '') // Remove non-alphanumeric characters
+            .replace(/\s+/g, '-') // Replace spaces with hyphens
+            .trim(); // Remove trailing spaces
+    };
+
 
 
     return (
@@ -353,7 +361,7 @@ const Home = () => {
                         data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).slice(0, 8).map((ele) => (
                             <Link
                                 key={ele._id}
-                                to={`/${ele._id}/download/${ele.title.split(' ').join('-').toLowerCase()}`}
+                                to={`/${ele._id}/download/${createSlug(ele.title)}`}
                                 className="flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
                             >
                                 <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
@@ -395,7 +403,7 @@ const Home = () => {
                         MacSoftData.slice(0, 8).map((ele) => (
                             <Link
                                 key={ele._id}
-                                to={`/${ele._id}`}
+                                to={`/${ele._id}/download/${createSlug(ele.title)}`}
                                 className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
                             >
                                 <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
@@ -434,7 +442,7 @@ const Home = () => {
                         Pcdata.slice(0, 8).map((ele) => (
                             <Link
                                 key={ele._id}
-                                to={`/${ele._id}`}
+                                to={`/${ele._id}/download/${createSlug(ele.title)}`}
                                 className="flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
                             >
                                 <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
@@ -476,7 +484,7 @@ const Home = () => {
                         Androiddata.slice(0, 8).map((ele) => (
                             <Link
                                 key={ele._id}
-                                to={`/${ele._id}`}
+                                to={`/${ele._id}/download/${createSlug(ele.title)}`}
                                 className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
                             >
                                 <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">
@@ -514,7 +522,7 @@ const Home = () => {
                         Ps2data.slice(0, 8).map((ele) => (
                             <Link
                                 key={ele._id}
-                                to={`/${ele._id}`}
+                                to={`/${ele._id}/download/${createSlug(ele.title)}`}
                                 className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
                             >
                                 <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">

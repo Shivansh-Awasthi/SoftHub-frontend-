@@ -39,6 +39,16 @@ const PcSoftwares = () => {
     // Calculate total pages
     const totalPages = totalItems > 0 ? Math.ceil(totalItems / itemsPerPage) : 1;
 
+
+
+    const createSlug = (title) => {
+        return title
+            .toLowerCase() // Convert to lowercase
+            .replace(/[^\w\s-]/g, '') // Remove non-alphanumeric characters
+            .replace(/\s+/g, '-') // Replace spaces with hyphens
+            .trim(); // Remove trailing spaces
+    };
+
     return (
         <div className='container mx-auto p-2'>
             <div className='cover mb-6'>
@@ -57,7 +67,7 @@ const PcSoftwares = () => {
                     {data.map((ele) => (
                         <Link
                             key={ele._id}
-                            to={`/${ele._id}`}
+                            to={`/${ele._id}/download/${createSlug(ele.title)}`}
                             className="flex flex-col rounded-2xl h-36 overflow-hidden transition duration-300 ease-in-out ring-1 ring-white/10 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
                         >
                             <div className="flex justify-center items-center h-32 bg-[#262626] pt-4">

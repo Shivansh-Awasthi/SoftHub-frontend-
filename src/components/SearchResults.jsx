@@ -84,6 +84,15 @@ const SearchResults = () => {
     // Handle Page Change
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+
+    const createSlug = (title) => {
+        return title
+            .toLowerCase() // Convert to lowercase
+            .replace(/[^\w\s-]/g, '') // Remove non-alphanumeric characters
+            .replace(/\s+/g, '-') // Replace spaces with hyphens
+            .trim(); // Remove trailing spaces
+    };
+
     return (
         <div>
             <div className='cover mb-6'>
@@ -116,7 +125,7 @@ const SearchResults = () => {
                         <ul role="list" className="divide-y divide-gray-700">
                             {currentItems.map((ele) => (
                                 <li key={ele._id} className="py-2 sm:py-2">
-                                    <Link to={`/${ele._id}`} className="flex items-center justify-between w-full">
+                                    <Link to={`/${ele._id}/download/${createSlug(ele.title)}`} className="flex items-center justify-between w-full">
                                         <div className="flex-shrink-0">
                                             <img className="w-12 h-12 rounded-xl object-cover hover:rounded-full" src={ele.thumbnail[0]} alt={ele.title} />
                                         </div>
