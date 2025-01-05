@@ -100,6 +100,39 @@ const SingleApp = () => {
     }
 
 
+    // Function to create the slug from the title
+    const createSlug = (title) => {
+        return title
+            .toLowerCase() // Convert to lowercase
+            .replace(/[^\w\s-]/g, '') // Remove non-alphanumeric characters
+            .replace(/\s+/g, '-') // Replace spaces with hyphens
+            .trim(); // Remove trailing spaces
+    };
+
+    // If there's an error, show an error message
+    if (error) {
+        return (
+            <div className="flex justify-center items-center h-[40rem] ">
+                <h1 className="text-2xl text-red-500">{error}</h1>
+            </div>
+        );
+    }
+
+    // If data is still loading, you can show a loading spinner or placeholder
+    if (!data) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <h1 className="text-2xl text-gray-500">Loading...</h1>
+            </div>
+        );
+    }
+
+    // Create a slug based on the app's title
+    const slug = createSlug(data.title);
+
+
+
+
 
     return (
         <div className='z-20]'>

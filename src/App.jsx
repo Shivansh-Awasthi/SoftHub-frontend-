@@ -21,6 +21,7 @@ import SingleApp from './components/SingleApp';
 import Logout from './components/Logout';
 import DeleteApps from './components/admin/DeleteApps';
 import { useEffect } from 'react';
+import GamePage from './components/sitemap/GamePage';
 
 function App() {
 
@@ -39,9 +40,11 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path='/' element={<Home />} />
-            <Route path='/:id' element={<SingleApp />} />
+            <Route path='/:id/download/:slug' element={<SingleApp />} />
 
             <Route path='/search' element={<SearchResults />} />
+
+            {/* <Route path='/gamepage' element={<GamePage />} /> */}
 
             {/* admin routes */}
             <Route path='/admin/apps/new' element={<CreateApps />} />

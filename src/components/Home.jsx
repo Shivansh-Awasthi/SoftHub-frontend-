@@ -353,7 +353,7 @@ const Home = () => {
                         data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).slice(0, 8).map((ele) => (
                             <Link
                                 key={ele._id}
-                                to={`/${ele._id}`}
+                                to={`/${ele._id}/download/${ele.title.split(' ').join('-').toLowerCase()}`}
                                 className="flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
                             >
                                 <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
