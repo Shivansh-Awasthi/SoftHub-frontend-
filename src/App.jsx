@@ -44,7 +44,7 @@ function App() {
 
             <Route path='/search' element={<SearchResults />} />
 
-            {/* <Route path='/gamepage' element={<GamePage />} /> */}
+
 
             {/* admin routes */}
             <Route path='/admin/apps/new' element={<CreateApps />} />
