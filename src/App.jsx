@@ -21,7 +21,6 @@ import SingleApp from './components/SingleApp';
 import Logout from './components/Logout';
 import DeleteApps from './components/admin/DeleteApps';
 import { useEffect } from 'react';
-import GamePage from './components/sitemap/GamePage';
 
 function App() {
 
