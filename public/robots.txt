@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /private/
+Allow: /gamepage
+Allow: /sitemapindex.xml
+Allow: /
+Sitemap: https://toxicgames.in/sitemapindex.xml
