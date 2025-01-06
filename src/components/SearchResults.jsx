@@ -125,7 +125,7 @@ const SearchResults = () => {
                         <ul role="list" className="divide-y divide-gray-700">
                             {currentItems.map((ele) => (
                                 <li key={ele._id} className="py-2 sm:py-2">
-                                    <Link to={`/${ele._id}/download/${createSlug(ele.title)}`} className="flex items-center justify-between w-full">
+                                    <Link to={`/download/${createSlug(ele.platform)}/${createSlug(ele.title)}/${ele._id}`} className="flex items-center justify-between w-full">
                                         <div className="flex-shrink-0">
                                             <img className="w-12 h-12 rounded-xl object-cover hover:rounded-full" src={ele.thumbnail[0]} alt={ele.title} />
                                         </div>
