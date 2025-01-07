@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
@@ -22,6 +22,11 @@ import Logout from './components/Logout';
 import DeleteApps from './components/admin/DeleteApps';
 import { useEffect } from 'react';
 import GamePage from './components/sitemap/GamePage';
+import Dmca from './components/other pages/Dmca';
+import Donate from './components/other pages/Donate';
+import Policy from './components/other pages/Policy';
+import Faq from './components/other pages/Faq';
+import Contacts from './components/other pages/Contacts';
 
 function App() {
 
@@ -45,6 +50,15 @@ function App() {
             <Route path='/search' element={<SearchResults />} />
 
             <Route path='/gamepage' element={<GamePage />} />
+
+            {/* redirect */}
+            <Route path="*" element={<Navigate to="/" />} />
+            {/* other pages */}
+            <Route path='/copyright-holders' element={<Dmca />} />
+            <Route path='/policy' element={<Policy />} />
+            <Route path='/donate' element={<Donate />} />
+            <Route path='/faq' element={<Faq />} />
+            <Route path='/contacts' element={<Contacts />} />
 
             {/* admin routes */}
             <Route path='/admin/apps/new' element={<CreateApps />} />
