@@ -218,8 +218,28 @@ const Sidebar = () => {
                             </Link>
 
                         </div>
+
                     </nav>
+
                 </div>
+
+                <div className="mt-auto text-[#8E8E8E] text-xs space-y-0.5 w-full xs:flex">
+                    <div>
+                        <Link to="/copyright-holders" className="hover:underline">Copyright Holders (DMCA)</Link>
+                        <span className="mx-1"> , </span>
+                    </div>
+                    <Link to="/policy" className="hover:underline"> Privacy </Link>
+                    <span className="mx-1"> , </span>
+                    <Link to="/donate" className="hover:underline"> Donate</Link>
+                    <span className="mx-1">,</span>
+                    <Link to="#" className="hover:underline">Reviews</Link>
+                    <span className="mx-1">,</span>
+                    <div>  <Link to="/faq" className="hover:underline">FAQ</Link>
+                        <span className="mx-1">,</span>
+                        <Link to="/contacts" className="no-underline hover:underline">Contacts</Link>
+                    </div>
+                </div>
+
             </aside>
         </div>
     );
