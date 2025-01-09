@@ -30,7 +30,7 @@ const GamePage = () => {
                             name="keywords"
                             content={`${ele.title}, ${ele.title} for ${ele.platform}, Mac Games, Free Games, PC Games, Download Games, Android Games, Playstation iso`}
                         />
-                        <meta name="robots" content="noindex, follow" /> {/* Hide from search results but crawlable */}
+                        <meta name="robots" content="index, follow" /> {/* Hide from search results but crawlable */}
                         <script type="application/ld+json">
                             {JSON.stringify({
                                 "@context": "https://schema.org",
