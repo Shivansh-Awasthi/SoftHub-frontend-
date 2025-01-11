@@ -18,13 +18,15 @@ const SearchResults = () => {
         setLoading(true);
 
         try {
-            const response = await axios.get(`${process.env.REACT_API}/api/apps/all`, {
-                params: {
-                    page: currentPage,
-                    limit: itemsPerPage,
-                    q: query,  // Send the search query to the backend
-                },
-            });
+            // If query is empty, fetch all apps
+            const trimmedQuery = query ? query.trim() : '';
+            const params = {
+                page: currentPage,
+                limit: itemsPerPage,
+                q: trimmedQuery || '', // If no query, fetch all
+            };
+
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/all`, { params });
 
             if (response.data.success) {
                 setData(response.data.apps);  // Set the apps data from backend
@@ -49,6 +51,16 @@ const SearchResults = () => {
     useEffect(() => {
         handleData();
     }, [currentPage, query]);  // Trigger when currentPage or query changes
+
+    // Handle empty search query state
+    useEffect(() => {
+        if (!query || query.length < 1) {
+            setError(<span style={{ fontSize: '15px' }}>⚠ Search field is empty.</span>);
+            setData([]); // Clear data when no query
+        } else {
+            setError('');
+        }
+    }, [query]);
 
     // Calculate total pages based on the total apps count
     const totalPages = Math.ceil(totalApps / itemsPerPage);
@@ -124,7 +136,7 @@ const SearchResults = () => {
             )}
 
             {/* Pagination Controls */}
-            {totalApps > itemsPerPage && !loading && (
+            {totalApps > itemsPerPage && !loading && query && (  // Only show pagination if query is not empty and there are multiple pages
                 <div className="flex justify-center mt-6">
                     <nav aria-label="Page navigation">
                         <ul className="inline-flex items-center -space-x-px">
