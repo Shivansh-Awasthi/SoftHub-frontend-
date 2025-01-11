@@ -6,40 +6,32 @@ import Loader from './Loading/Loader';
 const SearchResults = () => {
     const query = new URLSearchParams(useLocation().search).get('query');
     const [data, setData] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
     // Pagination states
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalApps, setTotalApps] = useState(0); // To store total number of apps for pagination
     const [itemsPerPage] = useState(48); // 48 items per page
 
     const handleData = async () => {
         setLoading(true);
-        let allData = [];
-        let page = 1;
-        const limit = 100;
 
         try {
-            while (true) {
-                const response = await axios.get(`${process.env.REACT_API}/api/apps/all`, {
-                    params: {
-                        page,
-                        limit,
-                    },
-                });
+            const response = await axios.get(`${process.env.REACT_API}/api/apps/all`, {
+                params: {
+                    page: currentPage,
+                    limit: itemsPerPage,
+                    q: query,  // Send the search query to the backend
+                },
+            });
 
-                const apps = response.data.apps;
-
-                if (apps.length === 0) {
-                    break;
-                }
-
-                allData = [...allData, ...apps];
-                page += 1;
+            if (response.data.success) {
+                setData(response.data.apps);  // Set the apps data from backend
+                setTotalApps(response.data.total);  // Set the total number of apps for pagination
+            } else {
+                setError('Failed to load data. Please try again later.');
             }
-
-            setData(allData);
         } catch (error) {
             console.log("Error fetching apps:", error);
             setError('Failed to load data. Please try again later.');
@@ -48,42 +40,21 @@ const SearchResults = () => {
         }
     };
 
+    // Reset currentPage to 1 whenever the query changes
     useEffect(() => {
-        handleData();
-    }, []);
-
-    useEffect(() => {
-        if (data.length > 0) {
-            if (!query || query.length < 1) {
-                setError('Search field is empty.');
-                setFilteredData([]);
-            } else {
-                setError('');
-                const results = data.filter(item =>
-                    item.title.toLowerCase().includes(query.toLowerCase())
-                );
-
-                setFilteredData(results);
-            }
-        }
-    }, [data, query]);
-
-
-    useEffect(() => {
-        if (query) {
-            setCurrentPage(1); // Reset to page 1 when query changes
-        }
+        setCurrentPage(1); // Reset to page 1 when the search query changes
     }, [query]);
 
-    // Pagination Logic
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+    // Fetch the data whenever the page or query changes
+    useEffect(() => {
+        handleData();
+    }, [currentPage, query]);  // Trigger when currentPage or query changes
+
+    // Calculate total pages based on the total apps count
+    const totalPages = Math.ceil(totalApps / itemsPerPage);
 
     // Handle Page Change
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
 
     const createSlug = (title) => {
         return title
@@ -96,9 +67,9 @@ const SearchResults = () => {
     return (
         <div>
             <div className='cover mb-6'>
-                {currentItems.length > 0 && !error && (
+                {data.length > 0 && !error && (
                     <h1 className='font-medium text-3xl mb-4'>
-                        Search Results <span className='font-medium ml-2 text-[#8E8E8E]'>{filteredData.length}</span>
+                        Search Results <span className='font-medium ml-2 text-[#8E8E8E]'>{totalApps}</span>
                     </h1>
                 )}
             </div>
@@ -112,18 +83,18 @@ const SearchResults = () => {
                         <p>{error}</p>
                     </div>
                 </div>
-            ) : currentItems.length === 0 ? (
+            ) : data.length === 0 ? (
                 <div>
                     <h1 className='font-medium text-3xl mb-6'>Oops! Something went wrong</h1>
                     <div className="p-6 mr-96 bg-[#2c2c2c] rounded-lg text-sm text-center border border-white border-opacity-10 shadow-lg">
-                        <p>Sorry, your site search did not yield any results. Try changing or shortening your query.</p>
+                        <p>Sorry, your search did not yield any results. Try changing or shortening your query.</p>
                     </div>
                 </div>
             ) : (
-                <div className="w-full md:w-full p-4 border border-gray-200 border-opacity-5 bg-[#262626] rounded-lg shadow  sm:p-8 ">
+                <div className="w-full md:w-full p-4 border border-gray-200 border-opacity-5 bg-[#262626] rounded-lg shadow sm:p-8">
                     <div className="flow-root">
                         <ul role="list" className="divide-y divide-gray-700">
-                            {currentItems.map((ele) => (
+                            {data.map((ele) => (
                                 <li key={ele._id} className="py-2 sm:py-2">
                                     <Link to={`/download/${createSlug(ele.platform)}/${createSlug(ele.title)}/${ele._id}`} className="flex items-center justify-between w-full">
                                         <div className="flex-shrink-0">
@@ -153,7 +124,7 @@ const SearchResults = () => {
             )}
 
             {/* Pagination Controls */}
-            {filteredData.length > itemsPerPage && !loading && (
+            {totalApps > itemsPerPage && !loading && (
                 <div className="flex justify-center mt-6">
                     <nav aria-label="Page navigation">
                         <ul className="inline-flex items-center -space-x-px">
