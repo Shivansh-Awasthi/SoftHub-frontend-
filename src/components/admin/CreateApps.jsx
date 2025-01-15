@@ -69,7 +69,7 @@ const CreateApps = () => {
             const response = await axios.post(`${process.env.REACT_API}/api/apps/admin/create`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': token,
+                    Authorization: `Bearer ${token}`
                 },
             });
 
