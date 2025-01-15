@@ -151,7 +151,7 @@ const CreateApps = () => {
                             <option value="Playstation">Playstation</option>
                         </select>
                     </div>
-                    {/* <div className='flex items-center mb-5'>
+                    <div className='flex items-center mb-5'>
                         <input
                             id="isPaid"
                             type="checkbox"
@@ -161,7 +161,7 @@ const CreateApps = () => {
                         />
                         <label htmlFor="isPaid" className="ml-2 text-sm font-medium text-gray-300">Paid?</label>
                     </div>
-                    <div className='mb-5'>
+                    {/* <div className='mb-5'>
                         <label className='block mb-2 text-sm font-medium text-gray-300'>Price</label>
                         <input
                             type="text"
