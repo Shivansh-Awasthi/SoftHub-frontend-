@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { CiLock } from 'react-icons/ci'; // Lock Icon
+import { useNavigate } from 'react-router-dom';
 
 const Mac = () => {
     const [data, setData] = useState([]);
     const [totalApps, setTotalApps] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
+    const [userData, setUserData] = useState(null); // Store user data
     const itemsPerPage = 48; // Set the number of items per page
+    const navigate = useNavigate();
 
     const handleData = async (page) => {
         try {
@@ -18,9 +22,28 @@ const Mac = () => {
         }
     };
 
+    const fetchUserData = async () => {
+        try {
+            // If the token is stored in localStorage, send it in the request
+            const response = await axios.get("http://localhost:8080/api/user", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}` // Or fetch from cookies if necessary
+                }
+            });
+            setUserData(response.data); // Store user data
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
+
     useEffect(() => {
         handleData(currentPage);
+        fetchUserData(); // Fetch user data if logged in
     }, [currentPage]);
+
+    // Get purchased games from localStorage (if logged in)
+    const purchasedGames = JSON.parse(localStorage.getItem("gData")) || [];
+    const isAdmin = localStorage.getItem("role") === 'ADMIN';  // Check if user is admin
 
     // Calculate total pages
     const totalPages = Math.ceil(totalApps / itemsPerPage);
@@ -62,25 +85,42 @@ const Mac = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
-                {data.map((ele) => (
-                    <Link
-                        key={ele._id}
-                        to={`/download/${createSlug(ele.platform)}/${createSlug(ele.title)}/${ele._id}`}
-                        className="flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75"
-                    >
-                        <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
-                            <img
-                                src={ele.coverImg}
-                                alt={ele.title}
-                                className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
-                            />
-                        </figure>
-                        <div className="flex flex-col p-3 bg-[#262626] flex-grow">
-                            <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
-                            <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
+                {data.map((ele) => {
+                    // Check if game is purchased by the user
+                    const isPurchased = purchasedGames.includes(ele._id); // Compare game ID with purchased games
+                    const isUnlocked = isAdmin || !ele.isPaid || isPurchased; // Unlock if Admin or if it's free or the user purchased it
+                    const isLoggedIn = !!userData; // Check if user is logged in (i.e. if we have userData)
+
+                    return (
+                        <div
+                            key={ele._id}
+                            className={`relative flex flex-col rounded-2xl h-52 overflow-hidden transition duration-300 ease-in-out ring-0 ${isUnlocked ? 'hover:ring-2 hover:ring-[#8E8E8E] hover:ring-opacity-75' : 'opacity-50 cursor-not-allowed'}`}
+                        >
+                            {!isUnlocked && (
+                                <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-10">
+                                    <CiLock className="text-white font-bold text-4xl mb-16" style={{ strokeWidth: 1 }} />
+                                </div>
+                            )}
+
+                            <Link
+                                to={isUnlocked ? `/download/${createSlug(ele.platform)}/${createSlug(ele.title)}/${ele._id}` : '#'}
+                                className={`flex flex-col rounded-2xl h-full overflow-hidden ${!isUnlocked ? 'pointer-events-none' : ''}`}
+                            >
+                                <figure className="flex justify-center items-center rounded-t-2xl overflow-hidden h-full">
+                                    <img
+                                        src={ele.coverImg}
+                                        alt={ele.title}
+                                        className="w-full h-full object-cover rounded-t-2xl transition-transform duration-700 ease-in-out transform hover:scale-110"
+                                    />
+                                </figure>
+                                <div className="flex flex-col p-3 bg-[#262626] flex-grow">
+                                    <div className="text-sm font-normal text-[#ffffff] pb-2 overflow-hidden whitespace-nowrap text-ellipsis bg-[#262626]">{ele.title}</div>
+                                    <div className="text-xs font-thin text-[#ffffff] bg-[#262626]">Size: {ele.size}</div>
+                                </div>
+                            </Link>
                         </div>
-                    </Link>
-                ))}
+                    );
+                })}
             </div>
 
             {/* Pagination Controls */}
@@ -99,7 +139,7 @@ const Mac = () => {
                     <button
                         key={pageNumber}
                         onClick={() => setCurrentPage(pageNumber)}
-                        className={`px-4 py-2 mx-1 rounded text-gray-300    ${currentPage === pageNumber ? 'bg-blue-600' : 'bg-[#2c2c2c] hover:bg-black hover:text-white hover:scale-110'}`}
+                        className={`px-4 py-2 mx-1 rounded text-gray-300 ${currentPage === pageNumber ? 'bg-blue-600' : 'bg-[#2c2c2c] hover:bg-black hover:text-white hover:scale-110'}`}
                     >
                         {pageNumber}
                     </button>

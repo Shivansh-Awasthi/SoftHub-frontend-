@@ -27,6 +27,7 @@ import Donate from './components/other pages/Donate';
 import Policy from './components/other pages/Policy';
 import Faq from './components/other pages/Faq';
 import Contacts from './components/other pages/Contacts';
+import UserProvider from './components/hooks/UserContext';
 
 function App() {
 
@@ -36,49 +37,53 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="flex h-screen"> {/* Flex container for layout */}
-        <Sidebar className="w-1/4" /> {/* Sidebar on the left */}
-        <div className="flex-1 p-8 overflow-auto"> {/* Main content area */}
-          <Header />
-          <Routes>
-            <Route path='/signup' element={<Register />} />
-            <Route path='/login' element={<Login />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path='/' element={<Home />} />
-            <Route path='/download/:platform/:slug/:id' element={<SingleApp />} />
+      <UserProvider>
+        <div className="flex h-screen"> {/* Flex container for layout */}
+          <Sidebar className="w-1/4" /> {/* Sidebar on the left */}
+          <div className="flex-1 p-8 overflow-auto"> {/* Main content area */}
+            <Header />
 
-            <Route path='/search' element={<SearchResults />} />
+            <Routes>
+              <Route path='/signup' element={<Register />} />
+              <Route path='/login' element={<Login />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path='/' element={<Home />} />
+              <Route path='/download/:platform/:slug/:id' element={<SingleApp />} />
 
-            <Route path='/gamepage' element={<GamePage />} />
+              <Route path='/search' element={<SearchResults />} />
 
-            {/* redirect */}
-            <Route path="*" element={<Navigate to="/" />} />
-            {/* other pages */}
-            <Route path='/copyright-holders' element={<Dmca />} />
-            <Route path='/policy' element={<Policy />} />
-            <Route path='/donate' element={<Donate />} />
-            <Route path='/faq' element={<Faq />} />
-            <Route path='/contacts' element={<Contacts />} />
+              <Route path='/gamepage' element={<GamePage />} />
 
-            {/* admin routes */}
-            <Route path='/admin/apps/new' element={<CreateApps />} />
-            <Route path='/admin/apps/edit/:id' element={<EditApps />} />
-            <Route path='/admin/apps/delete/:id' element={<DeleteApps />} />
-            {/* category routes */}
-            <Route path='/category/mac/games' element={<Mac />} />
-            <Route path='/category/mac/softwares' element={<MacSoftwares />} />
-            <Route path='/category/pc/games' element={<Pc />} />
-            <Route path='/category/pc/softwares' element={<PcSoftwares />} />
-            <Route path='/category/android/games' element={<Android />} />
-            <Route path='/category/android/softwares' element={<AndroidSoftwares />} />
-            {/* playstation iso routes */}
-            <Route path='/category/ps2/iso' element={<Ps2 />} />
-            <Route path='/category/ps3/iso' element={<Ps3 />} />
-            <Route path='/category/ps4/iso' element={<Ps4 />} />
-            <Route path='/category/ppsspp/iso' element={<Ppsspp />} />
-          </Routes>
+              {/* redirect */}
+              <Route path="*" element={<Navigate to="/" />} />
+              {/* other pages */}
+              <Route path='/copyright-holders' element={<Dmca />} />
+              <Route path='/policy' element={<Policy />} />
+              <Route path='/donate' element={<Donate />} />
+              <Route path='/faq' element={<Faq />} />
+              <Route path='/contacts' element={<Contacts />} />
+
+              {/* admin routes */}
+              <Route path='/admin/apps/new' element={<CreateApps />} />
+              <Route path='/admin/apps/edit/:id' element={<EditApps />} />
+              <Route path='/admin/apps/delete/:id' element={<DeleteApps />} />
+              {/* category routes */}
+              <Route path='/category/mac/games' element={<Mac />} />
+              <Route path='/category/mac/softwares' element={<MacSoftwares />} />
+              <Route path='/category/pc/games' element={<Pc />} />
+              <Route path='/category/pc/softwares' element={<PcSoftwares />} />
+              <Route path='/category/android/games' element={<Android />} />
+              <Route path='/category/android/softwares' element={<AndroidSoftwares />} />
+              {/* playstation iso routes */}
+              <Route path='/category/ps2/iso' element={<Ps2 />} />
+              <Route path='/category/ps3/iso' element={<Ps3 />} />
+              <Route path='/category/ps4/iso' element={<Ps4 />} />
+              <Route path='/category/ppsspp/iso' element={<Ppsspp />} />
+            </Routes>
+
+          </div>
         </div>
-      </div>
+      </UserProvider>
     </BrowserRouter>
   );
 }

@@ -33,9 +33,14 @@ const Login = () => {
             const token = response.data.token;
             const name = response.data.user.username;
             const role = response.data.user.role;
+            const purchasedGames = response.data.user.purchasedGames;
+            const userId = response.data.user.userId;
+
             localStorage.setItem('token', token);
             localStorage.setItem('name', name);
+            localStorage.setItem('gData', JSON.stringify(purchasedGames));
             localStorage.setItem('role', role);
+            localStorage.setItem('userId', userId);
 
             // Show success toast notification
             toast.success(`Welcome back, ${name}! Redirecting to home...`, {
