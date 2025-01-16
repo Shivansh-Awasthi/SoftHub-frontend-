@@ -25,7 +25,7 @@ const Mac = () => {
     const fetchUserData = async () => {
         try {
             // If the token is stored in localStorage, send it in the request
-            const response = await axios.get("http://localhost:8080/api/user", {
+            const response = await axios.get(`${process.env.REACT_API}/api/user`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}` // Or fetch from cookies if necessary
                 }
