@@ -24,7 +24,7 @@ const UserProvider = ({ children }) => {
                 localStorage.setItem('gData', JSON.stringify(userData.purchasedGames));
                 localStorage.setItem('userId', userData.userId);
             } catch (error) {
-                console.error('Error fetching user data:', error);
+                console.error('Error fetching user data:');
                 setUser(null); // If error, clear user data
             }
         }
