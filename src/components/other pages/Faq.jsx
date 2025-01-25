@@ -4,7 +4,13 @@ import React, { useState } from 'react';
 const faqData = [
     {
         question: "Is the program damaged? Is the file broken? Or other errors??",
-        answer: `Enter the command in terminal: <span class="text-yellow-500">xattr -cr</span> then after it drop the application to the terminal and press Enter`
+        answer: `Enter the command in terminal: <span class="text-yellow-500">xattr -cr</span> then after it space and then drop the application to the terminal and press Enter. </br> </br>
+        
+        Or you can disable gatekeeper globally by entering <span class="text-yellow-500">sudo spctl --master-disable</span> in termainal.
+        </br> </br>
+        
+        Below there I have analyzed the most common <span class="text-red-500">FIX</span> in this video.
+        `
     },
     {
         question: "How to download? Link not working? What is .torrent??",
@@ -28,7 +34,7 @@ const faqData = [
     }
 ];
 
-const FAQItem = ({ question, answer }) => {
+const FAQItem = ({ question, answer, index }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -43,10 +49,21 @@ const FAQItem = ({ question, answer }) => {
                 </span>
             </button>
             {isOpen && (
-                <div
-                    className="px-6 pb-4 text-[15px] text-[#fff] leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: answer }} // Render HTML content including line breaks and styles
-                />
+                <div className="px-6 pb-4 text-[15px] text-[#fff] leading-relaxed">
+                    <div dangerouslySetInnerHTML={{ __html: answer }} />
+                    {/* Render Vimeo video only for the first FAQ item */}
+                    {index === 0 && (
+                        <div className="mt-4" style={{ padding: '62.5% 0 0 0', position: 'relative' }}>
+                            <iframe
+                                src="https://player.vimeo.com/video/1046166571?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                                frameBorder="0"
+                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                                title="Fix. The application is damaged and cannot be opened, you should move it to the bin."
+                            ></iframe>
+                        </div>
+                    )}
+                </div>
             )}
         </div>
     );
@@ -61,7 +78,7 @@ const Faq = () => {
                 </div>
                 <div className="divide-y divide-[#3c3c43]">
                     {faqData.map((item, index) => (
-                        <FAQItem key={index} {...item} />
+                        <FAQItem key={index} index={index} {...item} />
                     ))}
                 </div>
             </div>
