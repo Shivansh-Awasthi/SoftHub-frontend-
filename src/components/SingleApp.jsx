@@ -239,6 +239,7 @@ const SingleApp = () => {
                                         <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">MAC</h2>
                                         <p className="mt-1 text-sm sm:text-base">Run the downloaded image and drag the application to the Applications folder shortcut.</p>
                                         <p className="text-sm sm:text-base">Once copying is complete, the application can be launched via Launchpad.</p>
+                                        <p className='text-green-500 text-sm'>If the application shows <span className='text-yellow-500'>"The app is damaged and can't be opened. You should move it to the bin"</span> then visit our <a className='text-blue-500 text-base' href="https://toxicgames.in/faq">FAQ </a>page and refer that video.</p>
                                     </div>
 
 
