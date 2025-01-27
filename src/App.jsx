@@ -32,6 +32,58 @@ import UserProvider from './components/hooks/UserContext';
 function App() {
 
   useEffect(() => {
+    // Dev tools detection
+    const warnMessage = "Blocked by Client. Developer Tools are disabled.";
+
+    // Function to check if dev tools are open
+    function isDevToolsOpen() {
+      const threshold = 160;
+      const devToolsOpened = window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold;
+      return devToolsOpened;
+    }
+
+    // Monitor dev tools
+    const monitorDevTools = () => {
+      if (isDevToolsOpen()) {
+        console.error("Failed to load resource: net::ERR_BLOCKED_BY_CLIENT");
+        // Show alert when dev tools are detected
+      }
+    };
+
+    // Set interval to continuously check
+    const interval = setInterval(() => {
+      monitorDevTools();
+    }, 10000);
+
+    // Clean up the interval on unmount
+    return () => clearInterval(interval);
+
+  }, []);
+
+  useEffect(() => {
+    // Disable right-click context menu
+    const preventRightClick = (e) => {
+      e.preventDefault(); // Disable right-click
+    };
+
+    // Disable F12, Ctrl+Shift+I, etc.
+    const preventShortcuts = (e) => {
+      if (e.key === 'F12' || (e.ctrlKey && e.key === 'i')) {
+        e.preventDefault(); // Prevent DevTools opening with F12 or Ctrl+Shift+I
+      }
+    };
+
+    document.addEventListener('contextmenu', preventRightClick);  // Disable right-click
+    document.addEventListener('keydown', preventShortcuts);  // Disable shortcuts
+
+    return () => {
+      document.removeEventListener('contextmenu', preventRightClick);
+      document.removeEventListener('keydown', preventShortcuts);
+    };
+  }, []);
+
+
+  useEffect(() => {
     document.getElementById('root').style.visibility = 'visible';
   }, []);
 
