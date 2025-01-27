@@ -51,10 +51,7 @@ const SingleApp = () => {
 
     // Check if user has access to the app
     const checkAccess = (appData) => {
-
-
         if (!userData) {
-
             // If no user data, assume no access unless the app is free
             setHasAccess(!appData.isPaid);
             return;
@@ -63,7 +60,6 @@ const SingleApp = () => {
         // If user data exists, check if the user is admin
         const purchasedGames = JSON.parse(localStorage.getItem("gData")) || [];
         const isAdmin = localStorage.getItem("role") === 'ADMIN';  // Check if user is admin
-
 
         if (isAdmin) {
             setHasAccess(true);
@@ -83,8 +79,7 @@ const SingleApp = () => {
         }
     }, [userData]); // This ensures singleData is only called once userData is fetched
 
-
-
+    // Slide handling functions
     const nextSlide = () => {
         if (data.thumbnail && data.thumbnail.length > 1) {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % (data.thumbnail.length - 1));
@@ -126,15 +121,23 @@ const SingleApp = () => {
         );
     }
 
-    // If the user doesn't have access to the app, show a "No Access" message
-    if (!hasAccess) {
+    // Show "Loading..." when app data or user data is still being loaded
+    if (!data || hasAccess === null) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <h1 className="text-2xl text-gray-500">Loading...</h1>
+            </div>
+        );
+    }
+
+    // If the app is paid and the user doesn't have access, show "You don't have access"
+    if (data.isPaid && hasAccess === false) {
         return (
             <div className="flex justify-center items-center h-[40rem] ">
                 <h1 className="text-2xl text-red-500">You don't have access to this app</h1>
             </div>
         );
     }
-
     // If data is still loading, you can show a loading spinner or placeholder
     if (!data) {
         return (
