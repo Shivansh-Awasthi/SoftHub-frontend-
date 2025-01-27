@@ -132,7 +132,7 @@ const SingleApp = () => {
                     {/* Slider Logic */}
                     {data.thumbnail && data.thumbnail.length > 1 && (
                         <div id="default-carousel" className="flex relative w-full max-w-full ">
-                            <div className="relative w-full h-[13rem] sm:h-[19rem] md:h-[20rem] lg:h-[26rem] overflow-hidden rounded-lg">
+                            <div className="relative bg-[#262626] w-full h-[13rem] sm:h-[19rem] md:h-[20rem] lg:h-[26rem] overflow-hidden rounded-lg">
                                 {data.thumbnail.slice(1).map((image, index) => (
                                     <div key={index} className={`transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block' : 'hidden'} h-full`}>
                                         <img
