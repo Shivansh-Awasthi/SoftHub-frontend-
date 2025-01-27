@@ -8,18 +8,38 @@ import GiscusComments from './GiscusComments';
 
 const SingleApp = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [data, setData] = useState(null); // Change to null initially
+    const [data, setData] = useState(null); // Initially set to null
     const [showMore, setShowMore] = useState(false);
     const [showModal, setShowModal] = useState(false); // State to control modal visibility
     const { id } = useParams();
     const [error, setError] = useState(null); // State to handle errors
+    const [userData, setUserData] = useState(null);
+    const [hasAccess, setHasAccess] = useState(null); // Start with null instead of true
 
+    // Fetch user data (for admin status and purchased apps)
+    const fetchUserData = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_API}/api/user`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}` // Or fetch from cookies if necessary
+                }
+            });
+            setUserData(response.data); // Store user data
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
+
+    // Fetch app data
     const singleData = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_API}/api/apps/get/${id}`);
             if (response.data.app) {
                 setData(response.data.app);
                 setError(null); // Clear any previous error
+                if (userData) {
+                    checkAccess(response.data.app); // Only check access after user data is fetched
+                }
             } else {
                 throw new Error("App not found");
             }
@@ -29,9 +49,41 @@ const SingleApp = () => {
         }
     };
 
+    // Check if user has access to the app
+    const checkAccess = (appData) => {
+
+
+        if (!userData) {
+
+            // If no user data, assume no access unless the app is free
+            setHasAccess(!appData.isPaid);
+            return;
+        }
+
+        // If user data exists, check if the user is admin
+        const purchasedGames = JSON.parse(localStorage.getItem("gData")) || [];
+        const isAdmin = localStorage.getItem("role") === 'ADMIN';  // Check if user is admin
+
+
+        if (isAdmin) {
+            setHasAccess(true);
+        } else {
+            // If the user is not an admin, check if app is free or they purchased it
+            setHasAccess(!appData.isPaid || purchasedGames.includes(appData._id));
+        }
+    };
+
     useEffect(() => {
-        singleData();
-    }, []);
+        fetchUserData(); // Fetch user data on mount
+    }, []); // This ensures fetchUserData is only called once on mount
+
+    useEffect(() => {
+        if (userData) {
+            singleData(); // Fetch app data once user data is available
+        }
+    }, [userData]); // This ensures singleData is only called once userData is fetched
+
+
 
     const nextSlide = () => {
         if (data.thumbnail && data.thumbnail.length > 1) {
@@ -70,6 +122,15 @@ const SingleApp = () => {
         return (
             <div className="flex justify-center items-center h-[40rem] ">
                 <h1 className="text-2xl text-red-500">{error}</h1>
+            </div>
+        );
+    }
+
+    // If the user doesn't have access to the app, show a "No Access" message
+    if (!hasAccess) {
+        return (
+            <div className="flex justify-center items-center h-[40rem] ">
+                <h1 className="text-2xl text-red-500">You don't have access to this app</h1>
             </div>
         );
     }
