@@ -32,6 +32,12 @@ import UserProvider from './components/hooks/UserContext';
 function App() {
 
   useEffect(() => {
+    const isAdmin = localStorage.getItem("role") === "ADMIN";  // or use user context if available
+
+    if (isAdmin) {
+      // If the user is an admin, do not apply any restrictions
+      return; // Exit early if admin
+    }
     // Dev tools detection
     const warnMessage = "Blocked by Client. Developer Tools are disabled.";
 
@@ -61,6 +67,12 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const isAdmin = localStorage.getItem("role") === "ADMIN";  // or use user context if available
+
+    if (isAdmin) {
+      // If the user is an admin, do not apply any restrictions
+      return; // Exit early if admin
+    }
     // Block console input by overriding console functions
     const blockConsoleInput = () => {
       const originalConsoleLog = console.log;
