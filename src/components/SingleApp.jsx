@@ -13,20 +13,26 @@ const SingleApp = () => {
     const [showModal, setShowModal] = useState(false); // State to control modal visibility
     const { id } = useParams();
     const [error, setError] = useState(null); // State to handle errors
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState(null); // Store user data
     const [hasAccess, setHasAccess] = useState(null); // Start with null instead of true
 
     // Fetch user data (for admin status and purchased apps)
     const fetchUserData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_API}/api/user`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}` // Or fetch from cookies if necessary
-                }
-            });
-            setUserData(response.data); // Store user data
+            const token = localStorage.getItem("token");
+            if (token) {
+                const response = await axios.get(`${process.env.REACT_API}/api/user`, {
+                    headers: {
+                        Authorization: `Bearer ${token}` // Or fetch from cookies if necessary
+                    }
+                });
+                setUserData(response.data); // Store user data
+            } else {
+                setUserData({}); // No token, set empty user data
+            }
         } catch (error) {
             console.error('Error fetching user data:', error);
+            setUserData({}); // If fetching fails, still set empty user data
         }
     };
 
@@ -34,6 +40,7 @@ const SingleApp = () => {
     const singleData = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_API}/api/apps/get/${id}`);
+
             if (response.data.app) {
                 setData(response.data.app);
                 setError(null); // Clear any previous error
@@ -51,8 +58,8 @@ const SingleApp = () => {
 
     // Check if user has access to the app
     const checkAccess = (appData) => {
-        if (!userData) {
-            // If no user data, assume no access unless the app is free
+        if (!userData || Object.keys(userData).length === 0) {
+            // If no user data (not logged in), assume no access unless the app is free
             setHasAccess(!appData.isPaid);
             return;
         }
@@ -74,7 +81,7 @@ const SingleApp = () => {
     }, []); // This ensures fetchUserData is only called once on mount
 
     useEffect(() => {
-        if (userData) {
+        if (userData !== null) {
             singleData(); // Fetch app data once user data is available
         }
     }, [userData]); // This ensures singleData is only called once userData is fetched
@@ -122,7 +129,7 @@ const SingleApp = () => {
     }
 
     // Show "Loading..." when app data or user data is still being loaded
-    if (!data || hasAccess === null) {
+    if (userData === null || !data) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <h1 className="text-2xl text-gray-500">Loading...</h1>
@@ -138,15 +145,6 @@ const SingleApp = () => {
             </div>
         );
     }
-    // If data is still loading, you can show a loading spinner or placeholder
-    if (!data) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                <h1 className="text-2xl text-gray-500">Loading...</h1>
-            </div>
-        );
-    }
-
 
     //change color function
 
