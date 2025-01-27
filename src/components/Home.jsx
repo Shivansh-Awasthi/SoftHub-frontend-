@@ -8,10 +8,10 @@ import { LiveCounter } from './Counter/LiveCounter';
 
 
 const images = [
-    'https://i.pinimg.com/originals/a7/c7/8c/a7c78c1cf8554d3256eba773fd3bfcbe.gif',
-    'https://res.cloudinary.com/dkp1pshuw/image/upload/v1729206949/tg_bno0n5.webp',
-    'https://res.cloudinary.com/dkp1pshuw/image/upload/v1729425726/adobe_fdeqsq.webp',
-    'https://res.cloudinary.com/dkp1pshuw/image/upload/v1729206949/office_ayoau9.webp',
+    'https://img.playbook.com/NzGgc9TjLeq_Ic9CZ4VLwiUBrK82Gigj4VqjhcTTlwE/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzIwYTYzOTJj/LWEyNWUtNDdjYy05/Y2E5LWFjMmQ2ZGQy/YmRkNw',
+    'https://img.playbook.com/fEFoQgs0r1pXKzOJcJIfIevmy08UHSLlInS1-Fcp8uc/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljL2RkZGUzOTQ1/LTQwNzMtNDMxNy05/N2QyLTk3OTJkNDFi/OTBlNQ',
+    'https://img.playbook.com/Z_dmnLQyanAMg7VIdnAATqzc7KTX-op4jBsdjexfxWk/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzk5NTkyOWI1/LWE3YWQtNGUyZS1h/YWJmLWFiZTU3ZDE5/YTI4Nw',
+    'https://img.playbook.com/X0CxPl24l4RbK0kdRTk7NAtbQVW_5S9PYB05cE4vFZk/Z3M6Ly9wbGF5Ym9v/ay1hc3NldHMtcHVi/bGljLzM1MThlMDAx/LTNiYWQtNGQxZS1i/OWQ0LTY1MmM5MWQx/OTU4Yw'
 ];
 
 const Home = () => {
@@ -232,7 +232,7 @@ const Home = () => {
 
 
                             {/* Overlay text and button on the 4th image (index === 0) */}
-                            {index === 2 && (
+                            {index === 3 && (
                                 <div className="absolute inset-0 flex flex-col text-white p-8 ml-6 mt-4 md:p-0 md:ml-20 md:mt-28 z-0 w-full ">
                                     <h2 className="text-lg font-thin mb-4 sm:text-base md:text-lg">SOFTWARE</h2>
                                     <p className="mb-4 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">Download Free Softwares On Your Mac</p>
@@ -247,15 +247,15 @@ const Home = () => {
                             )}
 
 
-                            {/* Overlay text and button on the 4th image (index === 1) */}
-                            {index === 3 && (
+                            {/* Overlay text and button on the 4th image (index === 3) */}
+                            {index === 0 && (
                                 <div className="absolute inset-0 flex flex-col text-white p-8 ml-6 mt-4 md:p-0 md:ml-20 md:mt-28 z-0">
-                                    <h2 className="text-lg font-thin mb-4 sm:text-base md:text-lg">SOFTWARE</h2>
-                                    <p className="mb-6 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">Get Microsoft Office 365 For Free On Your Mac</p>
+                                    <h2 className="text-lg font-base mb-4 sm:text-base md:text-lg">Exclusive Games</h2>
+                                    <p className="mb-6 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">To get our Exclusive Mac games Messege on my <a href="https://t.me/n0t_ur_type" className='text-cyan-500' target='_blank'>Telegram</a></p>
                                     <div className='w-fill'>
-                                        <a href="https://toxicgames.in/67150d922b746bdfa2e4f03d" rel="noopener noreferrer">
+                                        <a href="https://t.me/n0t_ur_type" target='_blank' rel="noopener noreferrer">
                                             <button className="mx-auto ml-0 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 sm:px-4 sm:py-2 md:px-6 md:py-3 overflow-hidden whitespace-nowrap text-ellipsis">
-                                                Get it Now..
+                                                Send message..
                                             </button>
                                         </a>
                                     </div>
@@ -266,7 +266,7 @@ const Home = () => {
 
 
                             {/* Overlay text and button on the 4th image (index === 2) */}
-                            {index === 0 && (
+                            {index === 1 && (
                                 <div className="absolute inset-0 flex flex-col text-white p-8 ml-6 mt-4 md:p-0 md:ml-20 md:mt-28 z-0">
                                     <h2 className="text-lg font-thin mb-4 sm:text-base md:text-lg">Macbook Games</h2>
                                     <p className="mb-6 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">Download Your Favourite Games for Free.</p>
@@ -283,7 +283,7 @@ const Home = () => {
 
 
                             {/* Overlay text and button on the 4th image (index === 3) */}
-                            {index === 1 && (
+                            {index === 2 && (
                                 <div className="absolute inset-0 flex flex-col text-white p-8 ml-6 mt-4 md:p-0 md:ml-20 md:mt-28 z-0">
                                     <h2 className="text-lg font-thin mb-4 sm:text-base md:text-lg">TELEGRAM CHAT</h2>
                                     <p className="mb-6 font-semibold sm:text-sm md:text-base overflow-hidden whitespace-nowrap text-ellipsis">Join Our Channel @freemacgames</p>
