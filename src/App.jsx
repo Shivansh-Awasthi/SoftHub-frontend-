@@ -61,26 +61,68 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Disable right-click context menu
-    const preventRightClick = (e) => {
-      e.preventDefault(); // Disable right-click
+    // Block console input by overriding console functions
+    const blockConsoleInput = () => {
+      const originalConsoleLog = console.log;
+      const originalConsoleWarn = console.warn;
+      const originalConsoleError = console.error;
+      const originalConsoleDebug = console.debug;
+
+      // Override console methods
+      console.log = function () { };
+      console.warn = function () { };
+      console.error = function () { };
+      console.debug = function () { };
+
+      // Prevent keyboard shortcuts that open dev tools
+      const preventKeyPress = (e) => {
+        // Block common dev tool shortcuts
+        if (
+          (e.keyCode === 123) ||  // F12
+          (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||  // Ctrl+Shift+I
+          (e.metaKey && e.altKey && e.keyCode === 73) ||  // Cmd+Opt+I (Mac)
+          (e.keyCode === 74 && (e.ctrlKey || e.metaKey) && e.shiftKey)  // Ctrl+Shift+J (DevTools toggle)
+        ) {
+          e.preventDefault();
+        }
+      };
+
+      // Block right-click (optional)
+      const preventRightClick = (e) => {
+        e.preventDefault();
+      };
+
+      // Block F12 and other common shortcuts
+      document.addEventListener('keydown', preventKeyPress);
+      document.addEventListener('contextmenu', preventRightClick); // Disable right-click
+
+      // Monitor the DevTools opening state (detecting window size change)
+      const checkDevTools = () => {
+        const devToolsOpen = window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100;
+        if (devToolsOpen) {
+          alert('DevTools is detected!'); // You can alert or handle the action however you want.
+        }
+      };
+
+      // Continuously check if DevTools is open (every second)
+      const interval = setInterval(checkDevTools, 2000);
+
+      // Cleanup function to restore the original console and remove listeners
+      return () => {
+        clearInterval(interval); // Cleanup the interval
+        console.log = originalConsoleLog;
+        console.warn = originalConsoleWarn;
+        console.error = originalConsoleError;
+        console.debug = originalConsoleDebug;
+        document.removeEventListener('keydown', preventKeyPress);
+        document.removeEventListener('contextmenu', preventRightClick);
+      };
     };
 
-    // Disable F12, Ctrl+Shift+I, etc.
-    const preventShortcuts = (e) => {
-      if (e.key === 'F12' || (e.ctrlKey && e.key === 'i')) {
-        e.preventDefault(); // Prevent DevTools opening with F12 or Ctrl+Shift+I
-      }
-    };
-
-    document.addEventListener('contextmenu', preventRightClick);  // Disable right-click
-    document.addEventListener('keydown', preventShortcuts);  // Disable shortcuts
-
-    return () => {
-      document.removeEventListener('contextmenu', preventRightClick);
-      document.removeEventListener('keydown', preventShortcuts);
-    };
+    // Execute the blocking function
+    blockConsoleInput();
   }, []);
+
 
 
   useEffect(() => {
