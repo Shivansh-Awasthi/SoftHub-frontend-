@@ -110,7 +110,7 @@ function App() {
 
       // Monitor the DevTools opening state (detecting window size change)
       const checkDevTools = () => {
-        const devToolsOpen = window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100;
+        const devToolsOpen = window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200;
         if (devToolsOpen) {
           alert('DevTools is detected!'); // You can alert or handle the action however you want.
         }
