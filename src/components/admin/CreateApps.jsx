@@ -10,7 +10,7 @@ const CreateApps = () => {
     const [isPaid, setIsPaid] = useState(false);
     const [price, setPrice] = useState(0);
     const [thumbnail, setThumbnail] = useState([]);
-    const [downloadLink, setDownloadLinks] = useState(["no", "no", "no", "no"]);
+    const [downloadLink, setDownloadLinks] = useState(["no", "no", "no", "no", "no", "no"]);
     const [size, setSize] = useState("");
     const [unit, setUnit] = useState('MB');
     const [category, setCategory] = useState("");
@@ -105,6 +105,8 @@ const CreateApps = () => {
         { label: "OneDrive", placeholder: "Enter the oneDrive link" },
         { label: "Torrent", placeholder: "Enter the Torrent link" },
         { label: "Other Links", placeholder: "Enter other download link" },
+        { label: "MediaFire Link", placeholder: "Enter Mrdiafire link" },
+        { label: "Akira Box Link", placeholder: "Enter AkiraBox link" }
     ];
 
     return (
