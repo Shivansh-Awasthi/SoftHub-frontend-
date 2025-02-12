@@ -619,6 +619,21 @@ const SingleApp = () => {
                                             </a>
                                         </div>
                                     )}
+
+                                    {/* Akirabox Download Links */}
+                                    {data.downloadLink[5] && data.downloadLink[5] !== "no" && (
+                                        <div className="mt-2">
+                                            <a
+                                                href={data.downloadLink[5]}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex gap-4 justify-center items-center py-3 px-6 sm:px-10 inline-block w-full text-blue-500 rounded-lg bg-[#2E2E2E] hover:underline hover:bg-[#3E3E3E] transition"
+                                            >
+                                                <div>Download from AkiraBox (<span className='text-[#55ff00]'>Fastest 🔥</span>)</div>
+                                                <div className='text-xl'><LiaDownloadSolid /></div>
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
                             )}
 
