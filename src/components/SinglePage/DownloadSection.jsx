@@ -8,14 +8,15 @@ const platformConfig = {
         { label: "Download Torrent file" },
         { label: "Other Download Links" },
         { label: "Download from Mediafire" },
-        { label: "Download from AkiraBox", custom: (<span className='text-[#55ff00]'>Fastest 🔥</span>) }
+        { label: "Download from AkiraBox ", custom: (<span className='text-[#55ff00]'>(Fastest 🔥)</span>) }
     ],
     PC: [
-        { label: "Download from Torrent" },
-        { label: "Torrent link 2" },
-        { label: "Torrent link 3" },
-        { label: "Other Download Links" },
-        { label: "Mirror Link" }
+        { label: "Torrent (Fitgirl)", custom: (<span className='text-[#55ff00] text-xs'> Note: <span className='text-red-600'> Requires Installation</span></span>) },
+        { label: "Buzzheavier ", custom: (<span className='text-[#55ff00]'>(Pre-Installed)</span>) },
+        { label: "DataNodes ", custom: (<span className='text-[#55ff00]'>(Pre-Installed)</span>) },
+        { label: "GoFile ", custom: (<span className='text-[#55ff00]'>(Pre-Installed)</span>) },
+        { label: "Pixeldrain ", custom: (<span className='text-[#55ff00]'>(Pre-Installed)</span>) },
+        { label: "Akirabox ", custom: (<span className='text-[#55ff00]'>(Pre-Installed)</span>) }
     ],
     Android: [
         { label: "Download Apk" },
