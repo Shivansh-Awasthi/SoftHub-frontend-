@@ -101,12 +101,12 @@ const CreateApps = () => {
 
     // Define custom labels and placeholders
     const downloadLinkLabelsAndPlaceholders = [
-        { label: "Direct Link", placeholder: "Enter the Direct link" },
-        { label: "OneDrive", placeholder: "Enter the oneDrive link" },
-        { label: "Torrent", placeholder: "Enter the Torrent link" },
-        { label: "Other Links", placeholder: "Enter other download link" },
-        { label: "MediaFire Link", placeholder: "Enter Mrdiafire link" },
-        { label: "Akira Box Link", placeholder: "Enter AkiraBox link" }
+        { label: "Direct Link (Mac) // Torrent (PC)", placeholder: "Enter the Direct link" },
+        { label: "OneDrive (Mac) // Buzzheavier (PC)", placeholder: "Enter the oneDrive link" },
+        { label: "Torrent (Mac) // DataNodes (PC)", placeholder: "Enter the Torrent link" },
+        { label: "Other Links (Mac) // GoFile (PC)", placeholder: "Enter other download link" },
+        { label: "MediaFire Link (Mac) // Pixeldrain (PC)", placeholder: "Enter Mrdiafire link" },
+        { label: "Akira Box Link (Mac, PC)", placeholder: "Enter AkiraBox link" }
     ];
 
     return (
@@ -163,16 +163,7 @@ const CreateApps = () => {
                         />
                         <label htmlFor="isPaid" className="ml-2 text-sm font-medium text-gray-300">Paid?</label>
                     </div>
-                    {/* <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Price</label>
-                        <input
-                            type="text"
-                            placeholder='price'
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        />
-                    </div> */}
+
 
                     {/* Download Links */}
                     {downloadLink.map((link, index) => (
