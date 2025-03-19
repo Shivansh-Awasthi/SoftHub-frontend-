@@ -109,147 +109,246 @@ const CreateApps = () => {
         { label: "Akira Box Link (Mac, PC)", placeholder: "Enter AkiraBox link" }
     ];
 
+
+
     return (
-        <div className='container p-6'>
-            <ToastContainer />
-            <div className="cover">
-                <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-md">
-                    <h1 className='text-xl font-bold text-white mb-4'>Add your Application</h1>
-
-                    {/* Form Fields */}
-                    <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Title</label>
-                        <input
-                            type="text"
-                            placeholder='title name'
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required
-                        />
-                    </div>
-                    <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Description</label>
-                        <input
-                            type="text"
-                            placeholder='write description'
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required
-                        />
-                    </div>
-                    <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Platform</label>
-                        <select
-                            value={platform}
-                            onChange={(e) => setPlatform(e.target.value)}
-                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        >
-                            <option value="">Select Platform</option>
-                            <option value="PC">PC</option>
-                            <option value="Mac">Mac</option>
-                            <option value="Android">Android</option>
-                            <option value="Playstation">Playstation</option>
-                        </select>
-                    </div>
-                    <div className='flex items-center mb-5'>
-                        <input
-                            id="isPaid"
-                            type="checkbox"
-                            checked={isPaid}
-                            onChange={(e) => setIsPaid(e.target.checked)}
-                            className="w-4 h-4 border border-gray-600 rounded bg-gray-700 focus:ring-3 focus:ring-blue-300"
-                        />
-                        <label htmlFor="isPaid" className="ml-2 text-sm font-medium text-gray-300">Paid?</label>
+        <div className="min-h-screen bg-gray-900 py-8 px-4 sm:px-6 lg:px-8">
+            <ToastContainer position="bottom-right" />
+            <div className="max-w-4xl mx-auto">
+                <form onSubmit={handleSubmit} className="space-y-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 shadow-xl ring-1 ring-purple-500/20">
+                    {/* Header Section */}
+                    <div className="border-b border-gray-700 pb-6">
+                        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            Add New Application
+                        </h1>
+                        <p className="mt-2 text-gray-400">Fill in the details below to add a new application/game</p>
                     </div>
 
+                    {/* Main Form Content */}
+                    <div className="space-y-6">
+                        {/* Basic Information Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Title */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Application Title
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter application name"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-300 placeholder-gray-500"
+                                    required
+                                />
+                            </div>
 
-                    {/* Download Links */}
-                    {downloadLink.map((link, index) => (
-                        <div className='mb-5' key={index}>
-                            <label className='block mb-2 text-sm font-medium text-gray-300'>
-                                {downloadLinkLabelsAndPlaceholders[index]?.label || `Download Link ${index + 1}`}
-                            </label>
-                            <input
-                                type="text"
-                                placeholder={downloadLinkLabelsAndPlaceholders[index]?.placeholder || `Paste your download link ${index + 1}`}
-                                value={link}
-                                onChange={(e) => handleDownloadLinkChange(index, e.target.value)}
-                                className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            />
+                            {/* Description Textarea */}
+                            <div className="col-span-full">
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Description
+                                </label>
+                                <textarea
+                                    rows="4"
+                                    placeholder="Enter detailed description about the application..."
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-300 placeholder-gray-500 resize-none"
+                                    required
+                                />
+                            </div>
+
+                            {/* Platform Selector */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Platform
+                                </label>
+                                <select
+                                    value={platform}
+                                    onChange={(e) => setPlatform(e.target.value)}
+                                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-300"
+                                >
+                                    <option value="">Select Platform</option>
+                                    <option value="PC">PC</option>
+                                    <option value="Mac">Mac</option>
+                                    <option value="Android">Android</option>
+                                    <option value="Playstation">Playstation</option>
+                                </select>
+                            </div>
+
+                            {/* Category Selector */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    Category
+                                </label>
+                                <select
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
+                                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-300 appearance-none"
+                                >
+                                    <option value="">Select Category</option>
+                                    {categories.map((cat) => (
+                                        <option key={cat.value} value={cat.value}>{cat.label}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            {/* Pricing Section */}
+                            <div className="space-y-4">
+                                <div className="flex items-center space-x-3">
+                                    <label className="flex items-center space-x-2">
+                                        <input
+                                            type="checkbox"
+                                            checked={isPaid}
+                                            onChange={(e) => setIsPaid(e.target.checked)}
+                                            className="form-checkbox h-5 w-5 text-purple-500 bg-gray-800 border-gray-700 rounded focus:ring-purple-500"
+                                        />
+                                        <span className="text-gray-300">Paid Application</span>
+                                    </label>
+                                </div>
+                                {isPaid && (
+                                    <div>
+                                        <input
+                                            type="number"
+                                            placeholder="Price in USD"
+                                            value={price}
+                                            onChange={(e) => setPrice(e.target.value)}
+                                            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 text-gray-300"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    File Size
+                                </label>
+                                <div className="flex rounded-lg overflow-hidden border border-gray-700 focus-within:ring-2 focus-within:ring-purple-500">
+                                    <input
+                                        type="number"
+                                        placeholder="Enter size"
+                                        value={size}
+                                        onChange={(e) => setSize(e.target.value)}
+                                        className="flex-1 px-4 py-3 bg-gray-800 text-gray-300 focus:outline-none"
+                                    />
+                                    <select
+                                        value={unit}
+                                        onChange={(e) => setUnit(e.target.value)}
+                                        className="bg-gray-800 border-l border-gray-700 text-gray-300 px-4 py-3 focus:outline-none hover:bg-gray-750 transition-colors"
+                                    >
+                                        <option value="GB">GB</option>
+                                        <option value="MB">MB</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    ))}
 
-                    <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Size</label>
-                        <div className="flex">
-                            <input
-                                type="number"
-                                placeholder='enter the size'
-                                value={size}
-                                onChange={(e) => setSize(e.target.value)}
-                                className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            />
-                            <select
-                                value={unit}
-                                onChange={(e) => setUnit(e.target.value)}
-                                className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
-                            >
-                                <option value="GB">GB</option>
-                                <option value="MB">MB</option>
-                            </select>
+
+
+                        {/* Download Links Section */}
+                        <div className="space-y-6">
+                            <h3 className="text-lg font-semibold text-gray-200 border-l-4 border-purple-500 pl-3">
+                                Download Links
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {downloadLink.map((link, index) => (
+                                    <div key={index} className="relative">
+                                        <label className="block text-sm font-medium text-gray-400 mb-1">
+                                            {downloadLinkLabelsAndPlaceholders[index]?.label || `Link ${index + 1}`}
+                                            <span className="ml-2 text-xs text-purple-400">
+                                                ({index < 3 ? 'Required' : 'Optional'})
+                                            </span>
+                                        </label>
+                                        <div className="flex items-center">
+                                            <span className="absolute left-3 text-gray-500">
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                                </svg>
+                                            </span>
+                                            <input
+                                                type="text"
+                                                placeholder={downloadLinkLabelsAndPlaceholders[index]?.placeholder}
+                                                value={link}
+                                                onChange={(e) => handleDownloadLinkChange(index, e.target.value)}
+                                                className="w-full pl-10 pr-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 text-gray-300 placeholder-gray-500"
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Categories */}
-                    <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Category</label>
-                        <select
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        {/* Media Upload Section */}
+                        <div className="space-y-6">
+                            <h3 className="text-lg font-semibold text-gray-200 border-l-4 border-purple-500 pl-3">
+                                Media Uploads
+                            </h3>
+
+                            {/* Cover Image */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-400 mb-2">
+                                    Cover Image URL
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter cover image URL"
+                                    value={coverImg}
+                                    onChange={(e) => setCoverImg(e.target.value)}
+                                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 text-gray-300"
+                                />
+                            </div>
+
+                            {/* Thumbnail Upload */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-400 mb-3">
+                                    Thumbnails (Max 20 files)
+                                </label>
+                                <div className="flex items-center justify-center w-full">
+                                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-700 rounded-lg cursor-pointer bg-gray-800 hover:border-purple-500 transition-colors">
+                                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <svg className="w-8 h-8 mb-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                            </svg>
+                                            <p className="text-sm text-gray-400">
+                                                <span className="font-semibold">Click to upload</span> or drag and drop
+                                            </p>
+                                        </div>
+                                        <input
+                                            type="file"
+                                            multiple
+                                            accept="image/*,video/*"
+                                            onChange={handleThumbnail}
+                                            className="hidden"
+                                        />
+                                    </label>
+                                </div>
+                                {thumbnail.length > 0 && (
+                                    <p className="mt-2 text-sm text-gray-400">
+                                        Selected files: {thumbnail.length}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Submit Button */}
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full py-3.5 px-6 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 rounded-lg font-semibold text-white transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            <option value="">Select Category</option>
-                            {categories.map((category, index) => (
-                                <option key={index} value={category.value}>{category.label}</option>
-                            ))}
-                        </select>
+                            {loading ? (
+                                <span className="flex items-center justify-center">
+                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Uploading...
+                                </span>
+                            ) : (
+                                'Publish Application'
+                            )}
+                        </button>
                     </div>
-
-                    {/* Thumbnail */}
-                    <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Thumbnail</label>
-                        <input
-                            type="file"
-                            multiple
-                            accept="image/*,video/*"
-                            onChange={handleThumbnail}
-                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        />
-                    </div>
-
-                    <div className='mb-5'>
-                        <label className='block mb-2 text-sm font-medium text-gray-300'>Cover Img</label>
-                        <input
-                            type="text"
-                            placeholder='add cover image'
-                            value={coverImg}
-                            onChange={(e) => setCoverImg(e.target.value)}
-                            className="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required
-                        />
-                    </div>
-
-
-                    {/* Submit */}
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-50"
-                    >
-                        {loading ? "Submitting..." : "Submit"}
-                    </button>
                 </form>
             </div>
         </div>
