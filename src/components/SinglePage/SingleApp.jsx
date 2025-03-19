@@ -227,7 +227,7 @@ const SingleApp = () => {
                         {data.platform === "Mac" && "Mac Air M1"}
                         {data.platform === "PC" && "PC"}
                         {data.platform === "Android" && "Android device"}
-                        {data.platform === "Playstation" && "PC"} {/* Or "Playstation Console" i don't have ps lol */}
+                        {data.platform === "Playstation" && "PC (Emulator)"} {/* Or "Playstation Console" i don't have ps lol */}
                     </p>
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Size</h2>
                     <p className="text-sm text-[#fff] mb-6">{data.size}</p>
@@ -322,15 +322,13 @@ const SingleApp = () => {
                             )}
 
 
-
-
                             {/* For PC */}
                             {data.category.name === 'pc' && (
                                 <div>
                                     <div>
                                         <h2 className="mt-3 text-[#8E8E8E] hover:underline text-lg sm:text-xl">PC</h2>
-                                        <p className="mt-1 text-sm sm:text-base">Extract the downloaded zip and click install.</p>
-                                        <p className="text-sm sm:text-base">Once the installation is complete, the application can be launched directly.</p>
+                                        <p className="mt-1 text-sm sm:text-base">Game is pre-installed / portable, therefore you do not need to install the game.</p>
+                                        <p className='text-green-500 text-base'>Just extract the <span className='text-yellow-500'>rar / zip file</span> and lauch the game directly from it's  <span className='text-yellow-500'>exe</span>.</p>
                                     </div>
 
                                     {/* Check if gameplayVideos is not empty and has enough data */}
