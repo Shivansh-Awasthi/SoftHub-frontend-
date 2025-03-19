@@ -274,7 +274,7 @@ const SingleApp = () => {
             {
                 showModal && (
                     <div className="fixed inset-1 flex items-center justify-center bg-black backdrop-blur-sm bg-opacity-50 z-20 overflow-y-auto">
-                        <div className="bg-[#262626] px-6 sm:px-12 lg:px-24 py-6 sm:py-8 rounded-lg w-full max-w-4xl mx-auto text-center relative">
+                        <div className="bg-[#262626] px-6 sm:px-12 lg:px-24 py-6 sm:py-8 rounded-lg w-full max-w-4xl mx-auto text-center relative my-auto">
                             {/* Close Icon */}
                             <div className="absolute top-4 right-4 cursor-pointer" onClick={closeModal}>
                                 <RxCross2 className="mr-2 sm:mr-4 text-xl text-[#8E8E8E] hover:text-[#fff]" />
