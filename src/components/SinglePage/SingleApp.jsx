@@ -223,7 +223,12 @@ const SingleApp = () => {
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Interface language</h2>
                     <p className="text-sm text-[#fff] mb-6">English , Russian , German , Chinese...</p>
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Tested</h2>
-                    <p className="text-sm text-[#fff] mb-6">Mac Air M1</p>
+                    <p className="text-sm text-[#fff] mb-6">
+                        {data.platform === "Mac" && "Mac Air M1"}
+                        {data.platform === "PC" && "PC"}
+                        {data.platform === "Android" && "Android device"}
+                        {data.platform === "Playstation" && "PC"} {/* Or "Playstation Console" i don't have ps lol */}
+                    </p>
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Size</h2>
                     <p className="text-sm text-[#fff] mb-6">{data.size}</p>
                     <h2 className="text-xs font-semibold text-[#8E8E8E]">Updated at</h2>
