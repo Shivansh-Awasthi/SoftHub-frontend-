@@ -7,6 +7,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import GiscusComments from '../GiscusComments';
 import GameAnnouncement from './GameAnnouncement';
 import DownloadSection from './DownloadSection';
+import DescriptionTabs from './DescriptionTabs';
 
 const SingleApp = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,6 +18,7 @@ const SingleApp = () => {
     const [error, setError] = useState(null); // State to handle errors
     const [userData, setUserData] = useState(null); // Store user data
     const [hasAccess, setHasAccess] = useState(null); // Start with null instead of true
+    const [activeTab, setActiveTab] = useState('description');
 
     // Fetch user data (for admin status and purchased apps)
     const fetchUserData = async () => {
@@ -244,28 +246,10 @@ const SingleApp = () => {
                 </div>
             </div>
 
-            {/* Description Section */}
-            <div className="mt-8 mb-8 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-20 bg-[#262626]  z-20 ring-2 ring-[#2E2E2E] rounded-lg">
-                <div className="text-center p-1">
-                    <h2 className="text-2xl sm:text-3xl font-normal text-[#8E8E8E] hover:text-[#fff]">Description</h2>
-                    <div className="h-0.5 bg-[#8E8E8E] opacity-20 w-full mt-2 mb-4"></div>
-                </div>
-                <p
-                    className="text-sm sm:text-base md:text-lg text-[#fff]"
-                    dangerouslySetInnerHTML={{
-                        __html: showMore
-                            ? (data.description ? data.description.replace(/\\n/g, '<br />') : "No description available.")
-                            : (data.description ? data.description.replace(/\\n/g, '<br />').substring(0, 800) + '...' : "No description available.")
-                    }}
-                />
-                {/* Show More / Collapse Button */}
-                <button
-                    className="mt-4 text-blue-500 hover:underline"
-                    onClick={toggleShowMore}
-                >
-                    {showMore ? "Collapse" : "Show More"}
-                </button>
-            </div>
+
+
+            {/* Description/Installation Section */}
+            <DescriptionTabs data={data} />
 
 
             {/* DOWNLOAD BUTTON SECTION */}
