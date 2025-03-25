@@ -175,7 +175,7 @@ const Donate = () => {
                             <h2 className='text-xl text-red-500 mb-3'>Upcoming Game</h2>
                         </div>
 
-                        <div className="animate-pulse text-indigo-500">After the completion of Red Dead Redemption 2 the other games will be posted.</div>
+                        <div className="animate-pulse text-indigo-500">After the completion of Red Dead Redemption 2, then the other games will be posted.</div>
                     </div>
                 </section>
             </div>
