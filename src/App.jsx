@@ -30,98 +30,81 @@ import Contacts from './components/other pages/Contacts';
 import UserProvider from './components/hooks/UserContext';
 
 function App() {
-
   useEffect(() => {
-    const isAdmin = localStorage.getItem("role") === "ADMIN";  // or use user context if available
+    const isAdmin = localStorage.getItem("role") === "ADMIN";
 
     if (isAdmin) {
-      // If the user is an admin, do not apply any restrictions
-      return; // Exit early if admin
+      return;
     }
-    // Dev tools detection
+
     const warnMessage = "Blocked by Client. Developer Tools are disabled.";
 
-    // Function to check if dev tools are open
     function isDevToolsOpen() {
       const threshold = 160;
       const devToolsOpened = window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold;
       return devToolsOpened;
     }
 
-    // Monitor dev tools
     const monitorDevTools = () => {
       if (isDevToolsOpen()) {
         console.error("Failed to load resource: net::ERR_BLOCKED_BY_CLIENT");
-        // Show alert when dev tools are detected
       }
     };
 
-    // Set interval to continuously check
     const interval = setInterval(() => {
       monitorDevTools();
     }, 10000);
 
-    // Clean up the interval on unmount
     return () => clearInterval(interval);
-
   }, []);
 
   useEffect(() => {
-    const isAdmin = localStorage.getItem("role") === "ADMIN";  // or use user context if available
+    const isAdmin = localStorage.getItem("role") === "ADMIN";
 
     if (isAdmin) {
-      // If the user is an admin, do not apply any restrictions
-      return; // Exit early if admin
+      return;
     }
-    // Block console input by overriding console functions
+
     const blockConsoleInput = () => {
       const originalConsoleLog = console.log;
       const originalConsoleWarn = console.warn;
       const originalConsoleError = console.error;
       const originalConsoleDebug = console.debug;
 
-      // Override console methods
       console.log = function () { };
       console.warn = function () { };
       console.error = function () { };
       console.debug = function () { };
 
-      // Prevent keyboard shortcuts that open dev tools
       const preventKeyPress = (e) => {
-        // Block common dev tool shortcuts
         if (
-          (e.keyCode === 123) ||  // F12
-          (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||  // Ctrl+Shift+I
-          (e.metaKey && e.altKey && e.keyCode === 73) ||  // Cmd+Opt+I (Mac)
-          (e.keyCode === 74 && (e.ctrlKey || e.metaKey) && e.shiftKey)  // Ctrl+Shift+J (DevTools toggle)
+          (e.keyCode === 123) ||
+          (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+          (e.metaKey && e.altKey && e.keyCode === 73) ||
+          (e.keyCode === 74 && (e.ctrlKey || e.metaKey) && e.shiftKey)
         ) {
           e.preventDefault();
         }
       };
 
-      // Block right-click (optional)
       const preventRightClick = (e) => {
         e.preventDefault();
       };
 
-      // Block F12 and other common shortcuts
       document.addEventListener('keydown', preventKeyPress);
-      document.addEventListener('contextmenu', preventRightClick); // Disable right-click
+      document.addEventListener('contextmenu', preventRightClick);
 
-      // Monitor the DevTools opening state (detecting window size change)
       const checkDevTools = () => {
         const devToolsOpen = window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200;
         if (devToolsOpen) {
-          alert('DevTools is detected!'); // You can alert or handle the action however you want.
+          alert('DevTools is detected!');
         }
       };
 
-      // Continuously check if DevTools is open (every second)
       const interval = setInterval(checkDevTools, 2000);
 
-      // Cleanup function to restore the original console and remove listeners
       return () => {
-        clearInterval(interval); // Cleanup the interval
+        clearInterval(interval);
         console.log = originalConsoleLog;
         console.warn = originalConsoleWarn;
         console.error = originalConsoleError;
@@ -131,11 +114,8 @@ function App() {
       };
     };
 
-    // Execute the blocking function
     blockConsoleInput();
   }, []);
-
-
 
   useEffect(() => {
     document.getElementById('root').style.visibility = 'visible';
@@ -144,49 +124,54 @@ function App() {
   return (
     <BrowserRouter>
       <UserProvider>
-        <div className="flex h-screen"> {/* Flex container for layout */}
-          <Sidebar className="w-1/4" /> {/* Sidebar on the left */}
-          <div className="flex-1 p-8 overflow-auto"> {/* Main content area */}
-            <Header />
-
+        <div className="flex h-screen">
+          <Sidebar className="w-1/4" />
+          <div className="flex-1 p-8 overflow-auto">
             <Routes>
-              <Route path='/signup' element={<Register />} />
-              <Route path='/login' element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path='/' element={<Home />} />
-              <Route path='/download/:platform/:slug/:id' element={<SingleApp />} />
+              <Route path='/signup' element={<><Header /><Register /></>} />
+              <Route path='/login' element={<><Header /><Login /></>} />
+              <Route path="/logout" element={<><Header /><Logout /></>} />
+              <Route path='/' element={<><Header /><Home /></>} />
+              <Route path='/download/:platform/:slug/:id' element={<><Header /><SingleApp /></>} />
+              <Route path='/search' element={<><Header /><SearchResults /></>} />
+              <Route path='/gamepage' element={<><Header /><GamePage /></>} />
 
-              <Route path='/search' element={<SearchResults />} />
+              {/* Modified Donate route with custom Header */}
+              <Route path='/donate' element={
+                <>
+                  <Header showSearchBar={false} />
+                  <Donate />
+                </>
+              } />
 
-              <Route path='/gamepage' element={<GamePage />} />
+              {/* other pages */}
+              <Route path='/copyright-holders' element={<><Header /><Dmca /></>} />
+              <Route path='/policy' element={<><Header /><Policy /></>} />
+              <Route path='/faq' element={<><Header /><Faq /></>} />
+              <Route path='/contacts' element={<><Header /><Contacts /></>} />
+
+              {/* admin routes */}
+              <Route path='/admin/apps/new' element={<><Header /><CreateApps /></>} />
+              <Route path='/admin/apps/edit/:id' element={<><Header /><EditApps /></>} />
+              <Route path='/admin/apps/delete/:id' element={<><Header /><DeleteApps /></>} />
+
+              {/* category routes */}
+              <Route path='/category/mac/games' element={<><Header /><Mac /></>} />
+              <Route path='/category/mac/softwares' element={<><Header /><MacSoftwares /></>} />
+              <Route path='/category/pc/games' element={<><Header /><Pc /></>} />
+              <Route path='/category/pc/softwares' element={<><Header /><PcSoftwares /></>} />
+              <Route path='/category/android/games' element={<><Header /><Android /></>} />
+              <Route path='/category/android/softwares' element={<><Header /><AndroidSoftwares /></>} />
+
+              {/* playstation iso routes */}
+              <Route path='/category/ps2/iso' element={<><Header /><Ps2 /></>} />
+              <Route path='/category/ps3/iso' element={<><Header /><Ps3 /></>} />
+              <Route path='/category/ps4/iso' element={<><Header /><Ps4 /></>} />
+              <Route path='/category/ppsspp/iso' element={<><Header /><Ppsspp /></>} />
 
               {/* redirect */}
               <Route path="*" element={<Navigate to="/" />} />
-              {/* other pages */}
-              <Route path='/copyright-holders' element={<Dmca />} />
-              <Route path='/policy' element={<Policy />} />
-              <Route path='/donate' element={<Donate />} />
-              <Route path='/faq' element={<Faq />} />
-              <Route path='/contacts' element={<Contacts />} />
-
-              {/* admin routes */}
-              <Route path='/admin/apps/new' element={<CreateApps />} />
-              <Route path='/admin/apps/edit/:id' element={<EditApps />} />
-              <Route path='/admin/apps/delete/:id' element={<DeleteApps />} />
-              {/* category routes */}
-              <Route path='/category/mac/games' element={<Mac />} />
-              <Route path='/category/mac/softwares' element={<MacSoftwares />} />
-              <Route path='/category/pc/games' element={<Pc />} />
-              <Route path='/category/pc/softwares' element={<PcSoftwares />} />
-              <Route path='/category/android/games' element={<Android />} />
-              <Route path='/category/android/softwares' element={<AndroidSoftwares />} />
-              {/* playstation iso routes */}
-              <Route path='/category/ps2/iso' element={<Ps2 />} />
-              <Route path='/category/ps3/iso' element={<Ps3 />} />
-              <Route path='/category/ps4/iso' element={<Ps4 />} />
-              <Route path='/category/ppsspp/iso' element={<Ppsspp />} />
             </Routes>
-
           </div>
         </div>
       </UserProvider>
