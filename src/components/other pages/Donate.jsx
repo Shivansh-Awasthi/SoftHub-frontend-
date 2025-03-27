@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 const Donate = () => {
 
     const [donationGoal, setDonationGoal] = useState(1200); // $10,000 goal
-    const [currentAmount, setCurrentAmount] = useState(0); // Starting at $2,500
+    const [currentAmount, setCurrentAmount] = useState(150); // Starting at $2,500
     const [donationAmount, setDonationAmount] = useState(50);
     const [showThankYou, setShowThankYou] = useState(false);
 
