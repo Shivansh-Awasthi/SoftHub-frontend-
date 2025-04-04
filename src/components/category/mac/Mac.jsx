@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAppsByCategory } from '../../../redux/slices/appsSlice';
+import { fetchCurrentUser } from '../../../redux/slices/userSlice';
 import { CiLock } from 'react-icons/ci';
 import { toast } from 'react-toastify';
 import slugify from 'slugify';
+import axios from 'axios';
 
 const Mac = () => {
     // Configuration

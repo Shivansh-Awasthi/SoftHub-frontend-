@@ -42,7 +42,7 @@ const Home = () => {
 
             const initialResponse = await axios.get(`${process.env.REACT_API}/api/apps/category/mac?page=1&limit=48`)
 
-            // dynamic page logic 
+            // dynamic page logic
 
             const limitPage = 48;
             const totalPage = initialResponse.data.total
@@ -112,7 +112,7 @@ const Home = () => {
 
             const initialResponse = await axios.get(`${process.env.REACT_API}/api/apps/category/pc?page=1&limit=48`)
 
-            // dynamic page logic 
+            // dynamic page logic
 
             const limitPage = 48;
             const totalPage = initialResponse.data.total
