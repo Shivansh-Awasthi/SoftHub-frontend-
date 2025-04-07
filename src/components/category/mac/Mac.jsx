@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { CiLock } from 'react-icons/ci';
 import { toast } from 'react-toastify';
 import slugify from 'slugify';
@@ -8,17 +8,23 @@ import slugify from 'slugify';
 const Mac = () => {
     // Configuration
     const ITEMS_PER_PAGE = 48;
-    const MAX_PAGES_TO_SHOW = 7;
+
+    // Hooks for URL and navigation
+    const [searchParams, setSearchParams] = useSearchParams();
+    const location = useLocation();
+
+    // Get page from URL or default to 1
+    const getInitialPage = () => {
+        const pageParam = searchParams.get('page');
+        return pageParam ? parseInt(pageParam, 10) : 1;
+    };
 
     // State
     const [data, setData] = useState([]);
     const [totalApps, setTotalApps] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [userData, setUserData] = useState(null);
+    const [currentPage, setCurrentPage] = useState(getInitialPage);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    const navigate = useNavigate();
 
     // Enhanced API response handler
     const fetchGames = async (page) => {
@@ -96,12 +102,12 @@ const Mac = () => {
         if (!token) return;
 
         try {
-            const response = await axios.get(`${process.env.REACT_API}/api/user`, {
+            await axios.get(`${process.env.REACT_API}/api/user`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            setUserData(response.data);
+            // We don't need to store the user data anymore
         } catch (err) {
             console.error("User data error:", err);
             // Silent fail for user data
@@ -117,12 +123,46 @@ const Mac = () => {
             ]);
         };
         loadData();
-    }, [currentPage]);
+
+        // Update URL if it doesn't match the current page
+        const pageParam = searchParams.get('page');
+        if (!pageParam || parseInt(pageParam, 10) !== currentPage) {
+            setSearchParams({ page: currentPage.toString() });
+        }
+    }, [currentPage, searchParams]);
+
+    // Listen for browser back/forward navigation
+    useEffect(() => {
+        const handlePopState = () => {
+            const pageParam = searchParams.get('page');
+            if (pageParam) {
+                const newPage = parseInt(pageParam, 10);
+                if (newPage !== currentPage) {
+                    setCurrentPage(newPage);
+                }
+            }
+        };
+
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, [searchParams, currentPage]);
+
+    // Reset to page 1 when navigating directly to the Mac page
+    useEffect(() => {
+        // Check if this is a direct navigation (not back/forward)
+        // We can detect this by checking if the location.key has changed
+        const directNavigation = !searchParams.has('page');
+
+        if (directNavigation && currentPage !== 1) {
+            // Reset to page 1 when directly navigating to the Mac page
+            setCurrentPage(1);
+            setSearchParams({ page: '1' });
+        }
+    }, [location.key, currentPage, searchParams, setCurrentPage, setSearchParams]); // This will run when the location changes (new navigation)
 
     // Derived state
     const purchasedGames = JSON.parse(localStorage.getItem("gData")) || [];
     const isAdmin = localStorage.getItem("role") === 'ADMIN';
-    const isLoggedIn = !!userData;
 
     // Pagination calculations
     const totalPages = Math.max(1, Math.ceil(totalApps / ITEMS_PER_PAGE));
@@ -239,7 +279,7 @@ const Mac = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
                         {data.map((game) => (
                             <GameCard
-                                key={game?._id || `game-${Math.random().toString(36).substr(2, 9)}`}
+                                key={game?._id || `game-${Math.random().toString(36).substring(2, 9)}`}
                                 game={game}
                             />
                         ))}
@@ -248,7 +288,11 @@ const Mac = () => {
                     {totalPages > 1 && (
                         <div className="flex justify-center mt-10">
                             <button
-                                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                                onClick={() => {
+                                    const newPage = Math.max(currentPage - 1, 1);
+                                    setCurrentPage(newPage);
+                                    setSearchParams({ page: newPage.toString() });
+                                }}
                                 disabled={currentPage === 1}
                                 className="px-4 py-2 mx-2 bg-gray-700 text-white rounded disabled:opacity-50 hover:scale-110"
                             >
@@ -258,7 +302,10 @@ const Mac = () => {
                             {pageNumbers.map((pageNumber) => (
                                 <button
                                     key={pageNumber}
-                                    onClick={() => setCurrentPage(pageNumber)}
+                                    onClick={() => {
+                                        setCurrentPage(pageNumber);
+                                        setSearchParams({ page: pageNumber.toString() });
+                                    }}
                                     className={`px-4 py-2 mx-1 rounded text-gray-300 ${currentPage === pageNumber
                                         ? 'bg-blue-600'
                                         : 'bg-[#2c2c2c] hover:bg-black hover:text-white hover:scale-110'
@@ -269,7 +316,11 @@ const Mac = () => {
                             ))}
 
                             <button
-                                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                                onClick={() => {
+                                    const newPage = Math.min(currentPage + 1, totalPages);
+                                    setCurrentPage(newPage);
+                                    setSearchParams({ page: newPage.toString() });
+                                }}
                                 disabled={currentPage === totalPages}
                                 className="px-4 py-2 mx-2 bg-gray-700 text-white rounded disabled:opacity-50 hover:scale-110"
                             >
