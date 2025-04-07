@@ -24,6 +24,7 @@ const Mac = () => {
     const [totalApps, setTotalApps] = useState(0);
     const [currentPage, setCurrentPage] = useState(getInitialPage);
     const [isLoading, setIsLoading] = useState(true);
+    const [isPageTransitioning, setIsPageTransitioning] = useState(false); // New state for page transitions
     const [error, setError] = useState(null);
 
     // Enhanced API response handler
@@ -93,6 +94,7 @@ const Mac = () => {
             setData([]);
         } finally {
             setIsLoading(false);
+            setIsPageTransitioning(false); // Reset page transition state
         }
     };
 
@@ -276,39 +278,64 @@ const Mac = () => {
 
             {data.length > 0 ? (
                 <>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
-                        {data.map((game) => (
-                            <GameCard
-                                key={game?._id || `game-${Math.random().toString(36).substring(2, 9)}`}
-                                game={game}
-                            />
-                        ))}
+                    <div className="relative">
+                        {/* Loading overlay during page transitions */}
+                        {isPageTransitioning && (
+                            <div className="absolute inset-0 bg-black bg-opacity-50 z-10 flex items-center justify-center rounded-lg">
+                                <div className="flex flex-col items-center">
+                                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+                                    <p className="text-white text-lg">Loading page {currentPage}...</p>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 transition-opacity duration-300 ease-in-out">
+                            {data.map((game) => (
+                                <GameCard
+                                    key={game?._id || `game-${Math.random().toString(36).substring(2, 9)}`}
+                                    game={game}
+                                />
+                            ))}
+                        </div>
                     </div>
 
                     {totalPages > 1 && (
                         <div className="flex justify-center mt-10">
                             <button
                                 onClick={() => {
-                                    const newPage = Math.max(currentPage - 1, 1);
-                                    setCurrentPage(newPage);
-                                    setSearchParams({ page: newPage.toString() });
+                                    if (!isPageTransitioning) {
+                                        setIsPageTransitioning(true);
+                                        const newPage = Math.max(currentPage - 1, 1);
+                                        setCurrentPage(newPage);
+                                        setSearchParams({ page: newPage.toString() });
+                                        // Scroll to top of the games section
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }
                                 }}
-                                disabled={currentPage === 1}
-                                className="px-4 py-2 mx-2 bg-gray-700 text-white rounded disabled:opacity-50 hover:scale-110"
+                                disabled={currentPage === 1 || isPageTransitioning}
+                                className={`px-4 py-2 mx-2 bg-gray-700 text-white rounded transition-all duration-300 ${isPageTransitioning ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'}`}
                             >
-                                Previous
+                                {isPageTransitioning ? 'Loading...' : 'Previous'}
                             </button>
 
                             {pageNumbers.map((pageNumber) => (
                                 <button
                                     key={pageNumber}
                                     onClick={() => {
-                                        setCurrentPage(pageNumber);
-                                        setSearchParams({ page: pageNumber.toString() });
+                                        if (!isPageTransitioning && currentPage !== pageNumber) {
+                                            setIsPageTransitioning(true);
+                                            setCurrentPage(pageNumber);
+                                            setSearchParams({ page: pageNumber.toString() });
+                                            // Scroll to top of the games section
+                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                                        }
                                     }}
-                                    className={`px-4 py-2 mx-1 rounded text-gray-300 ${currentPage === pageNumber
+                                    disabled={isPageTransitioning}
+                                    className={`px-4 py-2 mx-1 rounded text-gray-300 transition-all duration-300 ${currentPage === pageNumber
                                         ? 'bg-blue-600'
-                                        : 'bg-[#2c2c2c] hover:bg-black hover:text-white hover:scale-110'
+                                        : isPageTransitioning
+                                            ? 'bg-[#2c2c2c] opacity-50 cursor-not-allowed'
+                                            : 'bg-[#2c2c2c] hover:bg-black hover:text-white hover:scale-110'
                                         }`}
                                 >
                                     {pageNumber}
@@ -317,14 +344,19 @@ const Mac = () => {
 
                             <button
                                 onClick={() => {
-                                    const newPage = Math.min(currentPage + 1, totalPages);
-                                    setCurrentPage(newPage);
-                                    setSearchParams({ page: newPage.toString() });
+                                    if (!isPageTransitioning) {
+                                        setIsPageTransitioning(true);
+                                        const newPage = Math.min(currentPage + 1, totalPages);
+                                        setCurrentPage(newPage);
+                                        setSearchParams({ page: newPage.toString() });
+                                        // Scroll to top of the games section
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }
                                 }}
-                                disabled={currentPage === totalPages}
-                                className="px-4 py-2 mx-2 bg-gray-700 text-white rounded disabled:opacity-50 hover:scale-110"
+                                disabled={currentPage === totalPages || isPageTransitioning}
+                                className={`px-4 py-2 mx-2 bg-gray-700 text-white rounded transition-all duration-300 ${isPageTransitioning ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'}`}
                             >
-                                Next
+                                {isPageTransitioning ? 'Loading...' : 'Next'}
                             </button>
                         </div>
                     )}
