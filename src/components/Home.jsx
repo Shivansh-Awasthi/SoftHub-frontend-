@@ -358,7 +358,7 @@ const Home = () => {
                 {/* Conditional rendering based on data existence */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
                     {Array.isArray(data) && data.length > 0 ? (
-                        data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).slice(0, 12).map((ele) => (
+                        data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).slice(0, 8).map((ele) => (
                             <Link
                                 key={ele._id}
                                 to={`/download/${createSlug(ele.platform)}/${createSlug(ele.title)}/${ele._id}`}
